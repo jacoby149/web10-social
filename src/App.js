@@ -1,25 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
+import {pass,R,C,T} from 'rectangles-npm'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <R root t bt bb br bl theme={"dark"}>
+        <R t s={"70px"} bb></R>
+    </R>
+    );
 }
 
 export default App;
