@@ -19,19 +19,28 @@ import patrikIco from "./images/avatar1.svg"
 function Contacts() {
   return (
     <R root t bt bb br bl theme={"light"}>
-      <R l s={"70px"} bb>
-        <C t va={"center"}><i><b>web10 -</b>  social</i></C>
-        <C t tel >
+      <R t s={"23px"}></R>
+      <R l s={"32px"}>
+        <R t s={"120px"}>
+          <R t s={"4px"}/>
+          <C t va={"center"}><i><b>web10 -</b>  social</i></C>
+        </R>
+        <R t s={"300px"} >
           <Search placeholder="Search..." />
-        </C>
-        <R l >
+        </R>
+        <R t s={"120px"}>
+        <R t s={"4px"}/>
 
+        <C>
+          <a href="/?mock=feed"> [ Feed → ] </a>
+        </C>
         </R>
       </R>
+      <R t s={"20px"} bb></R>
       <R t tel>
         <div>
           <ConversationList>
-            <a href="http://localhost:3000/?mock=chat">
+            <a href="/?mock=chat">
               <Conversation name="Lilly" lastSenderName="Lilly" info="Yes i can do it for you">
                 <Avatar src={lillyIco} name="Lilly" />
               </Conversation>

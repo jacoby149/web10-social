@@ -31,7 +31,9 @@ function Chat() {
                             <ConversationHeader.Actions>
                                 <VoiceCallButton />
                                 <VideoCallButton />
-                                <InfoButton />
+                                <a href="/?mock=bio">
+                                    <InfoButton />
+                                </a>
                             </ConversationHeader.Actions>
                         </ConversationHeader>
 
