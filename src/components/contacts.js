@@ -28,11 +28,16 @@ function Contacts() {
         <R t s={"300px"} >
           <Search placeholder="Search..." />
         </R>
-        <R t s={"120px"}>
+        <R t s={"40"}>
           <R t s={"4px"} />
-
           <C>
             <a href="/?mock=feed"> [ Feed → ] </a>
+          </C>
+        </R>
+        <R t s={"40"}>
+          <R t s={"4px"} />
+          <C>
+            <a href="https://vasturiano.github.io/3d-force-graph/example/img-nodes/"> [ 3D Feed → ] </a>
           </C>
         </R>
       </R>
@@ -42,7 +47,7 @@ function Contacts() {
           <ConversationList>
             <a href="/?mock=chat">
 
-              <Conversation name="Emily" lastSenderName="Emily" info="Yes i can do it for you">
+              <Conversation name="Emily [CLICK ME]" lastSenderName="Emily" info="Yes i can do it for you">
                 <Avatar src={emilyIco} name="Emily" />
               </Conversation>
             </a>

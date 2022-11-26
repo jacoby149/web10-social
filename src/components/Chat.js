@@ -196,21 +196,21 @@ function Chat() {
                                 position: "normal"
                             }} />
                             <Message model={{
-                                message: "Hello my friend",
+                                message: "FOLLOW THE BELOW INSTRUCTIONS",
                                 sentTime: "15 mins ago",
                                 direction: "outgoing",
                                 position: "last"
                             }} />
 
                             <Message model={{
-                                message: "Hello my friend",
+                                message: "CLICK THE INFO ICON",
                                 sentTime: "15 mins ago",
                                 sender: "Emily",
                                 direction: "incoming",
                                 position: "first"
                             }} avatarSpacer />
                             <Message model={{
-                                message: "Hello my friend",
+                                message: "INFO ICON GOES TO BIO",
                                 sentTime: "15 mins ago",
                                 sender: "Emily",
                                 direction: "incoming",
