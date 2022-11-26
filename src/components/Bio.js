@@ -23,10 +23,12 @@ function Bio() {
                 </R>
             </R>
             <R t tel>
-                <R t ns bb s={"160px"} >
-                    <div style={{ margin: "10px"}} class="columns is-centered">
+                <R t ns bb s={"150px"} >
+                    <div style={{ margin: "10px" }} class="columns is-centered">
                         <div class="column has-text-centered is-1">
+                            <figure class="image is-64x64 is-inline-block">
                             <Avatar size={"lg"} src={emilyIco} name="Emily" />
+                            </figure>
                         </div>
                     </div>
                     <div class="columns is-centered">
@@ -71,7 +73,7 @@ function Bio() {
                 <R t ns bb s={"24px"}>
                     <div class="columns is-centered">
                         <div class="column has-text-centered is-4">
-                            <i>add personal flare to your bio with ->  
+                            <i>add personal flare to your bio with ->
                                 <a href="https://web10.app">
                                     web10 apps!
                                 </a>
@@ -89,7 +91,7 @@ function Bio() {
                 <R t ns bb s={"24px"} h>
                     <div class="columns is-centered">
                         <div class="column has-text-centered is-4">
-                            <i>unfriend || unfollow || mute </i> [ <input placeholder='password to confirm.'></input>] 
+                            <i>unfriend || unfollow || mute </i> [ <input placeholder='password to confirm.'></input>]
                         </div>
                     </div>
                 </R>
