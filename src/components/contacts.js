@@ -22,18 +22,18 @@ function Contacts() {
       <R t s={"23px"}></R>
       <R l s={"32px"}>
         <R t s={"120px"}>
-          <R t s={"4px"}/>
+          <R t s={"4px"} />
           <C t va={"center"}><i><b>web10 -</b>  social</i></C>
         </R>
         <R t s={"300px"} >
           <Search placeholder="Search..." />
         </R>
         <R t s={"120px"}>
-        <R t s={"4px"}/>
+          <R t s={"4px"} />
 
-        <C>
-          <a href="/?mock=feed"> [ Feed → ] </a>
-        </C>
+          <C>
+            <a href="/?mock=feed"> [ Feed → ] </a>
+          </C>
         </R>
       </R>
       <R t s={"20px"} bb></R>
@@ -41,17 +41,18 @@ function Contacts() {
         <div>
           <ConversationList>
             <a href="/?mock=chat">
-              <Conversation name="Lilly" lastSenderName="Lilly" info="Yes i can do it for you">
-                <Avatar src={lillyIco} name="Lilly" />
+
+              <Conversation name="Emily" lastSenderName="Emily" info="Yes i can do it for you">
+                <Avatar src={emilyIco} name="Emily" />
               </Conversation>
             </a>
 
-            <Conversation name="Joe" lastSenderName="Joe" info="Yes i can do it for you">
-              <Avatar src={joeIco} name="Joe" />
+            <Conversation name="Lilly" lastSenderName="Lilly" info="Yes i can do it for you">
+              <Avatar src={lillyIco} name="Lilly" />
             </Conversation>
 
-            <Conversation name="Emily" lastSenderName="Emily" info="Yes i can do it for you">
-              <Avatar src={emilyIco} name="Emily" />
+            <Conversation name="Joe" lastSenderName="Joe" info="Yes i can do it for you">
+              <Avatar src={joeIco} name="Joe" />
             </Conversation>
 
             <Conversation name="Kai" lastSenderName="Kai" info="Yes i can do it for you">
