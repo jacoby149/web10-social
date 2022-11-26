@@ -28,7 +28,7 @@ function Contacts() {
         <R t tel >
           <Search placeholder="Search..." />
         </R>
-        <R t s={"85px"}>
+        <R t s={"80px"}>
           <R t s={"4px"} />
           <C>
             <a href="/?mock=feed"> [ Feed → ] </a>
@@ -67,35 +67,35 @@ function Contacts() {
             <Conversation name="Akane" lastSenderName="Akane" info="Yes i can do it for you">
               <Avatar src={akaneIco} name="Akane" />
             </Conversation>
-
+ 
             <Conversation name="Eliot" lastSenderName="Eliot" info="Yes i can do it for you">
               <Avatar src={eliotIco} name="Eliot" />
             </Conversation>
-
+ 
             <Conversation name="Zoe" lastSenderName="Zoe" info="Yes i can do it for you">
               <Avatar src={zoeIco} name="Zoe" />
             </Conversation>
-
+ 
             <Conversation name="Patrik" lastSenderName="Patrik" info="Yes i can do it for you">
               <Avatar src={patrikIco} name="Patrik" />
             </Conversation>
-            <Conversation name="Eliot" lastSenderName="Eliot" info="Yes i can do it for you">
+            <Conversation  name="Eliot" lastSenderName="Eliot" info="Yes i can do it for you">
               <Avatar src={eliotIco} name="Eliot" />
             </Conversation>
-
+ 
             <Conversation name="Zoe" lastSenderName="Zoe" info="Yes i can do it for you">
               <Avatar src={zoeIco} name="Zoe" />
             </Conversation>
-
+ 
             <Conversation name="Patrik" lastSenderName="Patrik" info="Yes i can do it for you">
               <Avatar src={patrikIco} name="Patrik" />
             </Conversation>
-
+ 
           </ConversationList>
-        </div>
-      </R>
-    </R>
-  );
+        </div> 
+      </R> 
+    </R> 
+  ); 
 }
 
 export default Contacts;

@@ -224,6 +224,7 @@ function Chat() {
                     </ChatContainer>
                 </div>
             </R>
+            <R t bt s={"50px"}/>
         </R>
     );
 }

@@ -24,7 +24,6 @@ function Bio() {
             </R>
             <R t tel>
                 <R t ns bb s={"160px"} >
-
                     <div style={{ margin: "10px"}} class="columns is-centered">
                         <div class="column has-text-centered is-1">
                             <Avatar size={"lg"} src={emilyIco} name="Emily" />
