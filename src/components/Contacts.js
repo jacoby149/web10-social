@@ -25,16 +25,16 @@ function Contacts() {
           <R t s={"4px"} />
           <C t va={"center"}><i><b>web10 -</b>  social</i></C>
         </R>
-        <R t s={"300px"} >
+        <R t tel >
           <Search placeholder="Search..." />
         </R>
-        <R t s={"40"}>
+        <R t s={"85px"}>
           <R t s={"4px"} />
           <C>
             <a href="/?mock=feed"> [ Feed → ] </a>
           </C>
         </R>
-        <R t s={"40"}>
+        <R t s={"120px"}>
           <R t s={"4px"} />
           <C>
             <a href="https://vasturiano.github.io/3d-force-graph/example/img-nodes/"> [ 3D Feed → ] </a>
