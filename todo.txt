@@ -1,0 +1,24 @@
+step 1 : web10 social app
+
+Clean up the UI so not everything is manually typed in.. 
+rather, data should be loaded in
+
+hook up the web10 login to the chat application.
+hook up the web10 services to :
+    - contacts
+    - messages
+    - bio [free form multimedia for now. :media, :type, :tags]
+    - feed
+add logo / PWA functions
+
+step 2 : simple snake game
+    - read bio where type = snake score
+    - empty? insert
+    - update bio where type = snake_score set hi score.
+
+step 3 : fix Sam's pixel art app
+    - impose brick size limit
+    - use easy to render brick colors
+    - make a texture pallete
+    - separate the viewing and editing properly
+    - make multiple sculptures in the data

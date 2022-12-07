@@ -1,0 +1,5 @@
+web10 social needs a centralized place to store posts and their view counts.
+as the demand fluctuates for content, fans need to be assigned to service content at random by the server.
+that way, celebrities can remain on the platform, distribute their costs across their fans.
+
+gotta do one thing at a time
