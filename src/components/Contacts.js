@@ -6,6 +6,8 @@ import { Search, Conversation, Avatar, ConversationList } from '@chatscope/chat-
 import styles from '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 import './bulma/css/bulma.min.css';
 import './Contacts.css';
+import Icon from "./shared/Icon"
+import Branding from "./shared/Branding"
 
 // an individual contact.
 function Contact({ name, lastSenderName, pic, message }) {
@@ -33,20 +35,18 @@ function Contacts({ I }) {
   
   return (
     <R root t bt bb br bl onClick={I.toggleTheme} theme={I.theme}>
-      <R t s={"23px"}></R>
-      <R l s={"32px"}>
-        <R t s={"120px"}>
-          <R t s={"4px"} />
-          <C t va={"center"}><i><b>web10 -</b>  social</i></C>
+      <R l bb s={"55px"}>
+        <Branding/>
+        <R t s ={"55px"}>
+          <Icon onClick={I.toggleMenuCollapsed}>bars</Icon>
         </R>
-        <R t tel >
-          <Search placeholder="Search..." />
-        </R>
+        <C l tel>
+          <Search style={{width:"100%",marginRight:"30px"}} placeholder="Search..." />
+        </C>
         <R t s={"20px"}></R>
       </R>
-      <R t s={"20px"} bb></R>
       <R l tel>
-        <R t br s={"250px"}>
+        <R t br c={I.menuCollapsed} s={"250px"}>
           <C t bb h s={"40px"} va="center">
             Contacts
           </C>

@@ -5,8 +5,13 @@ import {mockContacts} from './Mocks'
 function useInterface() {
     const I = {};
     [I.contacts, I.setContacts] = React.useState(mockContacts);
-    [I.theme, I.setTheme] = React.useState("dark")
-    
+    [I.theme, I.setTheme] = React.useState("dark");
+    [I.menuCollapsed,I.setMenuCollapsed] = React.useState(true);
+
+    I.toggleMenuCollapsed = function () {
+        I.setMenuCollapsed(!I.menuCollapsed)
+    }
+
     I.toggleTheme = function () {
         I.theme=="dark"?I.setTheme("light"):I.setTheme("dark")
     }
