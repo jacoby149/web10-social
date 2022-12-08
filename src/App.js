@@ -10,9 +10,9 @@ function App() {
   const I = useInterface();
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  if (urlParams.get("mock") == "chat") return <Chat/>
-  if (urlParams.get("mock") == "bio") return <Bio/>
-  if (urlParams.get("mock") == "feed") return <Feed/>
+  if (urlParams.get("mock") == "chat") return <Chat I = {I}/>
+  if (urlParams.get("mock") == "bio") return <Bio I = {I}/>
+  if (urlParams.get("mock") == "feed") return <Feed I = {I}/>
   else return <Contacts I={I}/>
 
 }

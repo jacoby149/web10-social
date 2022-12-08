@@ -8,59 +8,55 @@ import { Search, ChatContainer, ConversationHeader, Avatar, VoiceCallButton, Vid
 import styles from '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 import './bulma/css/bulma.min.css';
 import emilyIco from "./images/avatar1.svg"
-import {Posts} from './Posts'
+import { Posts } from './Posts'
+import TopBar from './shared/TopBar';
+import SideBar from './shared/SideBar';
 
-function Feed() {
+function Feed({ I }) {
     const [posts, setPosts] = React.useState([{
-        "name":"emily",
-        "profile":"me.png",
-        "time":"10:04:59 AM",
-        "images":["lala.png","haha.png"],
-        "files":["hehe.pdf","lelel.pdf"],
-        "text":"what up my name is emily makin a post",    
+        "name": "emily",
+        "profile": "me.png",
+        "time": "10:04:59 AM",
+        "images": ["lala.png", "haha.png"],
+        "files": ["hehe.pdf", "lelel.pdf"],
+        "text": "what up my name is emily makin a post",
         "email": "raraje@gmail.com",
         "subject": "heeheehee"
     },
     {
-        "name":"lilly",
-        "profile":"me.png",
-        "time":"10:04:59 AM",
-        "images":["lala.png","haha.png"],
-        "files":["hehe.pdf","lelel.pdf"],
-        "text":"what up my name is lilly i am also makin a post",    
+        "name": "lilly",
+        "profile": "me.png",
+        "time": "10:04:59 AM",
+        "images": ["lala.png", "haha.png"],
+        "files": ["hehe.pdf", "lelel.pdf"],
+        "text": "what up my name is lilly i am also makin a post",
         "email": "raraje@gmail.com",
         "subject": "hoohoohoo"
     },
     {
-        "name":"tom",
-        "profile":"me.png",
-        "time":"10:04:59 AM",
-        "images":["lala.png","haha.png"],
-        "files":["hehe.pdf","lelel.pdf"],
-        "text":"what up my name is tom call me rarara",    
+        "name": "tom",
+        "profile": "me.png",
+        "time": "10:04:59 AM",
+        "images": ["lala.png", "haha.png"],
+        "files": ["hehe.pdf", "lelel.pdf"],
+        "text": "what up my name is tom call me rarara",
         "email": "raraje@gmail.com",
         "subject": "RARARA"
     }
-]);
+    ]);
     return (
-        <R root t bt bb br bl theme={"light"}>
-            <R l s={"50px"} bb>
-                <C t va={"center"}>
-                    <a href="/">[ ⇤ go back ]</a>
-                </C>
+        <R root t bt bb br bl theme={I.theme}>
+            <TopBar I={I} />
+            <R l tel>
+                <SideBar I={I}></SideBar>
+                <R t ns tel>
+                    <div style={{
+                        height: "100%"
+                    }}>
+                        <Posts posts={posts}></Posts>
 
-                <C t va={"center"}><i><b>web10 -</b>  social</i></C>
-                <R l >
-
+                    </div>
                 </R>
-            </R>
-            <R t ns tel>
-                <div style={{
-                    height: "100%"
-                }}>
-                  <Posts posts={posts}></Posts>  
-
-                </div>
             </R>
         </R>
     );
