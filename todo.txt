@@ -1,7 +1,8 @@
 step 1 : web10 social app
 
-Clean up the UI so not everything is manually typed in.. 
-rather, data should be loaded in
+clean up the chat UI so that :
+    mock data is in the Interface
+    colors switch with theme switchups
 
 hook up the web10 login to the chat application.
 hook up the web10 services to :
