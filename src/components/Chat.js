@@ -22,14 +22,13 @@ function Chat({ I }) {
                     }}>
                         <ChatContainer>
                             <ConversationHeader className={I.theme}>
-                                <Avatar src={emilyIco} name="Emily" />
+                                <Avatar onClick={()=>I.setMode("bio")}  src={emilyIco} name="Emily" />
                                 <ConversationHeader.Content userName="Emily" info="Active 10 mins ago" />
                                 <ConversationHeader.Actions>
                                     <VoiceCallButton />
                                     <VideoCallButton />
-                                    <a href="/?mock=bio">
-                                        <InfoButton />
-                                    </a>
+                                    
+                                        <InfoButton onClick={()=>I.setMode("bio")} />
                                 </ConversationHeader.Actions>
                             </ConversationHeader>
 
