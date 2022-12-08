@@ -1,6 +1,6 @@
 import { R, C, pass } from "rectangles-npm"
 import Branding from "./Branding"
-import Icon from "./Icon"
+import {Icon} from "./Icon"
 import {Search} from '@chatscope/chat-ui-kit-react'
 
 /* Top Bar of web10 social */

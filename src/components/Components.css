@@ -51,3 +51,16 @@
 .cs-message-input.dark{
     background-color:#23282c;
 }
+
+.cs-conversation-header.dark .fa{
+    color:azure;
+}
+
+.cs-conversation-header.dark .fa:hover{
+    color:rgb(130, 130, 140);
+}
+
+
+.cs-conversation-header.dark svg{
+    color:azure;
+}

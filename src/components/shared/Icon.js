@@ -10,4 +10,9 @@ function Icon(props){
     )
 }
 
-export default Icon;
+function RawIcon(props){
+    const iconClass = "fa-"+props.children;
+    return <div style={{width:"25px",height:"25px",margin:"6px"}}><i className={"fa "+ iconClass +" fa-2x font-weight-bold"}></i></div>
+}
+
+export {Icon,RawIcon};

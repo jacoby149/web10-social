@@ -5,9 +5,11 @@ import { Search, ChatContainer, ConversationHeader, Avatar, VoiceCallButton, Vid
 import styles from '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 import './bulma/css/bulma.min.css';
 import emilyIco from "./images/avatar1.svg"
+import gunIco from "./images/gun-solid.svg"
 import TopBar from './shared/TopBar';
 import SideBar from './shared/SideBar'
 import './Components.css';
+import { RawIcon } from './shared/Icon'
 
 
 function Chat({ I }) {
@@ -22,13 +24,12 @@ function Chat({ I }) {
                     }}>
                         <ChatContainer>
                             <ConversationHeader className={I.theme}>
-                                <Avatar onClick={()=>I.setMode("bio")}  src={emilyIco} name="Emily" />
+                                <Avatar onClick={() => I.setMode("bio")} src={emilyIco} name="Emily" />
                                 <ConversationHeader.Content userName="Emily" info="Active 10 mins ago" />
                                 <ConversationHeader.Actions>
-                                    <VoiceCallButton />
-                                    <VideoCallButton />
-                                    
-                                        <InfoButton onClick={()=>I.setMode("bio")} />
+                                    <RawIcon>gun</RawIcon>
+                                    <RawIcon>snake</RawIcon>
+                                    <InfoButton onClick={() => I.setMode("bio")} />
                                 </ConversationHeader.Actions>
                             </ConversationHeader>
 
