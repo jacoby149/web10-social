@@ -4,6 +4,8 @@ clean up the chat UI so that :
     mock data is in the Interface
     colors switch with theme switchups
 
+add a login button + web10 integrations.
+
 hook up the web10 login to the chat application.
 hook up the web10 services to :
     - contacts
