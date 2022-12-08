@@ -1,7 +1,17 @@
-.contacts{
+.contacts.dark{
     background-color:#23282c;
 }
 
-.contacts:hover {
+.contacts.dark :hover {
     background-color: #4b5a65;
-  }
+}
+
+.dark .cs-conversation__name{
+    color:white;
+}
+.dark .cs-conversation__info{
+    color:white;
+}
+.dark .cs-conversation__last-sender{
+    color:white;
+}

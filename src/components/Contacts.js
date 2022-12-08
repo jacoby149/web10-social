@@ -10,10 +10,10 @@ import Icon from "./shared/Icon"
 import Branding from "./shared/Branding"
 
 // an individual contact.
-function Contact({ name, lastSenderName, pic, message }) {
+function Contact({ name, lastSenderName, pic, message, theme }) {
   return (
     <a href="/?mock=chat">
-      <Conversation name={name} className={"contacts"} lastSenderName={lastSenderName} info={message}>
+      <Conversation name={name} className={`contacts ${theme}`} lastSenderName={lastSenderName} info={message}>
         <Avatar src={pic} name={name} />
       </Conversation>
     </a>
@@ -22,7 +22,6 @@ function Contact({ name, lastSenderName, pic, message }) {
 }
 
 function Contacts({ I }) {
-  window.contacts = I.contacts;  
   const contactItems = I.contacts.map((contact,index) => {
       return <Contact 
         key={index}
@@ -30,6 +29,7 @@ function Contacts({ I }) {
         pic = {contact.pic}
         lastSenderName = {contact.lastSenderName}
         message = {contact.message}
+        theme={I.theme}
       />  
     });
   
@@ -37,8 +37,9 @@ function Contacts({ I }) {
     <R root t bt bb br bl onClick={I.toggleTheme} theme={I.theme}>
       <R l bb s={"55px"}>
         <Branding/>
-        <R t s ={"55px"}>
+        <R l s ={"110px"}>
           <Icon onClick={I.toggleMenuCollapsed}>bars</Icon>
+          <Icon onClick={I.toggleTheme}>moon</Icon>
         </R>
         <C l tel>
           <Search style={{width:"100%",marginRight:"30px"}} placeholder="Search..." />
