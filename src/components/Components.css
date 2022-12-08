@@ -1,0 +1,53 @@
+.contacts.dark{
+    background-color:#23282c;
+}
+
+.contacts.dark:hover {
+    background-color: #4b5a65;
+}
+
+.dark .cs-conversation__name{
+    color:white;
+}
+.dark .cs-conversation__info{
+    color:white;
+}
+.dark .cs-conversation__last-sender{
+    color:white;
+}
+
+.R a {
+    color:white;
+}
+
+.cs-conversation-header.dark{
+    background-color:#23282c;
+}
+
+.cs-conversation-header.dark .cs-conversation-header__info{
+    background-color:#23282c;
+    color:white;
+}
+
+.cs-conversation-header.dark .cs-conversation-header__user-name{
+    background-color:#23282c;
+    color:white;
+}
+
+.cs-message-list.dark {
+    background-color:#23282c;
+}
+
+.cs-message-list.dark .cs-message-separator{
+    background-color:#23282c;
+    color:white;
+}
+
+.cs-message-list.dark .cs-typing-indicator{
+    background-color:#23282c;
+    color:white;
+}
+
+.cs-message-input.dark{
+    background-color:#23282c;
+}

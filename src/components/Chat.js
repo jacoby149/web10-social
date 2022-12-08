@@ -7,6 +7,8 @@ import './bulma/css/bulma.min.css';
 import emilyIco from "./images/avatar1.svg"
 import TopBar from './shared/TopBar';
 import SideBar from './shared/SideBar'
+import './Components.css';
+
 
 function Chat({ I }) {
     return (
@@ -19,7 +21,7 @@ function Chat({ I }) {
                         height: "100%"
                     }}>
                         <ChatContainer>
-                            <ConversationHeader>
+                            <ConversationHeader className={I.theme}>
                                 <Avatar src={emilyIco} name="Emily" />
                                 <ConversationHeader.Content userName="Emily" info="Active 10 mins ago" />
                                 <ConversationHeader.Actions>
@@ -31,7 +33,7 @@ function Chat({ I }) {
                                 </ConversationHeader.Actions>
                             </ConversationHeader>
 
-                            <MessageList typingIndicator={<TypingIndicator content="Emily is typing" />}>
+                            <MessageList className={I.theme} typingIndicator={<TypingIndicator content="Emily is typing" />}>
 
                                 <MessageSeparator content="Saturday, 30 November 2019" />
 
@@ -214,7 +216,7 @@ function Chat({ I }) {
                                 </Message>
 
                             </MessageList>
-                            <MessageInput placeholder="Type message here" />
+                            <MessageInput className={I.theme} placeholder="Type message here" />
                         </ChatContainer>
                     </div>
                 </R>
