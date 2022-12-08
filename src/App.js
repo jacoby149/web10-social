@@ -4,17 +4,18 @@ import Contacts from './components/Contacts'
 import Chat from './components/Chat'
 import Feed from './components/Feed'
 import Bio from './components/Bio'
-import {useInterface} from './interfaces/Interface'
+import { useInterface } from './interfaces/Interface'
+import React from 'react';
 
 function App() {
   const I = useInterface();
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  if (urlParams.get("mock") == "chat") return <Chat I = {I}/>
-  if (urlParams.get("mock") == "bio") return <Bio I = {I}/>
-  if (urlParams.get("mock") == "feed") return <Feed I = {I}/>
-  else return <Contacts I={I}/>
-
+  window.I = I;
+  switch (I.mode) {
+    case "chat": return <Chat I={I} />;
+    case "bio": return <Bio I={I} />;
+    case "feed": return <Feed I={I} />;
+    default: return <Contacts I={I} />;
+  }
 }
 
 export default App;

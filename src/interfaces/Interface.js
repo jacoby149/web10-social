@@ -7,6 +7,7 @@ function useInterface() {
     [I.contacts, I.setContacts] = React.useState(mockContacts);
     [I.theme, I.setTheme] = React.useState("dark");
     [I.menuCollapsed,I.setMenuCollapsed] = React.useState(true);
+    [I.mode,I.setMode] = React.useState("contacts");
 
     I.toggleMenuCollapsed = function () {
         I.setMenuCollapsed(!I.menuCollapsed)
