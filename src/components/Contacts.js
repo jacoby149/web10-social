@@ -55,9 +55,6 @@ function Contacts({ I }) {
             My Bio
           </C>
           <C t bb h s={"40px"} va="center">
-            Arcade
-          </C>
-          <C t bb h s={"40px"} va="center">
             <a href="/?mock=feed"> Feed </a>
           </C>
           <C t bb h s={"40px"} va="center">
