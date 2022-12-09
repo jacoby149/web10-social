@@ -64,3 +64,11 @@
 .cs-conversation-header.dark svg{
     color:azure;
 }
+
+.cs-message.dark .cs-message__sent-time{
+    color:azure;
+}
+
+.cs-message.dark .cs-message__sender-name{
+    color:azure;
+}

@@ -44,4 +44,20 @@ const mockContacts = [
     },
 ]
 
-export {mockContacts}
+const mockChat = [
+    {
+        message: "Hello my friend",
+        sentTime: "15 mins ago",
+        sender: "Emily",
+        direction: "incoming",
+        position: "single"
+    }, {
+        message: "Hello my friend",
+        sentTime: "15 mins ago",
+        sender: "Emily",
+        direction: "incoming",
+        position: "single"
+    }
+]
+
+export { mockContacts }

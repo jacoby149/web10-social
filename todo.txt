@@ -1,3 +1,9 @@
+message: "Hello my friend",
+sentTime: "15 mins ago",
+sender: "Emily",
+direction: "incoming",
+position: "single"
+
 step 1 : web10 social app
 
 clean up the chat UI so that :

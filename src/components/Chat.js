@@ -58,7 +58,10 @@ function Chat({ I }) {
                                     sender: "Emily",
                                     direction: "incoming",
                                     position: "first"
-                                }} avatarSpacer />
+                                }} avatarSpacer >
+
+                                    <Message.Footer sender="Emily" sentTime="just now" />
+                                </Message>
                                 <Message model={{
                                     message: "Hello my friend",
                                     sentTime: "15 mins ago",
@@ -87,7 +90,8 @@ function Chat({ I }) {
                                     sentTime: "15 mins ago",
                                     direction: "outgoing",
                                     position: "first"
-                                }} />
+                                }} >
+                                </Message>
                                 <Message model={{
                                     message: "Hello my friend",
                                     sentTime: "15 mins ago",
@@ -141,7 +145,9 @@ function Chat({ I }) {
                                     sender: "me",
                                     direction: "outgoing",
                                     position: "single"
-                                }} />
+                                }} >
+                                    <Message.Footer sentTime="3 mins ago" />
+                                </Message>
                                 <Message model={{
                                     message: "Hello my friend",
                                     sentTime: "15 mins ago",
@@ -189,13 +195,18 @@ function Chat({ I }) {
                                     sentTime: "15 mins ago",
                                     direction: "outgoing",
                                     position: "normal"
-                                }} />
+                                }} >
+                                    <Message.Footer sender="Emily" sentTime="6:57pm" />
+
+                                </Message>
                                 <Message model={{
                                     message: "FOLLOW THE BELOW INSTRUCTIONS",
                                     sentTime: "15 mins ago",
                                     direction: "outgoing",
                                     position: "last"
-                                }} />
+                                }} >
+                                    <Message.Footer sender="Emily" sentTime="6:57pm" />
+                                </Message>
 
                                 <Message model={{
                                     message: "CLICK THE INFO ICON",
@@ -203,15 +214,20 @@ function Chat({ I }) {
                                     sender: "Emily",
                                     direction: "incoming",
                                     position: "first"
-                                }} avatarSpacer />
-                                <Message model={{
+                                }} avatarSpacer >
+                                    <Message.Footer sentTime="6:57pm" />
+
+                                </Message>
+                                <Message className={I.theme} model={{
                                     message: "INFO ICON GOES TO BIO",
-                                    sentTime: "15 mins ago",
+                                    sentTime: "12 mins ago",
                                     sender: "Emily",
                                     direction: "incoming",
-                                    position: "last"
-                                }}>
+                                    position: "single"
+                                }} >
                                     <Avatar src={emilyIco} name={"Emily"} />
+                                    <Message.Header sender="Emily"></Message.Header>
+                                    <Message.Footer sentTime="2 mins ago" />
                                 </Message>
 
                             </MessageList>
