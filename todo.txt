@@ -1,3 +1,7 @@
+DONT DO TO MUCH SHIT
+Just move the chat rendering into data.
+THEN WORRY ABOUT THE CLICKY NICE CHIT
+
 message: "Hello my friend",
 sentTime: "15 mins ago",
 sender: "Emily",
