@@ -6,10 +6,11 @@ import ReactDOM from 'react-dom/client';
 import { R, C } from 'rectangles-npm'
 import { Search, ChatContainer, ConversationHeader, Avatar, VoiceCallButton, VideoCallButton, InfoButton, MessageList, TypingIndicator, MessageSeparator, Message, MessageInput } from '@chatscope/chat-ui-kit-react'
 import styles from '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
-import emilyIco from "../assets/images/avatar1.svg"
+import emilyIco from "../../assets/images/avatar1.svg"
 import { Posts } from './Posts'
-import TopBar from './shared/TopBar';
-import SideBar from './shared/SideBar';
+import TopBar from '../shared/TopBar';
+import SideBar from '../shared/SideBar';
+import CreatePost from './CreatePost';
 
 function Feed({ I }) {
     const [posts, setPosts] = React.useState([{
@@ -49,9 +50,10 @@ function Feed({ I }) {
             <R l tel>
                 <SideBar I={I}></SideBar>
                 <R t ns tel>
-                    <div style={{
+                    <div className={`post-container ${I.theme}`} style={{
                         height: "100%"
                     }}>
+                        <CreatePost ></CreatePost>
                         <Posts posts={posts}></Posts>
 
                     </div>

@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import Contacts from './components/Contacts'
 import Chat from './components/Chat/Chat'
-import Feed from './components/Feed'
+import Feed from './components/Feed/Feed'
 import Bio from './components/Bio'
 import { useInterface } from './interfaces/Interface'
 import React from 'react';

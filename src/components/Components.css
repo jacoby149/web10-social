@@ -72,3 +72,24 @@
 .cs-message.dark .cs-message__sender-name{
     color:azure;
 }
+
+
+.card-footer-item.post{
+    color:#222244;
+}
+.card-footer-item:hover{
+    background-color: #f7f7ff;
+}
+
+.post-container.light{
+    background-color:#eeeeee;
+}
+
+.control .textarea {
+    background-color: #eeeeee;
+    color:black;
+}
+
+.control .textarea::placeholder {
+    color:#666666;
+}
