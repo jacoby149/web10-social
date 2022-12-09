@@ -1,5 +1,5 @@
 import { RawIcon } from "../shared/Icon"
-
+import tone from '../../assets/audio/440Hz-5sec.mp3'
 function CreatePost() {
     return (
         <div>
@@ -17,9 +17,12 @@ function CreatePost() {
                             <textarea class="textarea" placeholder="What is on your mind??"></textarea>
                         </div>
                         <div>
-                        <img style={{ marginTop: "5px", marginRight: "5px" }} src="https://bulma.io/images/placeholders/128x128.png" />
                             <img style={{ marginTop: "5px", marginRight: "5px" }} src="https://bulma.io/images/placeholders/128x128.png" />
-                            <video style={{ height:"128px",marginTop: "5px", marginRight: "5px" }} controls />
+                            <img style={{ marginTop: "5px", marginRight: "5px" }} src="https://bulma.io/images/placeholders/128x128.png" />
+                            <video style={{ height: "128px", marginTop: "5px", marginRight: "5px" }} controls >
+                                <source src={tone} type="audio/mpeg" />
+                                Your browser does not support audio in video tag.
+                            </video>
                         </div>
                     </div>
                 </div>
