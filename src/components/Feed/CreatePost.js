@@ -9,10 +9,7 @@ function CreatePost() {
                     <p class="card-header-title">
                         Make a Post
                     </p>
-                    <button class="card-header-icon" aria-label="more options">
-                        <span class="icon">
-                        </span>
-                    </button>
+                        <button style={{margin:"10px"}} className={"button is-primary is-small"}>Create Post</button>
                 </header>
                 <div class="card-content">
                     <div class="content">
