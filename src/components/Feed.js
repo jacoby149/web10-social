@@ -6,8 +6,7 @@ import ReactDOM from 'react-dom/client';
 import { R, C } from 'rectangles-npm'
 import { Search, ChatContainer, ConversationHeader, Avatar, VoiceCallButton, VideoCallButton, InfoButton, MessageList, TypingIndicator, MessageSeparator, Message, MessageInput } from '@chatscope/chat-ui-kit-react'
 import styles from '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
-import './bulma/css/bulma.min.css';
-import emilyIco from "./images/avatar1.svg"
+import emilyIco from "../assets/images/avatar1.svg"
 import { Posts } from './Posts'
 import TopBar from './shared/TopBar';
 import SideBar from './shared/SideBar';

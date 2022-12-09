@@ -4,7 +4,6 @@
 import { R, C } from 'rectangles-npm'
 import { Conversation, Avatar, ConversationList } from '@chatscope/chat-ui-kit-react'
 import styles from '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
-import './bulma/css/bulma.min.css';
 import './Components.css';
 import TopBar
   from './shared/TopBar';

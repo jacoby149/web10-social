@@ -1,9 +1,9 @@
-import lillyIco from "../components/images/avatar9.png"
-import joeyIco from "../components/images/avatar6.png"
-import emilyIco from "../components/images/avatar7.png"
-import AaronIco from "../components/images/avatar4.png"
-import ShadiyaIco from "../components/images/avatar10.png"
-import BrianIco from "../components/images/avatar2.png"
+import lillyIco from "../assets/images/avatar9.png"
+import joeyIco from "../assets/images/avatar6.png"
+import emilyIco from "../assets/images/avatar7.png"
+import AaronIco from "../assets/images/avatar4.png"
+import ShadiyaIco from "../assets/images/avatar10.png"
+import BrianIco from "../assets/images/avatar2.png"
 
 const mockContacts = [
     {
