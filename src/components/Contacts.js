@@ -8,6 +8,8 @@ import './Components.css';
 import TopBar
   from './shared/TopBar';
 import Sidebar from './shared/SideBar';
+import emilyIco from "../assets/images/Contact.png"
+
 
 function Contacts({ I }) {
   const contactItems = I.contacts.map((contact, index) => {
@@ -24,7 +26,11 @@ function Contacts({ I }) {
         <Sidebar I={I}></Sidebar>
         <R t tel>
           <div>
+            
             <ConversationList>
+            <Conversation name={"add a contact"} className={`contacts ${I.theme}`} lastSenderName={"To Add A Contact"} info={"Type In The Search Bar!"}>
+      <Avatar src={emilyIco} name={"idk!"} />
+    </Conversation>
               {contactItems}
             </ConversationList>
           </div>

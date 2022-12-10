@@ -49,7 +49,7 @@ function Chat({ I }) {
                         <ChatContainer>
                             <ConversationHeader className={I.theme}>
                                 <Avatar onClick={() => I.setMode("bio")} src={emilyIco} name="Emily" />
-                                <ConversationHeader.Content userName="Emily" info="Active 10 mins ago" />
+                                <ConversationHeader.Content userName="Emily" info="@ api.web10.app/emily511" />
                                 <ConversationHeader.Actions>
                                     <RawIcon>cube</RawIcon>
                                     <RawIcon>snake</RawIcon>
