@@ -8,7 +8,7 @@ function SideBar(props) {
             <C onClick={()=>I.setMode("contacts")} t bb h s={"40px"} va="center">
                 Contacts
             </C>
-            <C onClick={()=>I.setMode("bio-edit")} t bb h s={"40px"} va="center">
+            <C onClick={()=>I.setMode("my-bio")} t bb h s={"40px"} va="center">
                 My Bio
             </C>
             <C onClick={()=>I.setMode("feed")} t bb h s={"40px"} va="center">

@@ -17,7 +17,7 @@ function Bio({ I }) {
             <R l tel>
                 <SideBar I={I}></SideBar>
                 <R t tel>
-                <C t ha="center" va="center">
+                    <C t ha="center" va="center">
                         <Avatar style={{ margin: "20px" }} size={"lg"} src={emilyIco} name="Emily" />
                     </C>
                     <R t ns s={"24px"} h>
@@ -73,21 +73,25 @@ function Bio({ I }) {
                             </div>
                         </div>
                     </R>
-                    <R t ns bb s={"24px"}>
-                        <div className="columns is-centered">
-                            <div className="column has-text-centered is-4">
-                                <i>settings [modify below]</i>
+                    {I.mode !== "my-bio" ?
+                        <R t ns bb s={"24px"}>
+                            <div className="columns is-centered">
+                                <div className="column has-text-centered is-4">
+                                    <i>settings [modify below]</i>
+                                </div>
                             </div>
-                        </div>
-                    </R>
-                    <R t ns bb s={"24px"} h>
-                        <div className="columns is-centered">
-                            <div className="column has-text-centered is-4">
-                                <i>unfriend || unfollow || mute </i> [ <input placeholder='password to confirm.'></input>]
-                            </div>
-                        </div>
-                    </R>
+                        </R> : <R t s={"0px"} />
+                    }
+                    {I.mode !== "my-bio" ?
 
+                        <R t ns bb s={"24px"} h>
+                            <div className="columns is-centered">
+                                <div className="column has-text-centered is-4">
+                                    <i> <a>delete contact</a> || unfollow [tbd] || mute [tbd] </i>
+                                </div>
+                            </div>
+                        </R> : <R t s={"0px"} />
+                    }
                 </R>
             </R>
         </R>

@@ -19,6 +19,7 @@ function App() {
   switch (I.mode) {
     case "chat": return <Chat I={I} />;
     case "bio": return <Bio I={I} />;
+    case "my-bio": return <Bio I={I} />;
     case "bio-edit": return <BioEditor I={I} />;
     case "feed": return <Feed I={I} />;
     case "login": return <Login I={I}></Login>;

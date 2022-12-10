@@ -10,7 +10,7 @@ import TopBar from '../shared/TopBar';
 import SideBar from '../shared/SideBar';
 
 function EditButton() {
-    return <i style={{ color: "purple" }} className={"fa fa-pencil font-weight-bold"}></i>
+    return <i style={{ color: "orange", margin: "10px" }} className={"fa fa-pencil fa-2x font-weight-bold"}></i>
 }
 
 function AddButton() {
@@ -29,27 +29,28 @@ function BioEditor({ I }) {
             <R l tel>
                 <SideBar I={I}></SideBar>
                 <R t tel>
+                    
                     <C t ha="center" va="center">
                         <Avatar style={{ margin: "20px" }} size={"lg"} src={emilyIco} name="Emily" />
                     </C>
                     <R t ns s={"24px"} h>
                         <div className="columns is-centered">
                             <div className="column has-text-centered is-4">
-                                <i>Name : Emily Shutman</i> <EditButton></EditButton>
+                                <i>Name : Emily Shutman</i>
                             </div>
                         </div>
                     </R>
                     <R t ns s={"24px"} h>
                         <div className="columns is-centered">
                             <div className="column has-text-centered is-4">
-                                <i>Phone Number : 347 - 209 - 2325</i>  <EditButton></EditButton>
+                                <i>Phone Number : 347 - 209 - 2325</i>
                             </div>
                         </div>
                     </R>
                     <R t ns bb s={"30px"} h>
                         <div className="columns is-centered">
                             <div className="column has-text-centered is-4">
-                                <i>Bio : i am such a zoomer kid . . .</i>  <EditButton></EditButton>
+                                <i>Bio : i am such a zoomer kid . . .</i>
                             </div>
                         </div>
                     </R>
