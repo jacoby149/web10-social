@@ -10,3 +10,15 @@ single
 contrary to what super snager wanted.
 BECAUSE THE TIMESTAMPS dont work as expected for normal and last.
 TELL SUPER SNAGER !!!!
+
+bio ->
+{
+    pic :
+    name :
+    bio :
+}
+
+bio-field ->
+{
+    type : [image, text]
+}

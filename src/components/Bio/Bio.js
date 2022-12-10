@@ -23,21 +23,14 @@ function Bio({ I }) {
                     <R t ns s={"24px"} h>
                         <div className="columns is-centered">
                             <div className="column has-text-centered is-4">
-                                <i>Name : Emily Shutman</i>
+                                <i>Jacob Hoffman</i>
                             </div>
                         </div>
                     </R>
-                    <R t ns s={"24px"} h>
+                    <R t ns bb bt s={"24px"} h>
                         <div className="columns is-centered">
                             <div className="column has-text-centered is-4">
-                                <i>Phone Number : 347 - 209 - 2325</i>
-                            </div>
-                        </div>
-                    </R>
-                    <R t ns bb s={"30px"} h>
-                        <div className="columns is-centered">
-                            <div className="column has-text-centered is-4">
-                                <i>Bio : i am such a zoomer kid . . .</i>
+                                <i>i am such a zoomer kid . . .</i>
                             </div>
                         </div>
                     </R>

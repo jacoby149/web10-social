@@ -29,7 +29,7 @@ function BioEditor({ I }) {
             <R l tel>
                 <SideBar I={I}></SideBar>
                 <R t tel>
-                    
+
                     <C t ha="center" va="center">
                         <Avatar style={{ margin: "20px" }} size={"lg"} src={emilyIco} name="Emily" />
                     </C>
@@ -47,10 +47,10 @@ function BioEditor({ I }) {
                             </div>
                         </div>
                     </R>
-                    <R t ns bb s={"30px"} h>
+                    <R t ns bt bb s={"30px"} h>
                         <div className="columns is-centered">
                             <div className="column has-text-centered is-4">
-                                <i>Bio : i am such a zoomer kid . . .</i>
+                                <i>i am such a zoomer kid . . .</i>
                             </div>
                         </div>
                     </R>

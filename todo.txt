@@ -1,3 +1,5 @@
+turn the bio into raw data
+
 make UI mechanism to click messages to show the time.
 add a login button + web10 integrations.
 make a web10 profile picture + bio editor UI.
