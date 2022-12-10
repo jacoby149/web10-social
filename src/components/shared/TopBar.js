@@ -1,7 +1,7 @@
 import { R, C, pass } from "rectangles-npm"
 import Branding from "./Branding"
-import {Icon} from "./Icon"
-import {Search} from '@chatscope/chat-ui-kit-react'
+import { Icon } from "./Icon"
+import { Search } from '@chatscope/chat-ui-kit-react'
 
 /* Top Bar of web10 social */
 function TopBar(props) {
@@ -14,7 +14,9 @@ function TopBar(props) {
                 <Icon onClick={I.toggleTheme}>moon</Icon>
             </R>
             <C l tel>
-                <Search style={{ width: "100%", marginRight: "30px" }} placeholder="Search..." />
+                {I.mode !== "bio" || I.mode !== "bio-edit" ?
+                    <Search onClearClick={() => I.setSearch("")} onChange={(v) => I.setSearch(v)} style={{ width: "100%", marginRight: "30px" }} placeholder="Search..." /> : ""
+                }
             </C>
             <R t s={"20px"}></R>
         </R>

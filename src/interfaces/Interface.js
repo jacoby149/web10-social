@@ -9,9 +9,11 @@ function useInterface() {
     [I.menuCollapsed,I.setMenuCollapsed] = React.useState(true);
     [I.mode,I._setMode] = React.useState("contacts");
     [I.currentContact,I.setCurrentContact] = React.useState("");
+    [I.search,I.setSearch] = React.useState("");
 
     I.setMode = function(mode){
         I.setMenuCollapsed(true);
+        I.setSearch("")
         I._setMode(mode);
     }
 

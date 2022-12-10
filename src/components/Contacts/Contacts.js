@@ -4,12 +4,11 @@
 import { R, C } from 'rectangles-npm'
 import { Conversation, Avatar, ConversationList } from '@chatscope/chat-ui-kit-react'
 import styles from '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
-import './Components.css';
+import '../Components.css';
 import TopBar
-  from './shared/TopBar';
-import Sidebar from './shared/SideBar';
-import emilyIco from "../assets/images/Contact.png"
-
+  from '../shared/TopBar';
+import Sidebar from '../shared/SideBar';
+import ContactAdder from './ContactAdder';
 
 function Contacts({ I }) {
   const contactItems = I.contacts.map((contact, index) => {
@@ -28,9 +27,7 @@ function Contacts({ I }) {
           <div>
             
             <ConversationList>
-            <Conversation name={"add a contact"} className={`contacts ${I.theme}`} lastSenderName={"To Add A Contact"} info={"Type In The Search Bar!"}>
-      <Avatar src={emilyIco} name={"idk!"} />
-    </Conversation>
+              <ContactAdder I={I}></ContactAdder>
               {contactItems}
             </ConversationList>
           </div>

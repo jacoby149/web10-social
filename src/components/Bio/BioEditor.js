@@ -33,29 +33,29 @@ function BioEditor({ I }) {
                         <Avatar style={{ margin: "20px" }} size={"lg"} src={emilyIco} name="Emily" />
                     </C>
                     <R t ns s={"24px"} h>
-                        <div class="columns is-centered">
-                            <div class="column has-text-centered is-4">
+                        <div className="columns is-centered">
+                            <div className="column has-text-centered is-4">
                                 <i>Name : Emily Shutman</i> <EditButton></EditButton>
                             </div>
                         </div>
                     </R>
                     <R t ns s={"24px"} h>
-                        <div class="columns is-centered">
-                            <div class="column has-text-centered is-4">
+                        <div className="columns is-centered">
+                            <div className="column has-text-centered is-4">
                                 <i>Phone Number : 347 - 209 - 2325</i>  <EditButton></EditButton>
                             </div>
                         </div>
                     </R>
                     <R t ns bb s={"30px"} h>
-                        <div class="columns is-centered">
-                            <div class="column has-text-centered is-4">
+                        <div className="columns is-centered">
+                            <div className="column has-text-centered is-4">
                                 <i>Bio : i am such a zoomer kid . . .</i>  <EditButton></EditButton>
                             </div>
                         </div>
                     </R>
                     <R t ns bb s={"24px"} h>
-                        <div class="columns is-centered">
-                            <div class="column has-text-centered is-4">
+                        <div className="columns is-centered">
+                            <div className="column has-text-centered is-4">
                                 <i>
                                     <a href="https://jacobhoffman.tk/lessons/lesson6/index.html">Snake Game</a> Hi Score : 37
                                 </i>
@@ -63,8 +63,8 @@ function BioEditor({ I }) {
                         </div>
                     </R>
                     <R t ns bb s={"24px"} h>
-                        <div class="columns is-centered">
-                            <div class="column has-text-centered is-4">
+                        <div className="columns is-centered">
+                            <div className="column has-text-centered is-4">
                                 <i>3d Voxel Painting.</i>
                             </div>
                         </div>
@@ -75,8 +75,8 @@ function BioEditor({ I }) {
                         </div>
                     </R>
                     <R t ns bb s={"24px"}>
-                        <div class="columns is-centered">
-                            <div class="column has-text-centered is-4">
+                        <div className="columns is-centered">
+                            <div className="column has-text-centered is-4">
                                 <i>add personal flare to your bio with ->
                                     <a href="https://web10.app">
                                         web10 apps!
