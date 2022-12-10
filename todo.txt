@@ -1,20 +1,7 @@
-DONT DO TO MUCH SHIT
-Just move the chat rendering into data.
-THEN WORRY ABOUT THE CLICKY NICE CHIT
-
-message: "Hello my friend",
-sentTime: "15 mins ago",
-sender: "Emily",
-direction: "incoming",
-position: "single"
-
-step 1 : web10 social app
-
-clean up the chat UI so that :
-    mock data is in the Interface
-    colors switch with theme switchups
-
+make UI mechanism to click messages to show the time.
 add a login button + web10 integrations.
+make a web10 profile picture + bio editor UI.
+add default data for non existing users.
 
 hook up the web10 login to the chat application.
 hook up the web10 services to :
