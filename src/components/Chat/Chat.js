@@ -8,26 +8,31 @@ import TopBar from '../shared/TopBar';
 import SideBar from '../shared/SideBar'
 import { RawIcon } from '../shared/Icon'
 import { mockChat } from '../../interfaces/Mocks';
+import TSMessage from './TSMessage';
 
 function Chat({ I }) {
     var messageItems = [];
+    var separatorCount = 0
     for (const [index, model] of mockChat.entries()) {
         const present = new Date(model["sentTime"]);
+        const mostRecent = index===mockChat.length-1;
         if (index == 0) {
             messageItems.push(
-                <MessageSeparator key={`s${index}`} content={present.toDateString()} />
+                <MessageSeparator key={index+separatorCount} content={present.toDateString()} />
             )
+            separatorCount += 1;
         }
         else if (index > 1) {
             const past = new Date(mockChat[index - 1]["sentTime"]);
             if (present.getDay() - past.getDay() > 0) {
                 messageItems.push(
-                    <MessageSeparator key={`s${index}`} content={present.toDateString()} />
+                    <MessageSeparator key={index+separatorCount} content={present.toDateString()} />
                 )
+                separatorCount += 1;
             }
         }
         messageItems.push(
-            <Message key={index} model={model} />
+            <TSMessage key={index+separatorCount} model={model} mostRecent={mostRecent} I={I}/>
         )
     }
 

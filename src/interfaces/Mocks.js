@@ -216,7 +216,7 @@ const mockChat = [
         sentTime: mockDates[9],
         sender: "Emily",
         direction: "incoming",
-        position: "single"
+        position: "last"
     }
 ]
 

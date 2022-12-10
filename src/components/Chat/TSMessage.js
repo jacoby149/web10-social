@@ -1,11 +1,21 @@
 import { Search, ChatContainer, ConversationHeader, Avatar, VoiceCallButton, VideoCallButton, InfoButton, TypingIndicator, MessageInput, MessageList, Message, MessageSeparator } from '@chatscope/chat-ui-kit-react';
+import emilyIco from "../../assets/images/avatar1.svg"
+import React from 'react';
 
-function TSMessage({ key, model }) {
+function TSMessage({ model,I,mostRecent}) {
+    const [showTime, setShowTime] = React.useState(mostRecent);
+    function toggleShowTime() {
+        setShowTime(!showTime);
+    }
+    const translatedModel = {...model};
+    if (showTime && model.position==="normal") translatedModel.position = "first";
+    else if (showTime && model.position==="last") translatedModel.position = "single";
+    translatedModel.sentTime = new Date(model.sentTime).toLocaleTimeString();
+
     return (
-        <Message key={index} model={model} >
-            <Avatar src={emilyIco} name={"Emily"} />
-            <Message.Header sender="Emily"></Message.Header>
-            <Message.Footer sentTime="2 mins ago" />
+        <Message onClick={toggleShowTime} model={translatedModel} className={I.theme} >
+            {(model.position==="first" || model.position==="single")?<Message.Header sender={translatedModel.sender}/>:""}
+            {showTime?<Message.Footer sentTime={translatedModel.sentTime} />:""}
         </Message>
     );
 }
