@@ -14,7 +14,7 @@ function TopBar(props) {
                 <Icon onClick={I.toggleTheme}>moon</Icon>
             </R>
             <C l tel>
-                {I.mode !== "bio" || I.mode !== "bio-edit" ?
+                {I.mode !== "bio" && I.mode !== "bio-edit" ?
                     <Search onClearClick={() => I.setSearch("")} onChange={(v) => I.setSearch(v)} style={{ width: "100%", marginRight: "30px" }} placeholder="Search..." /> : ""
                 }
             </C>
