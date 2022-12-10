@@ -34,6 +34,16 @@ function Feed({ I }) {
         "subject": "hoohoohoo"
     },
     {
+        "name": "lilly",
+        "profile": "me.png",
+        "time": "10:04:59 AM",
+        "images": ["lala.png", "haha.png"],
+        "files": ["hehe.pdf", "lelel.pdf"],
+        "text": "what up my name is lilly i am also makin a post",
+        "email": "raraje@gmail.com",
+        "subject": "hoohoohoo"
+    },
+    {
         "name": "tom",
         "profile": "me.png",
         "time": "10:04:59 AM",
@@ -49,13 +59,14 @@ function Feed({ I }) {
             <TopBar I={I} />
             <R l tel>
                 <SideBar I={I}></SideBar>
-                <R t ns tel>
+                <R t tel>
                     <div className={`post-container ${I.theme}`} style={{
                         height: "100%"
                     }}>
-                        <CreatePost ></CreatePost>
-                        <Posts posts={posts}></Posts>
-
+                        <div style={{maxWidth:"768px",margin:"auto"}}>
+                            <CreatePost ></CreatePost>
+                            <Posts posts={posts}></Posts>
+                        </div>
                     </div>
                 </R>
             </R>

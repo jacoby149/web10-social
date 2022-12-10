@@ -8,6 +8,7 @@ function useInterface() {
     [I.theme, I.setTheme] = React.useState("dark");
     [I.menuCollapsed,I.setMenuCollapsed] = React.useState(true);
     [I.mode,I._setMode] = React.useState("contacts");
+    [I.currentContact,I.setCurrentContact] = React.useState("");
 
     I.setMode = function(mode){
         I.setMenuCollapsed(true);
