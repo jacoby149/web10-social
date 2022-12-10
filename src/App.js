@@ -9,6 +9,7 @@ import { useInterface } from './interfaces/Interface'
 import React from 'react';
 import './assets/bulma/css/bulma.min.css';
 import './components/Components.css';
+import Login from './components/Login/Login';
 
 
 
@@ -20,6 +21,7 @@ function App() {
     case "bio": return <Bio I={I} />;
     case "bio-edit": return <BioEditor I={I} />;
     case "feed": return <Feed I={I} />;
+    case "login": return <Login I={I}></Login>;
     default: return <Contacts I={I} />;
   }
 }
