@@ -1,7 +1,7 @@
 // see private messages between you and a friend / group.
 
 import { R, C } from 'rectangles-npm'
-import { Search, ChatContainer, ConversationHeader, Avatar, VoiceCallButton, VideoCallButton, InfoButton, TypingIndicator, MessageInput, MessageList, Message,MessageSeparator } from '@chatscope/chat-ui-kit-react';
+import { ChatContainer, ConversationHeader, Avatar, InfoButton, TypingIndicator, MessageInput, MessageList, Message,MessageSeparator } from '@chatscope/chat-ui-kit-react';
 import styles from '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 import emilyIco from "../../assets/images/avatar1.svg"
 import TopBar from '../shared/TopBar';
