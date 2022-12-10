@@ -14,6 +14,10 @@ function SideBar(props) {
             <C onClick={()=>I.setMode("feed")} t bb h s={"40px"} va="center">
                 Feed [TBD]
             </C>
+            <C onClick={()=>I.setMode("feed")} t bb h s={"40px"} va="center">
+                Wall [TBD]
+            </C>
+
         </R>)
 }
 
