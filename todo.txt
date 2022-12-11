@@ -1,7 +1,11 @@
+12.11.22
 data ify the bio to 
     - social-identity
     - social-bulletin [protect with DOM Purify]
-
+Make post editing! post creating but with exes.
+Make post deleting!
+Make social-identity editing! [<input>]
+Make social-bulletin deletion! (with confirmation.)
 
 web10 integrations.
 add default data for non existing users.

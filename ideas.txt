@@ -26,3 +26,5 @@ social-bulletin -> VIA Dom Purify
     height : "24px"
     html : "<>..."
 }
+
+NO REPLIES TO POSTS.

@@ -12,10 +12,10 @@ function SideBar(props) {
                 My Bio
             </C>
             <C onClick={()=>I.setMode("feed")} t bb h s={"40px"} va="center">
-                Feed [TBD]
+                Social Feed [TBD]
             </C>
             <C onClick={()=>I.setMode("feed")} t bb h s={"40px"} va="center">
-                Wall [TBD]
+                My Wall [TBD]
             </C>
             <C onClick={()=>I.setMode("login")} t bb h s={"40px"} va="center">
                 <i style={{color:"orange"}}><u>Log Out</u></i>
