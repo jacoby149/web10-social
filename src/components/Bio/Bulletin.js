@@ -10,8 +10,8 @@ function BulletinItem({ I, height, html }) {
         <R l bb s={height} theme={I.theme} >
             <R t ns tel h dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(html, config) }} />
             {I.mode === "my-bio-edit" ?
-                <C t theme="brick" bl h ha="center" p={"0px"} s={"50px"}>
-                    <i style={{color:"red"}} className={"fa fa-trash font-weight-bold"}></i>
+                <C t bl h ha="center" p={"0px"} s={"50px"}>
+                        <i style={{ color: "red" }} className={"fa fa-trash font-weight-bold"}></i>
                 </C> :
                 <C s={"0px"}></C>
             }
