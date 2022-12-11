@@ -1,5 +1,4 @@
 12.11.22
-move the mocks
 data ify the bio to 
     - social-identity
     - social-bulletin [protect with DOM Purify]

@@ -28,7 +28,7 @@ function BioBottom({ I }) {
                 <R t ns bb s={"24px"} h>
                     <div className="columns is-centered">
                         <div className="column has-text-centered is-4">
-                            <i> <a>delete contact</a> || unfollow [tbd] || mute [tbd] </i>
+                            <i> <a>delete contact</a> || [ <input size={17} placeholder='type "delete" here'></input> ] </i>
                         </div>
                     </div>
                 </R> : <R t s={"0px"} />

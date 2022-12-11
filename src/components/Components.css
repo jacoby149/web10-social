@@ -124,3 +124,7 @@
     border: 1px solid #555555;
     /* creates padding around scroll thumb */
 }
+
+.dark input {
+    color:white;
+}
