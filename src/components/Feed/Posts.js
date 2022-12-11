@@ -16,7 +16,7 @@ function Posts({posts}) {
 }
 
 function Post({post}) {
-
+    var config = { ADD_TAGS: ['iframe'], KEEP_CONTENT: false }
     return (
         // <C va = {'top'} p = {'10px 10px 10px 10px'} s = {'200px'}>
         <div className="box" style={{ "margin": "5px" }}>
@@ -32,7 +32,7 @@ function Post({post}) {
                             <strong>{post.name}</strong> <br></br>[ <small style={{color:"teal"}}><u>{post.email}</u></small> ]  <small>{post.time}</small>
                         </p>
 
-                        <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.text) }} />
+                        <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.text,config) }} />
 
                     </div>
                     {/*<nav className="level is-mobile">

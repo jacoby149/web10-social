@@ -1,4 +1,6 @@
 12.11.22
+update rectangles -> dangerouslySetInnerHTML
+fix the BulletinItem to be editable
 data ify the bio to 
     - social-identity
     - social-bulletin [protect with DOM Purify]

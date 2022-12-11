@@ -1,30 +1,32 @@
 import { R, C } from 'rectangles-npm'
+import DOMPurify from 'dompurify';
+import mockBulletin from '../../mocks/MockBulletin';
+import {
+    RawIcon
+} from '../shared/Icon';
+function BulletinItem({ I, height, html }) {
+    var config = { ADD_TAGS: ['iframe'], KEEP_CONTENT: false }
+    return (
+        <R l bb s={height} theme={I.theme} >
+            <R t ns tel h dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(html, config) }} />
+            {I.mode === "my-bio-edit" ?
+                <C t theme="brick" bl h ha="center" p={"0px"} s={"50px"}>
+                    <i style={{color:"red"}} className={"fa fa-trash font-weight-bold"}></i>
+                </C> :
+                <C s={"0px"}></C>
+            }
 
-function Bulletin({I}) {
+        </R>
+    )
+}
+
+function Bulletin({ I }) {
+    const BulletinItems = mockBulletin.map(
+        (entry, index) => <BulletinItem key={index} I={I} height={entry.height} html={entry.html}></BulletinItem>
+    )
     return (
         <R t theme={I.theme}>
-            <R t ns bt bb s={"24px"} h>
-                <div className="columns is-centered">
-                    <div className="column has-text-centered is-4">
-                        <i>
-                            <a href="https://jacobhoffman.tk/lessons/lesson6/index.html">Snake Game</a> Hi Score : 37
-                        </i>
-                    </div>
-                </div>
-            </R>
-            <R t ns bb s={"24px"} h>
-                <div className="columns is-centered">
-                    <div className="column has-text-centered is-4">
-                        <i>3d Voxel Painting.</i>
-                    </div>
-                </div>
-            </R>
-            <R t ns bb s={"100px"}>
-                <div style={{ overflow: "hiden", position: "relative" }}>
-                    <iframe width="100%" height="300px" style={{ position: "absolute", top: "-200px" }} src="https://mamafleet.github.io/3dpainter/?user=praemium-cranium&painting=main"></iframe>
-                </div>
-            </R>
-
+            {BulletinItems}
         </R>
     )
 }

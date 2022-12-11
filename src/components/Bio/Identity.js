@@ -25,7 +25,7 @@ function Identity({ I }) {
                     </div>
                 </div>
             </R>
-            <R t ns s={"30px"} h>
+            <R t ns bb s={"30px"} h>
                 <div className="columns is-centered">
                     <div className="column has-text-centered is-4">
                         {
