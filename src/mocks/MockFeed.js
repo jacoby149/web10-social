@@ -45,7 +45,7 @@ const mockFeed = [
     "time": "10:04:59 AM",
     "images": ["lala.png", "haha.png"],
     "files": ["hehe.pdf", "lelel.pdf"],
-    "text": "This is jacob, making my first post haha.",
+    "text": "This is <i>jacob</i>, making my <b>first</b> post haha.",
     "email": "api.web10.app/jacoby149",
     "subject": "hoohoohoo"
 },

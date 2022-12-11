@@ -1,5 +1,6 @@
 
 import { pass, R, C, T } from 'rectangles-npm'
+import DOMPurify from 'dompurify'
 
 function Posts({posts}) {
     const final = [];
@@ -31,7 +32,7 @@ function Post({post}) {
                             <strong>{post.name}</strong> <br></br>[ <small style={{color:"teal"}}><u>{post.email}</u></small> ]  <small>{post.time}</small>
                         </p>
 
-                        <div dangerouslySetInnerHTML={{ __html: post.text }} />
+                        <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.text) }} />
 
                     </div>
                     {/*<nav className="level is-mobile">
