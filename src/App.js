@@ -28,7 +28,6 @@ function App() {
     // feed like pages, that consist of posts with images,vids,audio, and html
     case "feed": return <Feed I={I} />;
     case "wall": return <Feed I={I} />;
-    case "wall-edit": return <Feed I={I} />;
     
     case "login": return <Login I={I}></Login>;
     default: return <Contacts I={I} />;

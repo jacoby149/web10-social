@@ -12,9 +12,11 @@ import TopBar from '../shared/TopBar';
 import SideBar from '../shared/SideBar';
 import CreatePost from './CreatePost';
 import mockFeed from '../../mocks/MockFeed';
+import mockWall from '../../mocks/MockWall';
 
 function Feed({ I }) {
-    const [posts, setPosts] = React.useState(mockFeed);
+    const mockData = I.mode==="feed"?mockFeed:mockWall;
+    const [posts, setPosts] = React.useState(mockData);
     return (
         <R root t bt bb br bl theme={I.theme}>
             <TopBar I={I} />
