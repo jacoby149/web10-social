@@ -110,3 +110,17 @@
     border: 1px solid #666666;
     /* creates padding around scroll thumb */
 }
+
+.R.dark::-webkit-scrollbar-track {
+    background: #151515;
+    /* color of the tracking area */
+}
+
+.R.dark::-webkit-scrollbar-thumb {
+    background-color: #222222;
+    /* color of the scroll thumb */
+    border-radius: 20px;
+    /* roundness of the scroll thumb */
+    border: 1px solid #555555;
+    /* creates padding around scroll thumb */
+}
