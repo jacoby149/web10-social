@@ -10,7 +10,7 @@ function Identity({ I }) {
             <C t ha="center" va="center">
                 <Avatar style={{ margin: "20px" }} size={"lg"} src={emilyIco} name="Emily" />
                 {
-                    I.mode === "my-bio-edit" ?
+                    I.mode === "bio-edit" ?
                         <button class="button is-warning is-small">upload photo</button> : ""
                 }
             </C>
@@ -18,7 +18,7 @@ function Identity({ I }) {
                 <div className="columns is-centered">
                     <div className="column has-text-centered is-4">
                         {
-                            I.mode === "my-bio-edit" ?
+                            I.mode === "bio-edit" ?
                                 <i>[<input size="22" style={{ color: "gold" }} defaultValue="Jacob Hoffman"></input>]</i> :
                                 <i>name : Jacob Hoffman</i>
                         }
@@ -29,7 +29,7 @@ function Identity({ I }) {
                 <div className="columns is-centered">
                     <div className="column has-text-centered is-4">
                         {
-                            I.mode === "my-bio-edit" ?
+                            I.mode === "bio-edit" ?
                                 <i>[<input size="32" style={{ color: "gold" }} defaultValue={"i am such a zoomer kid . . ."}></input>]</i> :
                                 <i>bio : i am such a zoomer kid . . .</i>
                         }

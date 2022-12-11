@@ -23,7 +23,8 @@ function App() {
     // bio like pages, that have a social-identity and social-bulletin 
     case "bio": return <Bio I={I} />; // contact-configuration here
     case "my-bio": return <Bio I={I} />;
-    case "my-bio-edit": return <Bio I={I} />;
+    case "bio-edit": return <Bio I={I} />;
+    case "bulletin-edit": return <Bio I={I} />;
     
     // feed like pages, that consist of posts with images,vids,audio, and html
     case "feed": return <Feed I={I} />;

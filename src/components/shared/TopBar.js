@@ -7,6 +7,10 @@ function EditButton() {
     return <i style={{ color: "orange", margin: "10px" }} className={"fa fa-pencil fa-2x font-weight-bold"}></i>
 }
 
+function EditBulletin() {
+    return <i style={{ color: "pink", margin: "10px" }} className={"fa fa-trash fa-2x font-weight-bold"}></i>
+}
+
 /* Top Bar of web10 social */
 function TopBar(props) {
     const I = props.I;
@@ -18,21 +22,33 @@ function TopBar(props) {
                 <Icon onClick={I.toggleTheme}>moon</Icon>
             </R>
             <C l tel>
-                {I.mode !== "bio" && I.mode !== "my-bio" && I.mode !== "my-bio-edit" ?
-                    <Search onClearClick={() => I.setSearch("")} onChange={(v) => I.setSearch(v)} style={{ width: "100%", marginRight: "30px" }} placeholder="Search..." /> : ""
+                {["bio", "my-bio", "bio-edit", "bulletin-edit"].includes(I.mode) ? "" :
+                    <Search onClearClick={() => I.setSearch("")} onChange={(v) => I.setSearch(v)} style={{ width: "100%", marginRight: "30px" }} placeholder="Search..." />
                 }
             </C>
             {I.mode === "my-bio" ?
-                <C r s={"110px"} onClick={() => I.setMode("my-bio-edit")}>
+                <C r h s={"110px"} onClick={() => I.setMode("bio-edit")}>
                     <i style={{ color: "orange", }}><u>Edit Bio</u></i> <EditButton></EditButton>
                 </C> : <C r s={"0px"}></C>
             }
-            {I.mode === "my-bio-edit" ?
-                <C r s={"140px"}>
-                    <button onClick={()=>I.setMode("my-bio")} class="button is-primary is-small" style={{marginRight:"10px"}}>save</button>
-                    <button onClick={()=>I.setMode("my-bio")} class="button is-danger is-small">cancel</button>
+            {I.mode === "my-bio" ?
+                <C h r s={"110px"} onClick={() => I.setMode("bulletin-edit")}>
+                    <i style={{ color: "pink", }}><u>Edit Bulletin</u></i> <EditBulletin></EditBulletin>
                 </C> : <C r s={"0px"}></C>
             }
+            {I.mode === "bio-edit" ?
+                <C r s={"240px"}>
+                    <button onClick={() => I.setMode("my-bio")} class="button is-primary is-small" style={{ marginRight: "20px", width: "100px" }}>save</button>
+                    <button style={{ width: "100px" }} onClick={() => I.setMode("my-bio")} class="button is-danger is-small">cancel</button>
+                </C> : <C r s={"0px"}></C>
+            }
+
+            {I.mode === "bulletin-edit" ?
+                <C r s={"120px"}>
+                    <button onClick={() => I.setMode("my-bio")} class="button is-warning is-small" style={{ marginRight: "20px", width: "100px" }}>go back</button>
+                </C> : <C r s={"0px"}></C>
+            }
+
 
             <R t s={"20px"}></R>
         </R>
