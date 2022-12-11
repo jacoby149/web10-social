@@ -16,7 +16,6 @@ import mockWall from '../../mocks/MockWall';
 
 function Feed({ I }) {
     const mockData = I.mode==="feed"?mockFeed:mockWall;
-    const [posts, setPosts] = React.useState(mockData);
     return (
         <R root t bt bb br bl theme={I.theme}>
             <TopBar I={I} />
@@ -28,7 +27,7 @@ function Feed({ I }) {
                     }}>
                         <div style={{maxWidth:"768px",margin:"auto"}}>
                             <CreatePost ></CreatePost>
-                            <Posts posts={posts}></Posts>
+                            <Posts posts={mockData}></Posts>
                         </div>
                     </div>
                 </R>

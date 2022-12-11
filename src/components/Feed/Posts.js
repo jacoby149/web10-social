@@ -14,7 +14,8 @@ function Posts({posts}) {
     )
 }
 
-function Post(props) {
+function Post({post}) {
+
     return (
         // <C va = {'top'} p = {'10px 10px 10px 10px'} s = {'200px'}>
         <div className="box" style={{ "margin": "5px" }}>
@@ -27,12 +28,10 @@ function Post(props) {
                 <div className="media-content">
                     <div className="content">
                         <p>
-                            <strong>{props.post.name}</strong> <small>{props.post.email}</small> <small>{props.post.time}</small>
-                            <br />
-                            <a style={{ "color": "orange" }}>{props.post.subject}</a>
+                            <strong>{post.name}</strong> <br></br>[ <small style={{color:"teal"}}><u>{post.email}</u></small> ]  <small>{post.time}</small>
                         </p>
 
-                        <div dangerouslySetInnerHTML={{ __html: props.post.text }} />
+                        <div dangerouslySetInnerHTML={{ __html: post.text }} />
 
                     </div>
                     {/*<nav className="level is-mobile">
