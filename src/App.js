@@ -16,11 +16,20 @@ function App() {
   const I = useInterface();
   window.I = I;
   switch (I.mode) {
+
+    // chat like pages, that have private messages
     case "chat": return <Chat I={I} />;
-    case "bio": return <Bio I={I} />;
+    
+    // bio like pages, that have a social-identity and social-bulletin 
+    case "bio": return <Bio I={I} />; // contact-configuration here
     case "my-bio": return <Bio I={I} />;
     case "my-bio-edit": return <Bio I={I} />;
+    
+    // feed like pages, that consist of posts with images,vids,audio, and html
     case "feed": return <Feed I={I} />;
+    case "wall": return <Feed I={I} />;
+    case "wall-edit": return <Feed I={I} />;
+    
     case "login": return <Login I={I}></Login>;
     default: return <Contacts I={I} />;
   }

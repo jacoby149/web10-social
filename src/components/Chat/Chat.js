@@ -7,7 +7,7 @@ import emilyIco from "../../assets/images/avatar1.svg"
 import TopBar from '../shared/TopBar';
 import SideBar from '../shared/SideBar'
 import { RawIcon } from '../shared/Icon'
-import { mockChat } from '../../interfaces/Mocks';
+import mockChat from '../../mocks/MockChat';
 import TSMessage from './TSMessage';
 
 function Chat({ I }) {

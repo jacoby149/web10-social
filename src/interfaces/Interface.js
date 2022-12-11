@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 import axios from 'axios'
-import {mockContacts} from './Mocks'
+import mockContacts from '../mocks/MockContacts'
 function useInterface() {
     const I = {};
     [I.contacts, I.setContacts] = React.useState(mockContacts);

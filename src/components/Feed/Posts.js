@@ -1,10 +1,11 @@
 
 import { pass, R, C, T } from 'rectangles-npm'
 
-function Posts(props) {
+function Posts({posts}) {
     const final = [];
-    for (let post of props.posts) {
-        final.push(<Post post={post} key={Math.floor(Math.random() * 987654321)}></Post>)
+    
+    for (const [index, post] of posts.entries()) {
+        final.push(<Post key={index} post={post}></Post>)
     }
     return (
         <R t tel>
