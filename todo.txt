@@ -1,19 +1,20 @@
-turn the bio into raw data
+data ify the bio to 
+    - social-identity
+    - social-bulletin [protect with DOM Purify]
 
-make UI mechanism to click messages to show the time.
-add a login button + web10 integrations.
-make a web10 profile picture + bio editor UI.
+
+web10 integrations.
 add default data for non existing users.
-
 hook up the web10 login to the chat application.
 hook up the web10 services to :
     - contacts
     - messages
-    - bio [free form multimedia for now. :media, :type, :tags]
-    - feed
+    - social-identity
+    - social-bulletin
+    - social-posts
 add logo / PWA functions
 
-step 2 : simple snake game
+step 2 : hook up simple snake game
     - read bio where type = snake score
     - empty? insert
     - update bio where type = snake_score set hi score.
@@ -24,3 +25,4 @@ step 3 : fix Sam's pixel art app
     - make a texture pallete
     - separate the viewing and editing properly
     - make multiple sculptures in the data
+    - generate iframe in the web10 social-bulletin

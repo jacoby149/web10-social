@@ -23,14 +23,14 @@ function Bio({ I }) {
                     <R t ns s={"24px"} h>
                         <div className="columns is-centered">
                             <div className="column has-text-centered is-4">
-                                <i>Jacob Hoffman</i>
+                                <i>name : Jacob Hoffman</i>
                             </div>
                         </div>
                     </R>
-                    <R t ns bb bt s={"24px"} h>
+                    <R t ns bb s={"30px"} h>
                         <div className="columns is-centered">
                             <div className="column has-text-centered is-4">
-                                <i>i am such a zoomer kid . . .</i>
+                                <i>bio : i am such a zoomer kid . . .</i>
                             </div>
                         </div>
                     </R>
@@ -66,7 +66,7 @@ function Bio({ I }) {
                             </div>
                         </div>
                     </R>
-                    {I.mode !== "my-bio" ?
+                    {I.mode === "bio" ?
                         <R t ns bb s={"24px"}>
                             <div className="columns is-centered">
                                 <div className="column has-text-centered is-4">
@@ -75,7 +75,7 @@ function Bio({ I }) {
                             </div>
                         </R> : <R t s={"0px"} />
                     }
-                    {I.mode !== "my-bio" ?
+                    {I.mode === "bio" ?
 
                         <R t ns bb s={"24px"} h>
                             <div className="columns is-centered">
