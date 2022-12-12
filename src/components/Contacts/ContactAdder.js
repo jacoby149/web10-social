@@ -5,7 +5,7 @@ function ContactAdder({I}) {
     const user = I.search.includes("/")?I.search:`api.web10.app/${I.search}`;
     const toAdd = I.search?`add ${user}`:"add a contact";
     const label = I.search?"on web10 social?":"To Add A Contact";
-    const status = I.search?"no. add anyway!":"Type In The Search Bar!"
+    const status = I.search?"no.":"Type In The Search Bar!"
     return (
         <Conversation name={toAdd} className={`contacts ${I.theme}`} lastSenderName={label} info={status}>
             <Avatar src={contactIco} name={"idk!"} />
