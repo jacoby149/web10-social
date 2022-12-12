@@ -13,7 +13,7 @@ function TSMessage({ model,I,mostRecent}) {
     }
     function onClick(){
         if (I.mode==="chat-edit")toggleSelected();
-        toggleShowTime();
+        else toggleShowTime();
     }
 
     React.useEffect(()=>setSelected(false),[I.mode])
