@@ -9,10 +9,10 @@ function Feed({I}) {
 
         }}>
             <div style={{ maxWidth: "768px", margin: "auto" }}>
-                <div style={{ height: "50px" }}></div>
+                <div style={{ height: "20px" }}></div>
                 <PostMaker postI={{ editMode: false }} ></PostMaker>
                 <Posts posts={posts}></Posts>
-                <div style={{ height: "50px" }}></div>
+                <div style={{ height: "20px" }}></div>
             </div>
         </div>
     )
