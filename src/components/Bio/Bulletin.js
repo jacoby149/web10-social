@@ -33,7 +33,7 @@ function BulletinItem({ I, height, html }) {
 }
 
 function Bulletin({ I }) {
-    const BulletinItems = mockBulletin.map(
+    const BulletinItems = I.bulletin.map(
         (entry, index) => <BulletinItem key={index} I={I} height={entry.height} html={entry.html}></BulletinItem>
     )
     return (

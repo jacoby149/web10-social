@@ -1,5 +1,4 @@
 12.11.22
-with a URL param, swap the mock interface with the legit interface.
 add mock data to the bio per contact
     - posts, bulletin, and chats
     - AND put some media in the posts.
