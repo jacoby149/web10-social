@@ -3,6 +3,7 @@
 clean up feed mock data model fields
 add some media to the mock posts
 make the postmaker a legit form.
+make the bio editor a legit form.
 get postmaker edit mode working.
 
 web10 integrations.
