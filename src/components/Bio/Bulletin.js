@@ -8,6 +8,9 @@ import {
 function BulletinItem({ I, height, html }) {
     var config = { ADD_TAGS: ['iframe'], KEEP_CONTENT: false }
     const [edit,setEdit] = React.useState(false);
+
+    React.useEffect(()=>setEdit(false),[I.mode]);
+
     function toggleEdit(){setEdit(!edit)};
     return (
         <R l bb s={height} theme={edit?"brick":I.theme} >
