@@ -1,5 +1,10 @@
 12.11.22
-Make media components have a deletion icon.
+dropdown for editing posts!
+    - edit post
+    - copy post link
+    - copy post embed
+    - delete post
+x button to cancel editing / creating post!
 Make post deleting!
 Make social-identity editing! [<input>]
 Make social-bulletin deletion! (with confirmation.)

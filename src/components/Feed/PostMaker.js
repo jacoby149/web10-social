@@ -21,20 +21,21 @@ function PostMaker({ postI }) {
                 <header class="card-header">
 
                     <p class="card-header-title">
+                        {postI.editMode?
+                        <i onClick={postI.clearChanges} style={{ color: "orange", marginRight: "10px" }} className={"fa fa-2x fa-circle-xmark font-weight-bold"}></i>:""
+                        }
                         {postI.editMode ?
-                            <div>
-                                <button onClick={postI.toggleEditMode} style={{ width: "110px" }} className={"button is-danger is-small"}>delete post <i style={{ margin:"10px",color: "white" }} className={"fa fa-trash font-weight-bold"}></i> </button>                            
-                            </div>
+                            "Edit This Post"
                             :
-                            "Make a Post"
+                            "Make a New Post"
                         }
                     </p>
 
                     {postI.editMode ?
                         <div>
-                            <button onClick={postI.toggleEditMode} style={{ margin: "10px", width: "110px" }} className={"button is-primary is-small"}>Save Edits
-                            <i style={{ margin:"10px" }} className={"fa fa-check font-weight-bold"}></i>
-                             </button>
+                            <button onClick={postI.saveChanges} style={{ margin: "10px", width: "110px" }} className={"button is-primary is-small"}>Save Edits
+                                <i style={{ margin: "10px" }} className={"fa fa-check font-weight-bold"}></i>
+                            </button>
                         </div>
                         :
                         <div>
@@ -57,6 +58,10 @@ function PostMaker({ postI }) {
                     <a href="#" class="card-footer-item post">
                         Video <RawIcon>video-plus</RawIcon></a>
                     <a href="#" class="card-footer-item post">Photo <RawIcon >photo</RawIcon></a>
+                    {
+                        postI.editMode?
+                        <a href="#" class="card-footer-item post">Delete Post <RawIcon >trash</RawIcon></a>:""}
+                    
                     {/*<a href="#" class="card-footer-item post">Audio <RawIcon>microphone-stand</RawIcon></a>*/}
                 </footer>
             </div>

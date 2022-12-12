@@ -26,6 +26,15 @@ function Post({ post }) {
     postI.toggleEditMode = function () {
         postI.setEditMode(!postI.editMode);
     }
+
+    postI.clearChanges = function () {
+        postI.toggleEditMode();
+    }
+
+    postI.clearChanges = function () {
+        postI.toggleEditMode();
+    }
+
     
     return postI.editMode ?
             <PostMaker postI={postI}></PostMaker> :

@@ -23,7 +23,6 @@ function PostViewer({postI}) {
                                         style={{ color: "orange" }}
                                         className={"fa fa-pencil font-weight-bold"}></i> : ""
                                 }
-                                {postI.editMode ? "edit-mode" : ""}
                             </strong>
 
                             <br></br>[ <small style={{ color: "teal" }}><u>{post.email}</u></small> ]  <small>{post.time}</small>
