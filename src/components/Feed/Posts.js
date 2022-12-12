@@ -31,7 +31,7 @@ function Post({ post }) {
         postI.toggleEditMode();
     }
 
-    postI.clearChanges = function () {
+    postI.saveChanges = function () {
         postI.toggleEditMode();
     }
 
