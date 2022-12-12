@@ -1,31 +1,64 @@
 import mockMedia from "./MockMedia";
+import pondPic from "../assets/images/pond.jpg"
+import brickPic from "../assets/images/brick.jpg"
+import rocksPic from "../assets/images/rocks.jpg"
+import squarePic from "../assets/images/square.jpg"
+import waterPic from "../assets/images/water.jpg"
+import waterfallPic from "../assets/images/waterfall.jpg"
+
+const [pond,brick,rocks,square,water,waterfall] = [
+    {
+        src:pondPic,
+        type:"image"
+    },
+    {
+        src:brickPic,
+        type:"image"
+    },
+    {
+        src:rocksPic,
+        type:"image"
+    },
+    {
+        src:squarePic,
+        type:"image"
+    },
+    {
+        src:waterPic,
+        type:"image"
+    },
+    {
+        src:waterfallPic,
+        type:"image"
+    },
+]
 
 const mockFeed = [
     {
         "web10": "api.web10.app/emily511",
         "time": "10:04:59 AM",
-        "media": [],
+        "media": [pond],
         "html":
             "what up my name is emily makin a post",
     },
     {
         "web10": "api.web10.app/jacoby149",
         "time": "10:04:59 AM",
-        "media": [],
+        "media": [brick,rocks],
         "html":
             "I wanted to share! I had this idea for a new internet platform, that I call web10. It gives every user on the internet a domain name for them to control their data. One more time for posterity, it is called web10, it is totally awesome and the future of the internet.",
     },
     {
         "web10": "api.web10.app/lilly511",
         "time": "10:04:59 AM",
-        "media": [],
+        "media": [square,water,waterfall],
         "html":
             "what up my name is lilly i am also makin a post",
     },
     {
         "web10": "api.web10.app/jacoby149",
         "time": "10:04:59 AM",
-        "media": [mockMedia[0],mockMedia[1],mockMedia[1],mockMedia[0]],
+        "media": [mockMedia[1],mockMedia[2]],
         "html": "This is <i>jacob</i>, making my <b>first</b> post haha.",
     },
     {

@@ -33,7 +33,6 @@ function Post({ I, post }) {
     postI.saveChanges = function () {
         postI.toggleEditMode();
     }
-
     
     return postI.editMode ?
             <PostMaker I={I} postI={postI}></PostMaker> :

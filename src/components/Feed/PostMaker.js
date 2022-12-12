@@ -4,7 +4,7 @@ import Media from "./Media";
 
 
 function PostMaker({ I, postI }) {
-    const mediaItems = mockMedia.map(
+    const mediaItems = postI.post.media.map(
         (item, index) => <Media type={item.type} src={item.src} key={index}></Media>
     )
     return (
@@ -41,7 +41,7 @@ function PostMaker({ I, postI }) {
                 <div class="card-content">
                     <div class="content">
                         <div class="control">
-                            <textarea class="textarea" placeholder="What is on your mind??"></textarea>
+                            <textarea class="textarea" defaultValue={postI.post.html} placeholder="What is on your mind??"></textarea>
                         </div>
                         <div>
                             {mediaItems}
