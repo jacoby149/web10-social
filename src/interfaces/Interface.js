@@ -18,12 +18,16 @@ function useInterface() {
 
     [I.contacts, I.setContacts] = React.useState(mockContacts);
     [I.currentContact,I.setCurrentContact] = React.useState(I.contacts[0]);
+    
     [I.draftPost,I.setDraftPost] = React.useState(mockDraftPost);
     [I.feedPosts,I.setFeedPosts] = React.useState(mockFeed);
     [I.wallPosts,I.setWallPosts] = React.useState(mockWall);
+    
     [I.bulletin,I.setBulletin] = React.useState(mockBulletin);
-    [I.currentMessages,I.setCurrentMessages] = React.useState(mockChat);
     [I.identity,I.setIdentity] = React.useState(mockIdentity);
+
+    [I.currentMessages,I.setCurrentMessages] = React.useState(mockChat);
+
 
     I.getPosts = function(web10){
         return I.feedPosts.filter((p)=>p.web10===web10)
