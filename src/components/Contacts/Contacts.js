@@ -13,7 +13,7 @@ import ContactAdder from './ContactAdder';
 function Contacts({ I }) {
   
   const contactItems = I.contacts.map((contact, index) => {
-    return <Conversation key={index} onClick={()=>I.setMode("chat")} name={contact.name} className={`contacts ${I.theme}`} lastSenderName={contact.lastSenderName} info={contact.lastMessage}>
+    return <Conversation key={index} onClick={()=>I.chat(contact.web10)} name={contact.name} className={`contacts ${I.theme}`} lastSenderName={contact.lastSenderName} info={contact.lastMessage}>
       <Avatar src={contact.pic} name={contact.name} />
     </Conversation>
 

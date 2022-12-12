@@ -49,8 +49,8 @@ function Chat({ I }) {
                     }}>
                         <ChatContainer>
                             <ConversationHeader className={I.theme}>
-                                <Avatar onClick={() => I.setMode("bio")} src={emilyIco} name="Emily" />
-                                <ConversationHeader.Content userName="Emily" info="@ api.web10.app/emily511" />
+                                <Avatar onClick={() => I.setMode("bio")} src={I.currentContact.pic} name="Emily" />
+                                <ConversationHeader.Content userName={I.currentContact.name} info={`@ ${I.currentContact.web10}`} />
                                 <ConversationHeader.Actions>
 
                                 {I.mode === "chat" ?
