@@ -7,18 +7,16 @@ import emilyIco from "../../assets/images/avatar1.svg"
 import TopBar from '../shared/TopBar';
 import SideBar from '../shared/SideBar'
 import { RawIcon } from '../shared/Icon'
-import mockChat from '../../mocks/MockChat';
 import TSMessage from './TSMessage';
 import React from 'react'
 
 function Chat({ I }) {
-    const [chatMode, setChatMode] = React.useState("default");
     var messageItems = [];
     var separatorCount = 0
 
-    for (const [index, model] of mockChat.entries()) {
+    for (const [index, model] of I.currentMessages.entries()) {
         const present = new Date(model["sentTime"]);
-        const mostRecent = index === mockChat.length - 1;
+        const mostRecent = index === I.currentMessages.length - 1;
         if (index == 0) {
             messageItems.push(
                 <MessageSeparator key={index + separatorCount} content={present.toDateString()} />
@@ -26,7 +24,7 @@ function Chat({ I }) {
             separatorCount += 1;
         }
         else if (index > 1) {
-            const past = new Date(mockChat[index - 1]["sentTime"]);
+            const past = new Date(I.currentMessages[index - 1]["sentTime"]);
             if (present.getDay() - past.getDay() > 0) {
                 messageItems.push(
                     <MessageSeparator key={index + separatorCount} content={present.toDateString()} />
@@ -55,22 +53,19 @@ function Chat({ I }) {
                                 <ConversationHeader.Content userName="Emily" info="@ api.web10.app/emily511" />
                                 <ConversationHeader.Actions>
 
-                                {chatMode === "default" ?
+                                {I.mode === "chat" ?
                                         <>
-                                            <RawIcon onClick={() => setChatMode("edit")}>square-check</RawIcon>
+                                            <RawIcon onClick={() => I.setMode("chat-edit")}>square-check</RawIcon>
                                             <RawIcon>cube</RawIcon>
                                             <RawIcon>snake</RawIcon>
                                             <InfoButton onClick={() => I.setMode("bio")} />
-                                            </> : ""
-                                    }
-
-                                    {chatMode === "edit" ?
+                                            </> : 
                                         <>
-                                            <RawIcon onClick={() => setChatMode("default")}>square-x</RawIcon>
+                                            <RawIcon onClick={() => I.setMode("chat")}>square-x</RawIcon>
                                             <div style={{color:"orange",marginRight:"10px"}}><i>undo<br/>changes</i></div>
                                             <RawIcon>trash</RawIcon>
                                             <div style={{color:"orange"}}><i>delete<br/>selected</i></div>
-                                        </> : ""
+                                        </>
                                     }
 
                                 </ConversationHeader.Actions>

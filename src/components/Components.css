@@ -75,6 +75,14 @@
     color: azure;
 }
 
+.cs-message.selected .cs-message__content{
+    background-color:orange;
+}
+
+.cs-message.selected.cs-message--first .cs-message__content{
+    background-color:orange;
+}
+
 
 .card-footer-item.post {
     color: #222244;

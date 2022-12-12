@@ -20,6 +20,7 @@ function App() {
 
     // chat like pages, that have private messages
     case "chat": return <Chat I={I} />;
+    case "chat-edit": return <Chat I={I} />;
     
     // bio like pages, that have a social-identity and social-bulletin 
     case "bio": return <Bio I={I} />; // contact-configuration here
