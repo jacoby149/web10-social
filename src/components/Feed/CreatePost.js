@@ -20,7 +20,6 @@ function CreatePost() {
                             <img style={{ marginTop: "5px", marginRight: "5px" }} src="https://bulma.io/images/placeholders/128x128.png" />
                             <img style={{ marginTop: "5px", marginRight: "5px" }} src="https://bulma.io/images/placeholders/128x128.png" />
                             <video style={{ height: "128px", marginTop: "5px", marginRight: "5px" }} controls >
-                                <source src={tone} type="audio/mpeg" />
                                 Your browser does not support audio in video tag.
                             </video>
                         </div>
@@ -30,7 +29,7 @@ function CreatePost() {
                     <a href="#" class="card-footer-item post">
                         Video <RawIcon>video-plus</RawIcon></a>
                     <a href="#" class="card-footer-item post">Photo <RawIcon >photo</RawIcon></a>
-                    <a href="#" class="card-footer-item post">Audio <RawIcon>microphone-stand</RawIcon></a>
+                    {/*<a href="#" class="card-footer-item post">Audio <RawIcon>microphone-stand</RawIcon></a>*/}
                 </footer>
             </div>
         </div>)
