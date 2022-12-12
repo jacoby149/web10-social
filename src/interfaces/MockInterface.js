@@ -7,7 +7,7 @@ import mockWall from '../mocks/MockWall';
 import mockChat from '../mocks/MockChat';
 import mockIdentity from '../mocks/MockIdentity';
 
-function useInterface() {
+function useMockInterface() {
     const I = {};
     [I.theme, I.setTheme] = React.useState("dark");
     [I.menuCollapsed,I.setMenuCollapsed] = React.useState(true);
@@ -59,4 +59,4 @@ function useInterface() {
     return I;
 }
 
-export default useInterface;
+export default useMockInterface;
