@@ -7,6 +7,11 @@ function EditButton() {
     return <i style={{ color: "orange", margin: "10px" }} className={"fa fa-pencil fa-2x font-weight-bold"}></i>
 }
 
+function BackButton() {
+    return <i style={{ color: "orange", margin: "10px" }} className={"fa fa-arrow-rotate-left fa-2  font-weight-bold"}></i>
+}
+
+
 function EditBulletin() {
     return <i style={{ color: "pink", margin: "10px" }} className={"fa fa-trash fa-2x font-weight-bold"}></i>
 }
@@ -26,6 +31,11 @@ function TopBar(props) {
                     <Search onClearClick={() => I.setSearch("")} onChange={(v) => I.setSearch(v)} style={{ width: "100%", marginRight: "30px" }} placeholder="Search..." />
                 }
             </C>
+            {I.mode === "bio" ?
+                <C r s={"110px"} onClick={() => I.setMode("chat")}>
+                    <BackButton></BackButton><i style={{ color: "orange", }}><u>Go Back</u></i>
+                </C> : <C r s={"0px"}></C>
+            }
             {I.mode === "my-bio" ?
                 <C r h s={"110px"} onClick={() => I.setMode("bio-edit")}>
                     <i style={{ color: "orange", }}><u>Edit Bio</u></i> <EditButton></EditButton>
