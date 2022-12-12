@@ -7,7 +7,7 @@ function useInterface() {
     [I.contacts, I.setContacts] = React.useState(mockContacts);
     [I.theme, I.setTheme] = React.useState("dark");
     [I.menuCollapsed,I.setMenuCollapsed] = React.useState(true);
-    [I.mode,I._setMode] = React.useState("login");
+    [I.mode,I._setMode] = React.useState("contacts");
     [I.currentContact,I.setCurrentContact] = React.useState("");
     [I.search,I.setSearch] = React.useState("");
 

@@ -1,13 +1,11 @@
 12.11.22
-dropdown for editing posts!
-    - edit post
-    - copy post link
-    - copy post embed
-    - delete post
-x button to cancel editing / creating post!
-Make post deleting!
-Make social-identity editing! [<input>]
-Make social-bulletin deletion! (with confirmation.)
+
+FIX Posts
+    clean up mock data models
+    add media to example posts in postviewer!
+    get media working for post edits
+    get deletion of media working in edits.
+make a new branch -> web10-integration
 
 web10 integrations.
 add default data for non existing users.

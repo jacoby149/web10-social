@@ -1,3 +1,5 @@
+import mockMedia from "./MockMedia";
+
 const mockFeed = [
     {
     "name": "Emily Thompson",
@@ -34,8 +36,7 @@ const mockFeed = [
     "profile": "me.png",
     "time": "10:04:59 AM",
     "images": ["lala.png", "haha.png"],
-    "files": ["hehe.pdf", "lelel.pdf"],
-    "text": "what up my name is lilly i am also makin a post",
+    "media": mockMedia,
     "email": "api.web10.app/lilly511",
     "subject": "hoohoohoo"
 },
@@ -43,8 +44,7 @@ const mockFeed = [
     "name": "Jacob Hoffman",
     "profile": "me.png",
     "time": "10:04:59 AM",
-    "images": ["lala.png", "haha.png"],
-    "files": ["hehe.pdf", "lelel.pdf"],
+    "media": mockMedia,
     "text": "This is <i>jacob</i>, making my <b>first</b> post haha.",
     "email": "api.web10.app/jacoby149",
     "subject": "hoohoohoo"
@@ -53,8 +53,7 @@ const mockFeed = [
     "name": "Tom Clifford",
     "profile": "me.png",
     "time": "10:04:59 AM",
-    "images": ["lala.png", "haha.png"],
-    "files": ["hehe.pdf", "lelel.pdf"],
+    "media": mockMedia,
     "text": "what up my name is tom call me rarara",
     "email": "api.web10.app/tom511",
     "subject": "RARARA"
