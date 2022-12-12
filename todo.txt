@@ -1,14 +1,9 @@
 12.11.22
 
-Add photo to make a post
-
-
-FIX Posts
-    clean up mock data models
-    add media to example posts in postviewer!
-    get media working for post edits
-    get deletion of media working in edits.
-make a new branch -> web10-integration
+clean up feed mock data model fields
+add some media to the mock posts
+make the postmaker a legit form.
+get postmaker edit mode working.
 
 web10 integrations.
 add default data for non existing users.
