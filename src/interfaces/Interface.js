@@ -22,6 +22,10 @@ function useInterface() {
     [I.currentMessages,I.setCurrentMessages] = React.useState(mockChat);
     [I.identity,I.setIdentity] = React.useState(mockIdentity);
 
+    I.getPosts = function(web10){
+        return I.feedPosts.filter((p)=>p.web10===web10)
+    }
+
     I.getContact = function(web10){
         const cMap = {};
         I.contacts.map((c)=>cMap[c.web10]=c);

@@ -32,7 +32,7 @@ const mockFeed = [
         "web10": "api.web10.app/tom511",
         "time": "10:04:59 AM",
         "media": mockMedia,
-        "html": "what up my name is tom call me rarara",
+        "html": "my name is tom! :)",
     }
 ]
 
