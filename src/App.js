@@ -9,6 +9,7 @@ import React from 'react';
 import './assets/bulma/css/bulma.min.css';
 import './components/Components.css';
 import Login from './components/Login/Login';
+import StandAloneFeed from './components/Feed/StandAloneFeed';
 
 
 
@@ -27,8 +28,7 @@ function App() {
     case "bulletin-edit": return <Bio I={I} />;
     
     // feed like pages, that consist of posts with images,vids,audio, and html
-    case "feed": return <Feed I={I} />;
-    case "wall": return <Feed I={I} />;
+    case "feed": return <StandAloneFeed I={I} />;
     
     case "login": return <Login I={I}></Login>;
     default: return <Contacts I={I} />;

@@ -17,7 +17,7 @@ function PostMaker({ postI }) {
     return (
         <div>
             <div style={{ height: "5px" }} />
-            <div class="card" style={{ marginLeft: "5px", marginRight: "5px" }}>
+            <div class="card" style={{ marginLeft: "10px", marginRight: "5px" }}>
                 <header class="card-header">
 
                     <p class="card-header-title">

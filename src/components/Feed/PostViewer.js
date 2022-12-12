@@ -5,7 +5,7 @@ function PostViewer({postI}) {
     const post = postI.post;
     var config = { ADD_TAGS: ['iframe'], KEEP_CONTENT: false }
     return (
-        <div className="box" style={{ "margin": "5px" }}>
+        <div className="box" style={{ margin: "5px",marginLeft:"10px" }}>
             <article className="media">
                 <div className="media-left">
                     <figure className="image is-64x64">

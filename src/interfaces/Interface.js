@@ -2,6 +2,8 @@ import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 import axios from 'axios'
 import mockContacts from '../mocks/MockContacts'
+import mockFeed from '../mocks/MockFeed';
+import mockWall from '../mocks/MockWall';
 function useInterface() {
     const I = {};
     [I.contacts, I.setContacts] = React.useState(mockContacts);
@@ -10,6 +12,9 @@ function useInterface() {
     [I.mode,I._setMode] = React.useState("contacts");
     [I.currentContact,I.setCurrentContact] = React.useState("");
     [I.search,I.setSearch] = React.useState("");
+
+    [I.feedPosts,I.setFeedPosts] = React.useState(mockFeed);
+    [I.wallPosts,I.setWallPosts] = React.useState(mockWall);
 
     I.setMode = function(mode){
         I.setMenuCollapsed(true);

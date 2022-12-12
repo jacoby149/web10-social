@@ -1,5 +1,8 @@
 12.11.22
 
+Add photo to make a post
+
+
 FIX Posts
     clean up mock data models
     add media to example posts in postviewer!
