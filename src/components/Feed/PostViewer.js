@@ -1,9 +1,11 @@
-
 import DOMPurify from 'dompurify'
+import Media from './Media';
 
 function PostViewer({ I, postI }) {
     const post = postI.post;
-
+    const mediaItems = post.media.map(
+        (item, index) => <Media type={item.type} src={item.src} key={index}></Media>
+    )
     const identity = I.isMe(post.web10) ? I.identity : I.getContact(post.web10)
     var config = { ADD_TAGS: ['iframe'], KEEP_CONTENT: false }
     
@@ -33,6 +35,9 @@ function PostViewer({ I, postI }) {
                         </p>
 
                         <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.html, config) }} />
+                        <div>
+                                {mediaItems}
+                        </div>
 
                     </div>
                     {/*<nav className="level is-mobile">

@@ -25,13 +25,13 @@ const mockFeed = [
     {
         "web10": "api.web10.app/jacoby149",
         "time": "10:04:59 AM",
-        "media": mockMedia,
+        "media": [mockMedia[0],mockMedia[1],mockMedia[1],mockMedia[0]],
         "html": "This is <i>jacob</i>, making my <b>first</b> post haha.",
     },
     {
         "web10": "api.web10.app/tom511",
         "time": "10:04:59 AM",
-        "media": mockMedia,
+        "media": [],
         "html": "my name is tom! :)",
     }
 ]
