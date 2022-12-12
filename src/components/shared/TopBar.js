@@ -8,7 +8,7 @@ function EditButton() {
 }
 
 function BackButton() {
-    return <i style={{ color: "orange", margin: "10px" }} className={"fa fa-arrow-rotate-left fa-2  font-weight-bold"}></i>
+    return <i style={{ color: "orange", margin: "10px" }} className={"fa fa-arrow-rotate-left fa-2z  font-weight-bold"}></i>
 }
 
 
@@ -36,6 +36,12 @@ function TopBar(props) {
                     <BackButton></BackButton><i style={{ color: "orange", }}><u>Go Back</u></i>
                 </C> : <C r s={"0px"}></C>
             }
+            {I.mode === "chat" ?
+                <C r s={"110px"} onClick={() => I.setMode("contacts")}>
+                    <BackButton></BackButton><i style={{ color: "orange", }}><u>Go Back</u></i>
+                </C> : <C r s={"0px"}></C>
+            }
+
             {I.mode === "my-bio" ?
                 <C r h s={"110px"} onClick={() => I.setMode("bio-edit")}>
                     <i style={{ color: "orange", }}><u>Edit Bio</u></i> <EditButton></EditButton>
