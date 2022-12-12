@@ -1,12 +1,16 @@
 12.11.22
-add mock data to the chat
-add mock data to the bio
-    - bulletin and feed.
-add some media to the mock posts
+add mock data to the bio per contact
+    - posts, bulletin, and chats
+    - AND put some media in the posts.
 make the postmaker a legit form.
 make the bio editor a legit form.
-get postmaker edit mode working.
-make the mock interface really good!
+make editing/creation/deletion work in the interface for:
+    - posting
+    - chatting
+    - bulletins
+    - contacts
+handle the null contact scenario.
+    - DONT allow adds if they arent on web10.
 
 web10 integrations.
 add default data for non existing users.
