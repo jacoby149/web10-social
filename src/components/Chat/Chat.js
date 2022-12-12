@@ -12,7 +12,7 @@ import TSMessage from './TSMessage';
 import React from 'react'
 
 function Chat({ I }) {
-    const [chatMode, setChatMode] = React.useState("view");
+    const [chatMode, setChatMode] = React.useState("default");
     var messageItems = [];
     var separatorCount = 0
 
@@ -55,26 +55,23 @@ function Chat({ I }) {
                                 <ConversationHeader.Content userName="Emily" info="@ api.web10.app/emily511" />
                                 <ConversationHeader.Actions>
 
-                                    {chatMode === "view" ?
+                                {chatMode === "default" ?
                                         <>
-                                            <RawIcon onClick={()=>setChatMode("edit")}>square-check</RawIcon>
-                                            <RawIcon onClick={()=>setChatMode("game")}>joystick</RawIcon>
-                                            <RawIcon>block-brick</RawIcon>
+                                            <RawIcon onClick={() => setChatMode("edit")}>square-check</RawIcon>
+                                            <RawIcon>cube</RawIcon>
+                                            <RawIcon>snake</RawIcon>
                                             <InfoButton onClick={() => I.setMode("bio")} />
-                                        </>:""}
-                                    {chatMode === "edit" ?
-                                    <>
-                                    <RawIcon onClick={()=>setChatMode("view")}>undo</RawIcon>
-                                    <RawIcon>trash</RawIcon>
-                                    </>:""}
+                                            </> : ""
+                                    }
 
-                                    {chatMode === "game" ?
-                                    <>
-                                    <RawIcon onClick={()=>setChatMode("view")}>undo</RawIcon>
-                                    <RawIcon></RawIcon>
-                                    <RawIcon>cube</RawIcon>
-                                    <RawIcon>snake</RawIcon>
-                                    </>:""}
+                                    {chatMode === "edit" ?
+                                        <>
+                                            <RawIcon onClick={() => setChatMode("default")}>square-x</RawIcon>
+                                            <div style={{color:"orange",marginRight:"10px"}}><i>undo<br/>changes</i></div>
+                                            <RawIcon>trash</RawIcon>
+                                            <div style={{color:"orange"}}><i>delete<br/>selected</i></div>
+                                        </> : ""
+                                    }
 
                                 </ConversationHeader.Actions>
                             </ConversationHeader>
