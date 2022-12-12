@@ -9,10 +9,13 @@ import SideBar from '../shared/SideBar'
 import { RawIcon } from '../shared/Icon'
 import mockChat from '../../mocks/MockChat';
 import TSMessage from './TSMessage';
+import React from 'react'
 
 function Chat({ I }) {
+    const [chatMode, setChatMode] = React.useState("view");
     var messageItems = [];
     var separatorCount = 0
+
     for (const [index, model] of mockChat.entries()) {
         const present = new Date(model["sentTime"]);
         const mostRecent = index === mockChat.length - 1;
@@ -51,10 +54,28 @@ function Chat({ I }) {
                                 <Avatar onClick={() => I.setMode("bio")} src={emilyIco} name="Emily" />
                                 <ConversationHeader.Content userName="Emily" info="@ api.web10.app/emily511" />
                                 <ConversationHeader.Actions>
+
+                                    {chatMode === "view" ?
+                                        <>
+                                            <RawIcon onClick={()=>setChatMode("edit")}>square-check</RawIcon>
+                                            <RawIcon onClick={()=>setChatMode("game")}>joystick</RawIcon>
+                                            <RawIcon>block-brick</RawIcon>
+                                            <InfoButton onClick={() => I.setMode("bio")} />
+                                        </>:""}
+                                    {chatMode === "edit" ?
+                                    <>
+                                    <RawIcon onClick={()=>setChatMode("view")}>undo</RawIcon>
+                                    <RawIcon>trash</RawIcon>
+                                    </>:""}
+
+                                    {chatMode === "game" ?
+                                    <>
+                                    <RawIcon onClick={()=>setChatMode("view")}>undo</RawIcon>
+                                    <RawIcon></RawIcon>
                                     <RawIcon>cube</RawIcon>
                                     <RawIcon>snake</RawIcon>
-                                    <RawIcon>block-brick</RawIcon>
-                                    <InfoButton onClick={() => I.setMode("bio")} />
+                                    </>:""}
+
                                 </ConversationHeader.Actions>
                             </ConversationHeader>
 
