@@ -1,34 +1,38 @@
 
 import DOMPurify from 'dompurify'
 
-function PostViewer({postI}) {
+function PostViewer({ I, postI }) {
     const post = postI.post;
+
+    const identity = I.isMe(post.web10) ? I.identity : I.getContact(post.web10)
     var config = { ADD_TAGS: ['iframe'], KEEP_CONTENT: false }
+    
     return (
-        <div className="box" style={{ margin: "5px",marginLeft:"10px" }}>
+        <div className="box" style={{ margin: "5px", marginLeft: "10px" }}>
             <article className="media">
                 <div className="media-left">
-                    <figure className="image is-64x64">
-                        <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image"></img>
+                    <figure className="image is-48x48">
+                        <img src={identity.pic} alt="Image"></img>
                     </figure>
                 </div>
                 <div className="media-content">
                     <div className="content">
                         <p>
                             <strong>
-                                {post.name} &nbsp;
-                                {post.email === "api.web10.app/jacoby149" ?
-                                    <i
-                                        onClick={postI.toggleEditMode}
-                                        style={{ color: "orange" }}
-                                        className={"fa fa-pencil font-weight-bold"}></i> : ""
+                                {identity.name} &nbsp;
+                                {
+                                    I.isMe(post.web10) ?
+                                        <i
+                                            onClick={postI.toggleEditMode}
+                                            style={{ color: "orange" }}
+                                            className={"fa fa-pencil font-weight-bold"}></i> : ""
                                 }
                             </strong>
 
-                            <br></br>[ <small style={{ color: "teal" }}><u>{post.email}</u></small> ]  <small>{post.time}</small>
+                            <br></br>[ <small style={{ color: "teal" }}><u>{post.web10}</u></small> ]  <small>{post.time}</small>
                         </p>
 
-                        <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.text, config) }} />
+                        <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.html, config) }} />
 
                     </div>
                     {/*<nav className="level is-mobile">

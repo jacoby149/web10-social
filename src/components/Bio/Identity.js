@@ -5,10 +5,11 @@ import emilyIco from "../../assets/images/avatar1.svg"
 
 
 function Identity({ I }) {
+    const identity = I.mode==="bio"?I.currentContact:I.identity;
     return (
         <R t theme={I.theme}>
             <C t ha="center" va="center">
-                <Avatar style={{ margin: "20px" }} size={"lg"} src={emilyIco} name="Emily" />
+                <Avatar style={{ margin: "20px" }} size={"lg"} src={identity.pic} name="Emily" />
                 {
                     I.mode === "bio-edit" ?
                         <button class="button is-warning is-small">upload photo</button> : ""
@@ -20,7 +21,7 @@ function Identity({ I }) {
                         {
                             I.mode === "bio-edit" ?
                                 <i>[<input size="22" style={{ color: "gold" }} defaultValue="Jacob Hoffman"></input>]</i> :
-                                <i>name : Jacob Hoffman</i>
+                                <i>name : {identity.name}</i>
                         }
                     </div>
                 </div>
@@ -30,8 +31,8 @@ function Identity({ I }) {
                     <div className="column has-text-centered is-4">
                         {
                             I.mode === "bio-edit" ?
-                                <i>[<input size="32" style={{ color: "gold" }} defaultValue={"i am such a zoomer kid . . ."}></input>]</i> :
-                                <i>bio : i am such a zoomer kid . . .</i>
+                                <i>[<input size="32" style={{ color: "gold" }} defaultValue={identity.bio}></input>]</i> :
+                                <i>bio : {identity.bio}</i>
                         }
                     </div>
                 </div>

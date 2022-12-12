@@ -4,11 +4,10 @@ import React from 'react'
 import PostMaker from './PostMaker';
 import PostViewer from './PostViewer';
 
-function Posts({ posts }) {
+function Posts({ I, posts }) {
     const final = [];
-
     for (const [index, post] of posts.entries()) {
-        final.push(<Post key={index} post={post}></Post>)
+        final.push(<Post key={index} I={I} post={post}></Post>)
     }
     return (
         <R t tel>
@@ -17,7 +16,7 @@ function Posts({ posts }) {
     )
 }
 
-function Post({ post }) {
+function Post({ I, post }) {
 
     // a convenient interface for post components to interact with the application
     const postI = {}
@@ -37,8 +36,8 @@ function Post({ post }) {
 
     
     return postI.editMode ?
-            <PostMaker postI={postI}></PostMaker> :
-            <PostViewer postI={postI}></PostViewer>
+            <PostMaker I={I} postI={postI}></PostMaker> :
+            <PostViewer I={I} postI={postI}></PostViewer>
 }
 
 export { Posts };

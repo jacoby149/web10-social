@@ -5,6 +5,7 @@ import mockContacts from '../mocks/MockContacts'
 import mockFeed from '../mocks/MockFeed';
 import mockWall from '../mocks/MockWall';
 import mockChat from '../mocks/MockChat';
+import mockIdentity from '../mocks/MockIdentity';
 
 function useInterface() {
     const I = {};
@@ -14,10 +15,28 @@ function useInterface() {
     [I.search,I.setSearch] = React.useState("");
 
     [I.contacts, I.setContacts] = React.useState(mockContacts);
-    [I.currentContact,I.setCurrentContact] = React.useState("");
+    [I.currentContact,I.setCurrentContact] = React.useState(I.contacts[0]);
+    [I.draftPost,I.setDraftPost] = React.useState({});
     [I.feedPosts,I.setFeedPosts] = React.useState(mockFeed);
     [I.wallPosts,I.setWallPosts] = React.useState(mockWall);
-    [I.currentMessages,I.setCurrentMessages] = React.useState(mockChat)
+    [I.currentMessages,I.setCurrentMessages] = React.useState(mockChat);
+    [I.identity,I.setIdentity] = React.useState(mockIdentity);
+
+    I.getContact = function(web10){
+        const cMap = {};
+        I.contacts.map((c)=>cMap[c.web10]=c);
+        return cMap[web10];
+    }
+
+    I.isMe = function(web10) {
+        return web10 === I.identity.web10
+    }
+
+
+    I.chat = function(web10){
+        I.setCurrentContact(I.getContact(web10))
+        I.setMode("chat");
+    }
 
     I.setMode = function(mode){
         I.setMenuCollapsed(true);

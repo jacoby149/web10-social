@@ -1,5 +1,7 @@
 12.11.22
-clean up feed mock data model fields
+add mock data to the chat
+add mock data to the bio
+    - bulletin and feed.
 add some media to the mock posts
 make the postmaker a legit form.
 make the bio editor a legit form.

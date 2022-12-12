@@ -7,45 +7,51 @@ import BrianIco from "../assets/images/avatar2.png"
 
 const mockContacts = [
     {
-        name: "Emily",
-        address: "api.web10.app/emily511",
+        name: "Emily Thompson",
+        web10: "api.web10.app/emily511",
         lastSenderName: "Emily",
-        message: "Yes I can do it for you",
+        lastMessage: "Yes I can do it for you",
+        bio : "i am emily heehee!",
         pic: emilyIco
     },
     {
-        name: "Lilly",
-        address: "api.web10.app/lilly511",
+        name: "Lilly Bradford",
+        web10: "api.web10.app/lilly511",
         lastSenderName: "Lilly",
-        message: "what time are you thinking?",
+        lastMessage: "what time are you thinking?",
+        bio : "what EVER",
         pic: lillyIco
     },
     {
-        name: "Joey",
-        address: "api.web10.app/joey511",
+        name: "Joey Gold",
+        web10: "api.web10.app/joey511",
         lastSenderName: "Joey",
-        message: "OK. sounds good, thanks!",
+        lastMessage: "OK. sounds good, thanks!",
+        bio : "I LIKEE web10.",
         pic: joeyIco
     },
     {
-        name: "Aaron",
-        address: "api.web10.app/aaron511",
-        lastSenderName: "Aaron",
-        message: "hahaha :)",
+        name: "Tom Clifford",
+        web10: "api.web10.app/tom511",
+        lastSenderName: "Tom",
+        lastMessage: "hahaha :)",
+        bio : "clifford the red dog is my dog",
         pic: AaronIco
     },
     {
-        name: "Shadiya",
-        address: "api.web10.app/shadiya511",
+        name: "Shadiya Nazir",
+        web10: "api.web10.app/shadiya511",
         lastSenderName: "Shadiya",
-        message: "can't wait!",
+        lastMessage: "can't wait!",
+        bio : "wow! i am cool.",
         pic: ShadiyaIco
     },
     {
-        name: "Brian",
-        address: "api.web10.app/brian511",
+        name: "Brian Porter",
+        web10: "api.web10.app/brian511",
         lastSenderName: "Brian",
-        message: "Let's talk later.",
+        lastMessage: "Let's talk later.",
+        bio : "nothing like a cigar on a cold day.",
         pic: BrianIco
     },
 ]
