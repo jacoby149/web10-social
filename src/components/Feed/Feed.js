@@ -10,7 +10,7 @@ import emilyIco from "../../assets/images/avatar1.svg"
 import { Posts } from './Posts'
 import TopBar from '../shared/TopBar';
 import SideBar from '../shared/SideBar';
-import CreatePost from './CreatePost';
+import PostMaker from './PostMaker';
 import mockFeed from '../../mocks/MockFeed';
 import mockWall from '../../mocks/MockWall';
 
@@ -26,7 +26,7 @@ function Feed({ I }) {
                         height: "100%"
                     }}>
                         <div style={{maxWidth:"768px",margin:"auto"}}>
-                            <CreatePost ></CreatePost>
+                            <PostMaker postI={{editMode:false}} ></PostMaker>
                             <Posts posts={mockData}></Posts>
                         </div>
                     </div>

@@ -1,10 +1,12 @@
 
-import { pass, R, C, T } from 'rectangles-npm'
-import DOMPurify from 'dompurify'
+import { R } from 'rectangles-npm'
+import React from 'react'
+import PostMaker from './PostMaker';
+import PostViewer from './PostViewer';
 
-function Posts({posts}) {
+function Posts({ posts }) {
     const final = [];
-    
+
     for (const [index, post] of posts.entries()) {
         final.push(<Post key={index} post={post}></Post>)
     }
@@ -15,50 +17,19 @@ function Posts({posts}) {
     )
 }
 
-function Post({post}) {
-    var config = { ADD_TAGS: ['iframe'], KEEP_CONTENT: false }
-    return (
-        // <C va = {'top'} p = {'10px 10px 10px 10px'} s = {'200px'}>
-        <div className="box" style={{ "margin": "5px" }}>
-            <article className="media">
-                <div className="media-left">
-                    <figure className="image is-64x64">
-                        <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image"></img>
-                    </figure>
-                </div>
-                <div className="media-content">
-                    <div className="content">
-                        <p>
-                            <strong>{post.name}</strong> <br></br>[ <small style={{color:"teal"}}><u>{post.email}</u></small> ]  <small>{post.time}</small>
-                        </p>
+function Post({ post }) {
 
-                        <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.text,config) }} />
-
-                    </div>
-                    {/*<nav className="level is-mobile">
-                    <div className="level-left">
-                        <a className="level-item" aria-label="reply">
-                        <span className="icon is-small">
-                            <i className="fas fa-reply" aria-hidden="true"></i>
-                        </span>
-                        </a>
-                        <a className="level-item" aria-label="retweet">
-                        <span className="icon is-small">
-                            <i className="fas fa-retweet" aria-hidden="true"></i>
-                        </span>
-                        </a>
-                        <a className="level-item" aria-label="like">
-                        <span className="icon is-small">
-                            <i className="fas fa-heart" aria-hidden="true"></i>
-                        </span>
-                        </a>
-                    </div>
-    </nav>*/}
-                </div>
-            </article>
-        </div>
-        //   </C>
-    )
+    // a convenient interface for post components to interact with the application
+    const postI = {}
+    postI.post = post;
+    [postI.editMode, postI.setEditMode] = React.useState(false);
+    postI.toggleEditMode = function () {
+        postI.setEditMode(!postI.editMode);
+    }
+    
+    return postI.editMode ?
+            <PostMaker postI={postI}></PostMaker> :
+            <PostViewer postI={postI}></PostViewer>
 }
 
 export { Posts };

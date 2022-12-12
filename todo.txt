@@ -1,5 +1,5 @@
 12.11.22
-Make post editing! post creating but with exes.
+Make media components have a deletion icon.
 Make post deleting!
 Make social-identity editing! [<input>]
 Make social-bulletin deletion! (with confirmation.)
