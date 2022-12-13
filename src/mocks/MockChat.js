@@ -16,184 +16,144 @@ const mockChat = [
         id:"1",
         message: "Hello my friend",
         sentTime: mockDates[0],
-        sender: "Emily",
-        direction: "incoming",
-        position: "single"
+        web10: "api.web10.app/emily511",
     },
     {
         id:"2",
         message: "Hello my friend",
         sentTime: mockDates[1],
-        sender: "me",
-        direction: "outgoing",
-        position: "single"
+        web10: "api.web10.app/jacoby149",
     },
     {
         id:"3",
         message: "Hello my friend",
         sentTime: mockDates[2],
-        sender: "Emily",
-        direction: "incoming",
-        position: "first"
+        web10: "api.web10.app/emily511",
     },
     {
         id:"4",
         message: "Hello my friend",
         sentTime: mockDates[2],
-        sender: "Emily",
-        direction: "incoming",
-        position: "normal"
+        web10: "api.web10.app/emily511",
     },
     {
         id:"5",
         message: "Hello my friend",
         sentTime: mockDates[2],
-        sender: "Emily",
-        direction: "incoming",
-        position: "normal"
+        web10: "api.web10.app/emily511",
     },
     {
         id:"6",
         message: "Hello my friend",
         sentTime: mockDates[2],
-        sender: "Emily",
-        direction: "incoming",
-        position: "last"
+        web10: "api.web10.app/emily511",
     },
     {
         id:"7",
         message: "Hello my friend",
         sentTime: mockDates[3],
-        direction: "outgoing",
-        position: "first"
+        web10: "api.web10.app/jacoby149",
     },
     {
         id:"8",
         message: "Hello my friend",
         sentTime: mockDates[3],
-        direction: "outgoing",
-        position: "normal"
+        web10: "api.web10.app/jacoby149",
     },
     {
         id:"9",
         message: "Hello my friend",
         sentTime: mockDates[3],
-        direction: "outgoing",
-        position: "normal"
+        web10: "api.web10.app/jacoby149",
     },
     {
         id:"a",
         message: "Hello my friend",
         sentTime: mockDates[3],
-        direction: "outgoing",
-        position: "last"
+        web10: "api.web10.app/jacoby149",
     },
     {
         id:"b",
         message: "Hello my friend",
         sentTime: mockDates[4],
-        sender: "Emily",
-        direction: "incoming",
-        position: "first"
+        web10: "api.web10.app/emily511",
     },
     {
         id:"c",
         message: "Hello my friend",
         sentTime: mockDates[4],
-        sender: "Emily",
-        direction: "incoming",
-        position: "last"
+        web10: "api.web10.app/emily511",
     }, {
         id:"d",
         message: "Hello my friend",
         sentTime: mockDates[5],
-        sender: "Emily",
-        direction: "incoming",
-        position: "single"
+        web10: "api.web10.app/emily511",
     },
     {
         id:"e",
         message: "Hello my friend",
         sentTime: mockDates[6],
-        sender: "me",
-        direction: "outgoing",
-        position: "single"
+        web10: "api.web10.app/jacoby149",
     },
     {
         id:"f",
         message: "Hello my friend",
         sentTime: mockDates[7],
-        sender: "Emily",
-        direction: "incoming",
-        position: "first"
+        web10: "api.web10.app/emily511",
     },
     {
         id:"g",
         message: "Hello my friend",
         sentTime: mockDates[7],
-        sender: "Emily",
-        direction: "incoming",
-        position: "normal"
+        web10: "api.web10.app/emily511",
     },
     {
         id:"h",
         message: "Hello my friend",
         sentTime: mockDates[7],
-        sender: "Emily",
-        direction: "incoming",
-        position: "normal"
+        web10: "api.web10.app/emily511",
     },
     {
         id:"i",
         message: "Hello my friend",
         sentTime: mockDates[7],
-        sender: "Emily",
-        direction: "incoming",
-        position: "last"
+        web10: "api.web10.app/emily511",
     },
     {
         id:"j",
         message: "Hello my friend",
         sentTime: mockDates[8],
-        direction: "outgoing",
-        position: "first"
+        web10: "api.web10.app/jacoby149",
     },
     {
         id:"k",
         message: "Hello my friend",
         sentTime: mockDates[8],
-        direction: "outgoing",
-        position: "normal"
+        web10: "api.web10.app/jacoby149",
     },
     {
         id:"l",
         message: "Hello my friend",
         sentTime: mockDates[8],
-        direction: "outgoing",
-        position: "normal"
+        web10: "api.web10.app/jacoby149",
     },
     {
         id:"m",
         message: "FOLLOW THE BELOW INSTRUCTIONS",
         sentTime: mockDates[8],
-        direction: "outgoing",
-        position: "last"
+        web10: "api.web10.app/jacoby149",
     },
     {
         id:"n",
         message: "CLICK THE INFO ICON",
         sentTime: mockDates[9],
-        sender: "Emily",
-        direction: "incoming",
-        position: "first"
+        web10: "api.web10.app/emily511",
     },
     {
         id:"o",
         message: "INFO ICON GOES TO BIO",
         sentTime: mockDates[9],
-        sender: "Emily",
-        direction: "incoming",
-        position: "last"
+        web10: "api.web10.app/emily511",
     }
 ]
 

@@ -8,11 +8,20 @@ import { RawIcon } from '../shared/Icon'
 import TSMessage from './TSMessage';
 import React from 'react'
 
-function addChatScopeMetaData(messages) {
+function addChatScopeMetaData(I) {
+    const messages = I.currentMessages
     return messages.map(
         (message, i) => {
-            //const isFirst = i === 0 || messages[i-1].sender != 
-            return message;
+            // direction -> incoming or outgoing
+            // position -> single, first, normal, last
+            const isPrecedent = i === 0 || messages[i - 1].web10 !== message.web10;
+            const isLast = i === messages.length - 1 || messages[i + 1].web10 !== message.web10;
+            const position = isPrecedent && isLast ? "single" :
+                isPrecedent && !isLast ? "first" :
+                    !isPrecedent && isLast ? "last" :
+                        "normal";
+            const direction = I.isMe(message.web10) ? "outgoing" : "incoming";
+            return { ...message, direction: direction, position: position };
         }
     );
 }
@@ -22,7 +31,7 @@ function MessageItems({ I }) {
     var messageItems = [];
     var separatorCount = 0
 
-    const chatScopeReadyMessages = addChatScopeMetaData(I.currentMessages)
+    const chatScopeReadyMessages = addChatScopeMetaData(I)
 
     for (const [index, model] of chatScopeReadyMessages.entries()) {
         const present = new Date(model["sentTime"]);
