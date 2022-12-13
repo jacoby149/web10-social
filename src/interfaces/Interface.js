@@ -63,6 +63,11 @@ function useInterface() {
         I.setFeedPosts([randIDDraftPost].concat(I.feedPosts));
     }
 
+    I.deleteCurrentContact = function(){
+        I.setContacts(I.contacts.filter((c)=>c.id!==I.currentContact.id));
+        I.setMode("contacts");
+    }
+
     I.cancelIdentityChanges = function(){
         I.setDraftIdentity(I.identity);
     }

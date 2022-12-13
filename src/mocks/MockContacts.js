@@ -7,6 +7,7 @@ import BrianIco from "../assets/images/avatar2.png"
 
 const mockContacts = [
     {
+        id:"1",
         name: "Emily Thompson",
         web10: "api.web10.app/emily511",
         lastSenderName: "Emily",
@@ -15,6 +16,7 @@ const mockContacts = [
         pic: emilyIco
     },
     {
+        id:"2",
         name: "Lilly Bradford",
         web10: "api.web10.app/lilly511",
         lastSenderName: "Lilly",
@@ -23,6 +25,7 @@ const mockContacts = [
         pic: lillyIco
     },
     {
+        id:"3",
         name: "Joey Gold",
         web10: "api.web10.app/joey511",
         lastSenderName: "Joey",
@@ -31,6 +34,7 @@ const mockContacts = [
         pic: joeyIco
     },
     {
+        id:"4",
         name: "Tom Clifford",
         web10: "api.web10.app/tom511",
         lastSenderName: "Tom",
@@ -39,6 +43,7 @@ const mockContacts = [
         pic: AaronIco
     },
     {
+        id:"5",
         name: "Shadiya Nazir",
         web10: "api.web10.app/shadiya511",
         lastSenderName: "Shadiya",
@@ -47,6 +52,7 @@ const mockContacts = [
         pic: ShadiyaIco
     },
     {
+        id:"6",
         name: "Brian Porter",
         web10: "api.web10.app/brian511",
         lastSenderName: "Brian",

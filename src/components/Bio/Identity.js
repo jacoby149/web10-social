@@ -5,7 +5,7 @@ import emilyIco from "../../assets/images/avatar1.svg"
 
 
 function Identity({ I }) {
-    const identity = I.mode === "bio" ? I.currentContact : I.identity;
+    const identity = I.mode === "bio" ? I.currentContact : I.draftIdentity;
 
     function setName(name) {
         I.setDraftIdentity({
@@ -35,7 +35,7 @@ function Identity({ I }) {
     return (
         <R t theme={I.theme}>
             <C t ha="center" va="center">
-                <Avatar style={{ margin: "20px" }} size={"lg"} src={I.draftIdentity.pic} name="Emily" />
+                <Avatar style={{ margin: "20px" }} size={"lg"} src={identity.pic} name="Emily" />
                 {
                     I.mode === "bio-edit" ?
                         <label>
