@@ -6,8 +6,6 @@ make the postmaker/editor effect the data model.
 make the chat deletor effect the data model.
     - selecting chat message IDs effects a selectedMessages list of ids state.
     - deletion button triggers an interface function that deletes the messages.
-make the contact deletor effect the data model.
-    - deletion works
 make the search bar work for messages, contacts, feed, and wall
 MEET WITH JOHN
 

@@ -65,14 +65,14 @@ function TopBar(props) {
             }
             {I.mode === "bio-edit" ?
                 <C r s={"240px"}>
-                    <button onClick={saveBioChanges} class="button is-primary is-small" style={{ marginRight: "20px", width: "100px" }}>save</button>
-                    <button style={{ width: "100px" }} onClick={cancelIdentityChanges} class="button is-danger is-small">cancel</button>
+                    <button onClick={saveBioChanges} className="button is-primary is-small" style={{ marginRight: "20px", width: "100px" }}>save</button>
+                    <button style={{ width: "100px" }} onClick={cancelIdentityChanges} className="button is-danger is-small">cancel</button>
                 </C> : <C r s={"0px"}></C>
             }
 
             {I.mode === "bulletin-edit" ?
                 <C r s={"120px"}>
-                    <button onClick={() => I.setMode("my-bio")} class="button is-warning is-small" style={{ marginRight: "20px", width: "100px" }}>go back</button>
+                    <button onClick={() => I.setMode("my-bio")} className="button is-warning is-small" style={{ marginRight: "20px", width: "100px" }}>go back</button>
                 </C> : <C r s={"0px"}></C>
             }
 
