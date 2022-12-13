@@ -38,9 +38,9 @@ function TopBar(props) {
                 <Icon onClick={I.toggleTheme}>moon</Icon>
             </R>
             <C l tel>
-                {["bio", "my-bio", "bio-edit", "bulletin-edit"].includes(I.mode) ? "" :
-                    <Search onClearClick={() => I.setSearch("")} onChange={(v) => I.setSearch(v)} style={{ width: "100%", marginRight: "30px" }} placeholder="Search..." />
-                }
+            
+                    <Search onClearClick={() => I.setSearch("")} onChange={(v) => I.runSearch(v)} style={{ width: "100%", marginRight: "30px" }} placeholder="Search..." />
+
             </C>
             {I.mode === "bio" ?
                 <C r s={"110px"} onClick={() => I.setMode("chat")}>

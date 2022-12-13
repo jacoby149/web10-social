@@ -20,7 +20,7 @@ function Post({ I, post }) {
 
     // a convenient interface for post components to interact with the application
     const postI = {};
-    [postI.post,postI.setPost] = React.useState(post);
+    postI.post = post;
     [postI.draftPost,postI.setDraftPost] = React.useState(postI.post);
     
     // modes are view, edit and create

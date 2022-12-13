@@ -36,32 +36,37 @@ function useInterface() {
     }
 
     I.runSearch = function (query) {
-        function chatFilter(m){
-            m.message.toLowerCase().includes(query.toLowerCase());
+        function chatFilter(m) {
+            return m.message.toLowerCase().includes(query.toLowerCase());
         }
-        function contactFilter(c){
-            c.name.toLowerCase().includes(query.toLowerCase());
+        function contactFilter(c) {
+            return c.name.toLowerCase().includes(query.toLowerCase());
         }
-        function postFilter(p){
-            p.html.toLowerCase().includes(query.toLowerCase());
+        function postFilter(p) {
+            return p.html.toLowerCase().includes(query.toLowerCase());
         }
 
-        switch (I.mode) {
+        function filter() {
+            switch (I.mode) {
 
-            // chat like pages, that have private messages
-            case "chat": I.setCurrentMessages(mockChat.filter(chatFilter));
-            case "chat-edit": I.setCurrentMessages(mockChat.filter(chatFilter));
+                // chat like pages, that have private messages
+                case "chat": return I.setCurrentMessages(mockChat.filter(chatFilter));
+                case "chat-edit": return I.setCurrentMessages(mockChat.filter(chatFilter));
 
-            // bio like pages, that have a social-identity and social-bulletin 
-            case "bio": I.setWallPosts(mockWall.filter(postFilter));
-            case "my-bio": I.setWallPosts(mockWall.filter(postFilter));
-            case "bio-edit": I.setWallPosts(mockWall.filter(postFilter));
-            case "bulletin-edit": I.setWallPosts(mockWall.filter(postFilter));
+                // bio like pages, that have a social-identity and social-bulletin 
+                case "bio": return I.setFeedPosts(mockFeed.filter(postFilter));
+                case "my-bio": return I.setWallPosts(mockWall.filter(postFilter));
+                case "bio-edit": return I.setWallPosts(mockWall.filter(postFilter));
+                case "bulletin-edit": return I.setWallPosts(mockWall.filter(postFilter));
 
-            // feed like pages, that consist of posts with images,vids,audio, and html
-            case "feed": I.setFeedPosts(mockWall.filter(postFilter));
+                // feed like pages, that consist of posts with images,vids,audio, and html
+                case "feed": return I.setFeedPosts(mockFeed.filter(postFilter));
+
+                case "contacts": return I.setContacts(mockContacts.filter(contactFilter));
+            }
         }
-        I.setSearch(query)
+        filter();
+        I.setSearch(query);
     }
 
     I.getPosts = function (web10) {
