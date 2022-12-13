@@ -28,6 +28,9 @@ function useInterface() {
 
     [I.currentMessages,I.setCurrentMessages] = React.useState(mockChat);
 
+    I.help = function(){
+        console.log("the real web10 interface!")
+    }
 
     I.getPosts = function(web10){
         return I.feedPosts.filter((p)=>p.web10===web10)

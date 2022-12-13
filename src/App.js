@@ -22,6 +22,8 @@ function App() {
   const I = mock?mockI:realI;
 
   window.I = I;
+  I.help();
+  
   switch (I.mode) {
 
     // chat like pages, that have private messages

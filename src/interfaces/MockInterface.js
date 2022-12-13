@@ -13,7 +13,7 @@ function useMockInterface() {
     const I = {};
     [I.theme, I.setTheme] = React.useState("dark");
     [I.menuCollapsed,I.setMenuCollapsed] = React.useState(true);
-    [I.mode,I._setMode] = React.useState("login");
+    [I.mode,I._setMode] = React.useState("contacts");
     [I.search,I.setSearch] = React.useState("");
 
     [I.contacts, I.setContacts] = React.useState(mockContacts);
@@ -28,6 +28,9 @@ function useMockInterface() {
 
     [I.currentMessages,I.setCurrentMessages] = React.useState(mockChat);
 
+    I.help = function(){
+        console.log("the mock interface.")
+    }
 
     I.getPosts = function(web10){
         return I.feedPosts.filter((p)=>p.web10===web10)

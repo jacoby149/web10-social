@@ -21,9 +21,12 @@ function Post({ I, post }) {
     // a convenient interface for post components to interact with the application
     const postI = {}
     postI.post = post;
-    [postI.editMode, postI.setEditMode] = React.useState(false);
+    // modes are view, edit and create
+    [postI.mode, postI.setMode] = React.useState("view");
     postI.toggleEditMode = function () {
-        postI.setEditMode(!postI.editMode);
+        postI.mode === "edit" ?
+            postI.setMode("view") :
+            postI.setMode("edit");
     }
 
     postI.clearChanges = function () {
@@ -33,10 +36,10 @@ function Post({ I, post }) {
     postI.saveChanges = function () {
         postI.toggleEditMode();
     }
-    
-    return postI.editMode ?
-            <PostMaker I={I} postI={postI}></PostMaker> :
-            <PostViewer I={I} postI={postI}></PostViewer>
+
+    return postI.mode==="edit" ?
+        <PostMaker I={I} postI={postI}></PostMaker> :
+        <PostViewer I={I} postI={postI}></PostViewer>
 }
 
 export { Posts };

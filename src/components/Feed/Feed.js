@@ -12,7 +12,7 @@ function Feed({ I }) {
                 <div style={{ height: "20px" }}></div>
                 {
                     I.mode === "bio" ? "" :
-                        <PostMaker I={I} postI={{ post:I.draftPost, editMode: false }} ></PostMaker>
+                        <PostMaker I={I} postI={{ post:I.draftPost, mode: "create" }} ></PostMaker>
                 }
                 <Posts I={I} posts={posts}></Posts>
                 <div style={{ height: "20px" }}></div>
