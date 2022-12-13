@@ -39,7 +39,7 @@ function TopBar(props) {
             </R>
             <C l tel>
             
-                    <Search onClearClick={() => I.setSearch("")} onChange={(v) => I.runSearch(v)} style={{ width: "100%", marginRight: "30px" }} placeholder="Search..." />
+                    <Search onClearClick={() => I.runSearch("")} onChange={(v) => I.runSearch(v)} style={{ width: "100%", marginRight: "30px" }} placeholder="Search..." />
 
             </C>
             {I.mode === "bio" ?
