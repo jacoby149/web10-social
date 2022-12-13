@@ -14,10 +14,10 @@ function PostMaker({ I, postI }) {
     return (
         <div>
             <div style={{ height: "5px" }} />
-            <div class="card" style={{ marginLeft: "10px", marginRight: "5px" }}>
-                <header class="card-header">
+            <div className="card" style={{ marginLeft: "10px", marginRight: "5px" }}>
+                <header className="card-header">
 
-                    <p class="card-header-title">
+                    <p className="card-header-title">
                         {postI.mode === "edit" ?
                             <i onClick={postI.clearChanges} style={{ color: "orange", marginRight: "10px" }} className={"fa fa-2x fa-circle-xmark font-weight-bold"}></i> : ""
                         }
@@ -48,19 +48,19 @@ function PostMaker({ I, postI }) {
 
                     }
                 </header>
-                <div class="card-content">
-                    <div class="content">
-                        <div class="control">
-                            <textarea class="textarea" defaultValue={postI.post.html} placeholder="What is on your mind??"></textarea>
+                <div className="card-content">
+                    <div className="content">
+                        <div className="control">
+                            <textarea className="textarea" defaultValue={postI.post.html} placeholder="What is on your mind??"></textarea>
                         </div>
                         <div>
                             {mediaItems}
                         </div>
                     </div>
                 </div>
-                <footer class="card-footer">
+                <footer className="card-footer">
 
-                    <label class="card-footer-item post">
+                    <label className="card-footer-item post">
                         <input
                             type="file"
                             style={{ display: "none" }}
@@ -73,7 +73,7 @@ function PostMaker({ I, postI }) {
                         Video <RawIcon>video-plus</RawIcon>
                     </label>
 
-                    <label class="card-footer-item post">
+                    <label className="card-footer-item post">
                     <input
                             type="file"
                             style={{ display: "none" }}
@@ -87,9 +87,9 @@ function PostMaker({ I, postI }) {
                     </label>
                     {
                         postI.mode === "edit" ?
-                            <a href="#" class="card-footer-item post">Delete Post <RawIcon >trash</RawIcon></a> : ""}
+                            <a href="#" className="card-footer-item post">Delete Post <RawIcon >trash</RawIcon></a> : ""}
 
-                    {/*<a href="#" class="card-footer-item post">Audio <RawIcon>microphone-stand</RawIcon></a>*/}
+                    {/*<a href="#" className="card-footer-item post">Audio <RawIcon>microphone-stand</RawIcon></a>*/}
                 </footer>
             </div>
         </div>)

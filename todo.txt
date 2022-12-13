@@ -1,5 +1,4 @@
 12.13.22
-make bio photo uploader effect the data model
 make the postmaker/editor effect the data model.
     - uploading and ex ing media effects the draftpost.
     - textbox input effects the draftpost

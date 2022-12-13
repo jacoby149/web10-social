@@ -1,3 +1,7 @@
+if posts > 16MB, shoot an error message from web10 failing.
+say, compress before posting.
+implement automatic client side compression eventually.
+
 in web10, auto attach the creator of web10 data via. request headers.
 
 web10 social needs a centralized place to store posts and their view counts.
