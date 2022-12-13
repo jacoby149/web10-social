@@ -5,8 +5,11 @@ import Media from "./Media";
 
 function PostMaker({ I, postI }) {
 
+    function addMedia() {
+        return
+    }
     const mediaItems = postI.post.media.map(
-        (item, index) => <Media I={I} postI = {postI} type={item.type} src={item.src} key={index}></Media>
+        (item, index) => <Media I={I} postI={postI} type={item.type} src={item.src} key={index}></Media>
     )
     return (
         <div>
@@ -15,24 +18,24 @@ function PostMaker({ I, postI }) {
                 <header class="card-header">
 
                     <p class="card-header-title">
-                        {postI.mode==="edit" ?
+                        {postI.mode === "edit" ?
                             <i onClick={postI.clearChanges} style={{ color: "orange", marginRight: "10px" }} className={"fa fa-2x fa-circle-xmark font-weight-bold"}></i> : ""
                         }
 
-                        { postI.mode==="create" && (postI.post.html || postI.media) ?
+                        {postI.mode === "create" && (postI.post.html || postI.media) ?
                             <i onClick={I.clearDraft} style={{ color: "orange", marginRight: "10px" }} className={"fa fa-2x fa-circle-xmark font-weight-bold"}></i> : ""
                         }
 
 
                         <img style={{ height: "48px", marginRight: "10px" }} src={I.identity.pic} />
-                        {postI.mode==="edit" ?
+                        {postI.mode === "edit" ?
                             "Edit This Post"
                             :
                             "Make a New Post"
                         }
                     </p>
 
-                    {postI.mode==="edit" ?
+                    {postI.mode === "edit" ?
                         <div>
                             <button onClick={postI.saveChanges} style={{ margin: "15px", width: "130px" }} className={"button is-primary"}>Save Edits
                                 <i style={{ marginLeft: "10px" }} className={"fa fa-check font-weight-bold"}></i>
@@ -56,11 +59,34 @@ function PostMaker({ I, postI }) {
                     </div>
                 </div>
                 <footer class="card-footer">
-                    <a href="#" class="card-footer-item post">
-                        Video <RawIcon>video-plus</RawIcon></a>
-                    <a href="#" class="card-footer-item post">Photo <RawIcon >photo</RawIcon></a>
+
+                    <label class="card-footer-item post">
+                        <input
+                            type="file"
+                            style={{ display: "none" }}
+                            accept="video/*"
+                            onChange={(event) => {
+                                console.log(event.target.files);
+                                addMedia(event.target.files);
+                            }}
+                        />
+                        Video <RawIcon>video-plus</RawIcon>
+                    </label>
+
+                    <label class="card-footer-item post">
+                    <input
+                            type="file"
+                            style={{ display: "none" }}
+                            accept="image/*"
+                            onChange={(event) => {
+                                console.log(event.target.files);
+                                addMedia(event.target.files);
+                            }}
+                        />
+                        Photo <RawIcon >photo</RawIcon>
+                    </label>
                     {
-                        postI.mode==="edit" ?
+                        postI.mode === "edit" ?
                             <a href="#" class="card-footer-item post">Delete Post <RawIcon >trash</RawIcon></a> : ""}
 
                     {/*<a href="#" class="card-footer-item post">Audio <RawIcon>microphone-stand</RawIcon></a>*/}

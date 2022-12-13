@@ -63,10 +63,13 @@ function useInterface() {
         I.setFeedPosts([randIDDraftPost].concat(I.feedPosts));
     }
 
-
+    I.cancelIdentityChanges = function(){
+        I.setDraftIdentity(I.identity);
+    }
     I.saveIdentityChanges = function(){
         I.setIdentity(I.draftIdentity);
     }
+
     I.deleteBulletin = function(id){
         I.setBulletin(I.bulletin.filter((b)=>b.id!==id));
     }

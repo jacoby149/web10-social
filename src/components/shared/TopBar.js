@@ -25,6 +25,11 @@ function TopBar(props) {
         I.setMode("my-bio");
     }
 
+    function cancelIdentityChanges(){
+        I.cancelIdentityChanges();
+        I.setMode("my-bio");
+    }
+
     return (
         <R l bb s={"55px"} {...pass(props)}>
             <Branding />
@@ -61,7 +66,7 @@ function TopBar(props) {
             {I.mode === "bio-edit" ?
                 <C r s={"240px"}>
                     <button onClick={saveBioChanges} class="button is-primary is-small" style={{ marginRight: "20px", width: "100px" }}>save</button>
-                    <button style={{ width: "100px" }} onClick={() => I.setMode("my-bio")} class="button is-danger is-small">cancel</button>
+                    <button style={{ width: "100px" }} onClick={cancelIdentityChanges} class="button is-danger is-small">cancel</button>
                 </C> : <C r s={"0px"}></C>
             }
 

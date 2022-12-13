@@ -35,10 +35,24 @@ function Identity({ I }) {
     return (
         <R t theme={I.theme}>
             <C t ha="center" va="center">
-                <Avatar style={{ margin: "20px" }} size={"lg"} src={identity.pic} name="Emily" />
+                <Avatar style={{ margin: "20px" }} size={"lg"} src={I.draftIdentity.pic} name="Emily" />
                 {
                     I.mode === "bio-edit" ?
-                        <button class="button is-warning is-small">upload photo</button> : ""
+                        <label>
+                            <input
+                                type="file"
+                                style={{ display: "none" }}
+                                accept="image/*"
+                                onChange={(event) => {
+                                    const selectedImage = event.target.files[0]
+                                    const imgURL = URL.createObjectURL(selectedImage)
+                                    setPic(imgURL);
+                                }}
+                            />
+                            <a class="button is-warning is-small">upload photo</a>
+                        </label>
+
+                        : ""
                 }
             </C>
             <R t ns s={"24px"} h>
@@ -48,7 +62,7 @@ function Identity({ I }) {
                             I.mode === "bio-edit" ?
                                 <i>[
                                     <input
-                                        onChange={(e)=>setName(e.target.value)}
+                                        onChange={(e) => setName(e.target.value)}
                                         size="22" style={{ color: "gold" }}
                                         defaultValue={identity.name}>
                                     </input>
@@ -66,7 +80,7 @@ function Identity({ I }) {
                             I.mode === "bio-edit" ?
                                 <i>[
                                     <input
-                                        onChange={(e)=>setBio(e.target.value)}
+                                        onChange={(e) => setBio(e.target.value)}
                                         size="32" style={{ color: "gold" }}
                                         defaultValue={identity.bio}>
                                     </input>]</i> :
