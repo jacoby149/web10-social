@@ -93,9 +93,12 @@ function useInterface() {
         I.setSelectedMessages(I.selectedMessages.filter((m)=>m.id!==id))
     }
     I.deleteSelectedMessages = function(){
-        I.setCurrentMessages(I.currentMessages.map((m)=>!I.selectedMessages.includes(m)));
+        const current = I.currentMessages.filter((m)=>!I.selectedMessages.includes(m))
+        I.setCurrentMessages(current);
         I.setSelectedMessages([]);
-        I.setMode("chat");
+    }
+    I.resetSelectedMessages = function(){
+        I.setSelectedMessages([]);
     }
 
 

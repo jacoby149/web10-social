@@ -9,6 +9,7 @@ import TSMessage from './TSMessage';
 import React from 'react'
 
 function MessageItems({ I }) {
+    // doing the work of adding separators, and position calculating of messages.
     var messageItems = [];
     var separatorCount = 0
 
@@ -42,6 +43,17 @@ function MessageItems({ I }) {
 }
 
 function Chat({ I }) {
+
+    function deleteSelectedMessages() {
+        I.deleteSelectedMessages();
+        I.setMode("chat")
+    }
+
+    function resetSelectedMessages(){
+        I.resetSelectedMessages();
+        I.setMode("chat")
+    }
+
     return (
         <R root t bt bb br bl theme={I.theme}>
             <TopBar I={I} />
@@ -65,10 +77,15 @@ function Chat({ I }) {
                                             <InfoButton onClick={() => I.setMode("bio")} />
                                         </> :
                                         <>
-                                            <RawIcon onClick={() => I.setMode("chat")}>square-x</RawIcon>
-                                            <div style={{ color: "orange", marginRight: "10px" }}><i>undo<br />changes</i></div>
-                                            <RawIcon>trash</RawIcon>
-                                            <div style={{ color: "orange" }}><i>delete<br />selected</i></div>
+                                            <RawIcon onClick={resetSelectedMessages}>square-x</RawIcon>
+                                            <div style={{ color: "orange", marginRight: "10px" }}>
+                                                <i>undo<br />changes</i>
+                                            </div>
+
+                                            <RawIcon onClick={deleteSelectedMessages} >trash</RawIcon>
+                                            <div style={{ color: "orange" }}>
+                                                <i>delete<br />selected</i>
+                                            </div>
                                         </>
                                     }
 
