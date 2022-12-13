@@ -49,7 +49,7 @@ function Identity({ I }) {
                                     setPic(imgURL);
                                 }}
                             />
-                            <a class="button is-warning is-small">upload photo</a>
+                            <a className="button is-warning is-small">upload photo</a>
                         </label>
 
                         : ""
