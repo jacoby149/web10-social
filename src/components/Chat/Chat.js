@@ -1,16 +1,14 @@
 // see private messages between you and a friend / group.
 
 import { R, C } from 'rectangles-npm'
-import { ChatContainer, ConversationHeader, Avatar, InfoButton, TypingIndicator, MessageInput, MessageList, Message, MessageSeparator } from '@chatscope/chat-ui-kit-react';
-import styles from '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
-import emilyIco from "../../assets/images/avatar1.svg"
+import { ChatContainer, ConversationHeader, Avatar, InfoButton, TypingIndicator, MessageInput, MessageList, MessageSeparator } from '@chatscope/chat-ui-kit-react';
 import TopBar from '../shared/TopBar';
 import SideBar from '../shared/SideBar'
 import { RawIcon } from '../shared/Icon'
 import TSMessage from './TSMessage';
 import React from 'react'
 
-function Chat({ I }) {
+function MessageItems({ I }) {
     var messageItems = [];
     var separatorCount = 0
 
@@ -36,8 +34,14 @@ function Chat({ I }) {
             <TSMessage key={index + separatorCount} model={model} mostRecent={mostRecent} I={I} />
         )
     }
+    return (
+        <>
+            {messageItems}
+        </>
+    )
+}
 
-
+function Chat({ I }) {
     return (
         <R root t bt bb br bl theme={I.theme}>
             <TopBar I={I} />
@@ -53,28 +57,25 @@ function Chat({ I }) {
                                 <ConversationHeader.Content userName={I.currentContact.name} info={`@ ${I.currentContact.web10}`} />
                                 <ConversationHeader.Actions>
 
-                                {I.mode === "chat" ?
+                                    {I.mode === "chat" ?
                                         <>
                                             <RawIcon onClick={() => I.setMode("chat-edit")}>square-check</RawIcon>
                                             <RawIcon>cube</RawIcon>
                                             <RawIcon>snake</RawIcon>
                                             <InfoButton onClick={() => I.setMode("bio")} />
-                                            </> : 
+                                        </> :
                                         <>
                                             <RawIcon onClick={() => I.setMode("chat")}>square-x</RawIcon>
-                                            <div style={{color:"orange",marginRight:"10px"}}><i>undo<br/>changes</i></div>
+                                            <div style={{ color: "orange", marginRight: "10px" }}><i>undo<br />changes</i></div>
                                             <RawIcon>trash</RawIcon>
-                                            <div style={{color:"orange"}}><i>delete<br/>selected</i></div>
+                                            <div style={{ color: "orange" }}><i>delete<br />selected</i></div>
                                         </>
                                     }
 
                                 </ConversationHeader.Actions>
                             </ConversationHeader>
-
                             <MessageList className={I.theme} typingIndicator={<TypingIndicator content="Emily is typing" />}>
-
-                                {messageItems}
-
+                                <MessageItems I={I} ></MessageItems>
                             </MessageList>
                             <MessageInput className={I.theme} placeholder="Type message here" />
                         </ChatContainer>

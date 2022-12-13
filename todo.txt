@@ -7,6 +7,8 @@ make the postmaker/editor effect the data model.
     - textbox input effects the draftpost
     - confirmation and cancellation buttons trigger the changes.
 make the search bar work for messages, contacts, feed, and wall
+take positions out of mockChat data and calculate them.
+
 MEET WITH JOHN
 
 web10 integrations.
