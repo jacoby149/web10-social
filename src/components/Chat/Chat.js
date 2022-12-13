@@ -8,12 +8,18 @@ import { RawIcon } from '../shared/Icon'
 import TSMessage from './TSMessage';
 import React from 'react'
 
+function addPositions(messages){
+    return messages;
+}
+
 function MessageItems({ I }) {
     // doing the work of adding separators, and position calculating of messages.
     var messageItems = [];
     var separatorCount = 0
 
-    for (const [index, model] of I.currentMessages.entries()) {
+    const messagesWithPositions = addPositions(I.currentMessages)
+
+    for (const [index, model] of messagesWithPositions.entries()) {
         const present = new Date(model["sentTime"]);
         const mostRecent = index === I.currentMessages.length - 1;
         if (index == 0) {

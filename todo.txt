@@ -3,7 +3,6 @@ make the postmaker/editor effect the data model.
     - uploading and ex ing media effects the draftpost.
     - textbox input effects the draftpost
     - confirmation and cancellation buttons trigger the changes.
-make the search bar work for messages, contacts, feed, and wall
 take positions out of mockChat data and calculate them in messageItems
 
 MEET WITH JOHN

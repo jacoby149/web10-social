@@ -19,6 +19,7 @@ function TSMessage({ model,I,mostRecent}) {
 
     React.useEffect(()=>setSelected(false),[I.mode])
 
+    // normal and last should look like first and single when time is expanded.
     const translatedModel = {...model};
     if (showTime && model.position==="normal") translatedModel.position = "first";
     else if (showTime && model.position==="last") translatedModel.position = "single";
