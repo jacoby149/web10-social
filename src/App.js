@@ -20,9 +20,7 @@ function App() {
   const mockI = useMockInterface();
   const realI = useInterface();
   const I = mock?mockI:realI;
-
   window.I = I;
-  I.help();
   
   switch (I.mode) {
 

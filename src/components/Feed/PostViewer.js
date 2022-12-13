@@ -2,7 +2,6 @@ import DOMPurify from 'dompurify'
 import Media from './Media';
 
 function PostViewer({ I, postI }) {
-    console.log(postI)
     const post = postI.post;
     const mediaItems = post.media.map(
         (item, index) => <Media type={item.type} src={item.src} I={I} postI={postI} key={index}></Media>

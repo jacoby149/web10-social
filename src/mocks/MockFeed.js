@@ -35,6 +35,7 @@ const [pond,brick,rocks,square,water,waterfall] = [
 
 const mockFeed = [
     {
+        "id":"4759860609",
         "web10": "api.web10.app/emily511",
         "time": "10:04:59 AM",
         "media": [pond],
@@ -42,6 +43,7 @@ const mockFeed = [
             "what up my name is emily makin a post",
     },
     {
+        "id":"475983245209",
         "web10": "api.web10.app/jacoby149",
         "time": "10:04:59 AM",
         "media": [brick,rocks],
@@ -49,6 +51,7 @@ const mockFeed = [
             "I wanted to share! I had this idea for a new internet platform, that I call web10. It gives every user on the internet a domain name for them to control their data. One more time for posterity, it is called web10, it is totally awesome and the future of the internet.",
     },
     {
+        "id":"4759",
         "web10": "api.web10.app/lilly511",
         "time": "10:04:59 AM",
         "media": [square,water,waterfall],
@@ -56,12 +59,14 @@ const mockFeed = [
             "what up my name is lilly i am also makin a post",
     },
     {
+        "id":"4759209387",
         "web10": "api.web10.app/jacoby149",
         "time": "10:04:59 AM",
         "media": [mockMedia[1],mockMedia[2]],
         "html": "This is <i>jacob</i>, making my <b>first</b> post haha.",
     },
     {
+        "id":"475920938723498",
         "web10": "api.web10.app/tom511",
         "time": "10:04:59 AM",
         "media": [],

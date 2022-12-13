@@ -1,22 +1,21 @@
-12.11.22
-add mock data to the bio per contact
-    - posts, bulletin, and chats
-    - AND put some media in the posts.
-make the postmaker a legit form.
-make the bio editor a legit form.
-make editing/creation/deletion work in the interface for:
-    - posting
-    - chatting
-    - bulletins
-    - contacts
-handle the null contact scenario.
-    - DONT allow adds if they arent on web10.
+12.13.22
+make bio photo uploader effect the data model
+make the postmaker/editor effect the data model.
+    - uploading and ex ing media effects the draftpost.
+    - textbox input effects the draftpost
+    - confirmation and cancellation buttons trigger the changes.
+make the chat deletor effect the data model.
+    - selecting chat message IDs effects a selectedMessages list of ids state.
+    - deletion button triggers an interface function that deletes the messages.
+make the contact deletor effect the data model.
+    - deletion works
+MEET WITH JOHN
 
 web10 integrations.
 add default data for non existing users.
 hook up the web10 login to the chat application.
 hook up the web10 services to :
-    - contacts
+    - contacts [ make the add contacts effect the data model ]
     - messages
     - social-identity
     - social-bulletin

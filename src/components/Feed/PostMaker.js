@@ -4,6 +4,7 @@ import Media from "./Media";
 
 
 function PostMaker({ I, postI }) {
+
     const mediaItems = postI.post.media.map(
         (item, index) => <Media I={I} postI = {postI} type={item.type} src={item.src} key={index}></Media>
     )
@@ -18,7 +19,7 @@ function PostMaker({ I, postI }) {
                             <i onClick={postI.clearChanges} style={{ color: "orange", marginRight: "10px" }} className={"fa fa-2x fa-circle-xmark font-weight-bold"}></i> : ""
                         }
 
-                        { postI.mode==="create" && (postI.post || postI.media) ?
+                        { postI.mode==="create" && (postI.post.html || postI.media) ?
                             <i onClick={I.clearDraft} style={{ color: "orange", marginRight: "10px" }} className={"fa fa-2x fa-circle-xmark font-weight-bold"}></i> : ""
                         }
 

@@ -5,7 +5,33 @@ import emilyIco from "../../assets/images/avatar1.svg"
 
 
 function Identity({ I }) {
-    const identity = I.mode==="bio"?I.currentContact:I.identity;
+    const identity = I.mode === "bio" ? I.currentContact : I.identity;
+
+    function setName(name) {
+        I.setDraftIdentity({
+            name: name,
+            web10: I.identity.web10,
+            pic: I.identity.pic,
+            bio: I.identity.bio
+        })
+    }
+    function setPic(pic) {
+        I.setDraftIdentity({
+            name: I.identity.name,
+            web10: I.identity.web10,
+            pic: pic,
+            bio: I.identity.bio
+        })
+    }
+    function setBio(bio) {
+        I.setDraftIdentity({
+            name: I.identity.name,
+            web10: I.identity.web10,
+            pic: I.identity.pic,
+            bio: bio
+        })
+    }
+
     return (
         <R t theme={I.theme}>
             <C t ha="center" va="center">
@@ -20,7 +46,14 @@ function Identity({ I }) {
                     <div className="column has-text-centered is-4">
                         {
                             I.mode === "bio-edit" ?
-                                <i>[<input size="22" style={{ color: "gold" }} defaultValue="Jacob Hoffman"></input>]</i> :
+                                <i>[
+                                    <input
+                                        onChange={(e)=>setName(e.target.value)}
+                                        size="22" style={{ color: "gold" }}
+                                        defaultValue={identity.name}>
+                                    </input>
+                                    ]
+                                </i> :
                                 <i>name : {identity.name}</i>
                         }
                     </div>
@@ -31,7 +64,12 @@ function Identity({ I }) {
                     <div className="column has-text-centered is-4">
                         {
                             I.mode === "bio-edit" ?
-                                <i>[<input size="32" style={{ color: "gold" }} defaultValue={identity.bio}></input>]</i> :
+                                <i>[
+                                    <input
+                                        onChange={(e)=>setBio(e.target.value)}
+                                        size="32" style={{ color: "gold" }}
+                                        defaultValue={identity.bio}>
+                                    </input>]</i> :
                                 <i>bio : {identity.bio}</i>
                         }
                     </div>

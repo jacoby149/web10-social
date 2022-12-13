@@ -19,6 +19,12 @@ function EditBulletin() {
 /* Top Bar of web10 social */
 function TopBar(props) {
     const I = props.I;
+
+    function saveBioChanges(){
+        I.saveIdentityChanges();
+        I.setMode("my-bio");
+    }
+
     return (
         <R l bb s={"55px"} {...pass(props)}>
             <Branding />
@@ -54,7 +60,7 @@ function TopBar(props) {
             }
             {I.mode === "bio-edit" ?
                 <C r s={"240px"}>
-                    <button onClick={() => I.setMode("my-bio")} class="button is-primary is-small" style={{ marginRight: "20px", width: "100px" }}>save</button>
+                    <button onClick={saveBioChanges} class="button is-primary is-small" style={{ marginRight: "20px", width: "100px" }}>save</button>
                     <button style={{ width: "100px" }} onClick={() => I.setMode("my-bio")} class="button is-danger is-small">cancel</button>
                 </C> : <C r s={"0px"}></C>
             }

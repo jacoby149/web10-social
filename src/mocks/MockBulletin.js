@@ -1,5 +1,6 @@
 const mockBulletin = [
     {
+        id:"x765349cd",
         height: "24px",
         html: `
             <div class="columns is-centered">
@@ -12,6 +13,7 @@ const mockBulletin = [
         `
     },
     {
+        id:"x345923cd",
         height: "24px",
         html: `
             <div class="columns is-centered">
@@ -22,6 +24,7 @@ const mockBulletin = [
         `
     },
     {
+        id:"x9371hg34",
         height: "100px",
         html: `
         <div style="height:100px;overflow:hidden;position:relative">

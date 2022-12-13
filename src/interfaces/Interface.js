@@ -24,7 +24,9 @@ function useInterface() {
     [I.wallPosts,I.setWallPosts] = React.useState(mockWall);
     
     [I.bulletin,I.setBulletin] = React.useState(mockBulletin);
+
     [I.identity,I.setIdentity] = React.useState(mockIdentity);
+    [I.draftIdentity,I.setDraftIdentity] = React.useState(I.identity);
 
     [I.currentMessages,I.setCurrentMessages] = React.useState(mockChat);
 
@@ -35,7 +37,6 @@ function useInterface() {
     I.getPosts = function(web10){
         return I.feedPosts.filter((p)=>p.web10===web10)
     }
-
     I.getContact = function(web10){
         const cMap = {};
         I.contacts.map((c)=>cMap[c.web10]=c);
@@ -46,6 +47,29 @@ function useInterface() {
         return web10 === I.identity.web10
     }
 
+
+    I.savePostChanges = function(draftPost){
+        I.setWallPosts(I.wallPosts.map(p=>draftPost.id===p.id?draftPost:p))
+        I.setFeedPosts(I.feedPosts.map(p=>draftPost.id===p.id?draftPost:p))
+    }
+    I.deletePost = function(id){
+        I.setWallPosts(I.wallPosts.filter(p=>id!==p.id))
+        I.setFeedPosts(I.feedPosts.filter(p=>id!==p.id))
+    }
+    I.createPost = function(draftPost){
+        // for now, randomly generate an id...
+        const randIDDraftPost = {...draftPost,id:Math.random(1000000000000000)}
+        I.setWallPosts([randIDDraftPost].concat(I.wallPosts));
+        I.setFeedPosts([randIDDraftPost].concat(I.feedPosts));
+    }
+
+
+    I.saveIdentityChanges = function(){
+        I.setIdentity(I.draftIdentity);
+    }
+    I.deleteBulletin = function(id){
+        I.setBulletin(I.bulletin.filter((b)=>b.id!==id));
+    }
 
     I.chat = function(web10){
         I.setCurrentContact(I.getContact(web10))
