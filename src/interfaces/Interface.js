@@ -29,6 +29,7 @@ function useInterface() {
     [I.draftIdentity,I.setDraftIdentity] = React.useState(I.identity);
 
     [I.currentMessages,I.setCurrentMessages] = React.useState(mockChat);
+    [I.selectedMessages,I.setSelectedMessages] = React.useState([]);
 
     I.help = function(){
         console.log("the real web10 interface!")
@@ -81,8 +82,22 @@ function useInterface() {
 
     I.chat = function(web10){
         I.setCurrentContact(I.getContact(web10))
+        //I.setCurrentMessages
         I.setMode("chat");
     }
+
+    I.selectMessage= function(id){
+        I.setSelectedMessages(I.currentMessages.filter((m)=>m.id===id).concat(I.selectedMessages))
+    }
+    I.deSelectMessage = function(id){
+        I.setSelectedMessages(I.selectedMessages.filter((m)=>m.id!==id))
+    }
+    I.deleteSelectedMessages = function(){
+        I.setCurrentMessages(I.currentMessages.map((m)=>!I.selectedMessages.includes(m)));
+        I.setSelectedMessages([]);
+        I.setMode("chat");
+    }
+
 
     I.setMode = function(mode){
         I.setMenuCollapsed(true);

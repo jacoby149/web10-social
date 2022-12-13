@@ -1,3 +1,5 @@
+add compression to media. [IF IT IS EASY...]
+make an upload limit for the inputs
 if posts > 16MB, shoot an error message from web10 failing.
 say, compress before posting.
 implement automatic client side compression eventually.

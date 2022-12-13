@@ -13,6 +13,7 @@ const mockDates = [
 
 const mockChat = [
     {
+        id:"1",
         message: "Hello my friend",
         sentTime: mockDates[0],
         sender: "Emily",
@@ -20,6 +21,7 @@ const mockChat = [
         position: "single"
     },
     {
+        id:"2",
         message: "Hello my friend",
         sentTime: mockDates[1],
         sender: "me",
@@ -27,6 +29,7 @@ const mockChat = [
         position: "single"
     },
     {
+        id:"3",
         message: "Hello my friend",
         sentTime: mockDates[2],
         sender: "Emily",
@@ -34,6 +37,7 @@ const mockChat = [
         position: "first"
     },
     {
+        id:"4",
         message: "Hello my friend",
         sentTime: mockDates[2],
         sender: "Emily",
@@ -41,6 +45,7 @@ const mockChat = [
         position: "normal"
     },
     {
+        id:"5",
         message: "Hello my friend",
         sentTime: mockDates[2],
         sender: "Emily",
@@ -48,6 +53,7 @@ const mockChat = [
         position: "normal"
     },
     {
+        id:"6",
         message: "Hello my friend",
         sentTime: mockDates[2],
         sender: "Emily",
@@ -55,30 +61,35 @@ const mockChat = [
         position: "last"
     },
     {
+        id:"7",
         message: "Hello my friend",
         sentTime: mockDates[3],
         direction: "outgoing",
         position: "first"
     },
     {
+        id:"8",
         message: "Hello my friend",
         sentTime: mockDates[3],
         direction: "outgoing",
         position: "normal"
     },
     {
+        id:"9",
         message: "Hello my friend",
         sentTime: mockDates[3],
         direction: "outgoing",
         position: "normal"
     },
     {
+        id:"a",
         message: "Hello my friend",
         sentTime: mockDates[3],
         direction: "outgoing",
         position: "last"
     },
     {
+        id:"b",
         message: "Hello my friend",
         sentTime: mockDates[4],
         sender: "Emily",
@@ -86,12 +97,14 @@ const mockChat = [
         position: "first"
     },
     {
+        id:"c",
         message: "Hello my friend",
         sentTime: mockDates[4],
         sender: "Emily",
         direction: "incoming",
         position: "last"
     }, {
+        id:"d",
         message: "Hello my friend",
         sentTime: mockDates[5],
         sender: "Emily",
@@ -99,6 +112,7 @@ const mockChat = [
         position: "single"
     },
     {
+        id:"e",
         message: "Hello my friend",
         sentTime: mockDates[6],
         sender: "me",
@@ -106,6 +120,7 @@ const mockChat = [
         position: "single"
     },
     {
+        id:"f",
         message: "Hello my friend",
         sentTime: mockDates[7],
         sender: "Emily",
@@ -113,6 +128,7 @@ const mockChat = [
         position: "first"
     },
     {
+        id:"g",
         message: "Hello my friend",
         sentTime: mockDates[7],
         sender: "Emily",
@@ -120,6 +136,7 @@ const mockChat = [
         position: "normal"
     },
     {
+        id:"h",
         message: "Hello my friend",
         sentTime: mockDates[7],
         sender: "Emily",
@@ -127,6 +144,7 @@ const mockChat = [
         position: "normal"
     },
     {
+        id:"i",
         message: "Hello my friend",
         sentTime: mockDates[7],
         sender: "Emily",
@@ -134,30 +152,35 @@ const mockChat = [
         position: "last"
     },
     {
+        id:"j",
         message: "Hello my friend",
         sentTime: mockDates[8],
         direction: "outgoing",
         position: "first"
     },
     {
+        id:"k",
         message: "Hello my friend",
         sentTime: mockDates[8],
         direction: "outgoing",
         position: "normal"
     },
     {
+        id:"l",
         message: "Hello my friend",
         sentTime: mockDates[8],
         direction: "outgoing",
         position: "normal"
     },
     {
+        id:"m",
         message: "FOLLOW THE BELOW INSTRUCTIONS",
         sentTime: mockDates[8],
         direction: "outgoing",
         position: "last"
     },
     {
+        id:"n",
         message: "CLICK THE INFO ICON",
         sentTime: mockDates[9],
         sender: "Emily",
@@ -165,6 +188,7 @@ const mockChat = [
         position: "first"
     },
     {
+        id:"o",
         message: "INFO ICON GOES TO BIO",
         sentTime: mockDates[9],
         sender: "Emily",
