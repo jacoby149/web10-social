@@ -9,6 +9,7 @@ make the chat deletor effect the data model.
     - deletion button triggers an interface function that deletes the messages.
 make the contact deletor effect the data model.
     - deletion works
+make the search bar work for messages, contacts, feed, and wall
 MEET WITH JOHN
 
 web10 integrations.
