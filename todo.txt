@@ -1,9 +1,13 @@
 12.13.22
+
+fix mockChat to use getContact, messages have web10 address, NOT NAMES.
+calculate direction of messages.
+take positions out of mockChat and implement addPositions messageItems
+
 make the postmaker/editor effect the data model.
     - uploading and ex ing media effects the draftpost.
     - textbox input effects the draftpost
     - confirmation and cancellation buttons trigger the changes.
-take positions out of mockChat data and calculate them in messageItems
 
 MEET WITH JOHN
 

@@ -8,8 +8,13 @@ import { RawIcon } from '../shared/Icon'
 import TSMessage from './TSMessage';
 import React from 'react'
 
-function addPositions(messages){
-    return messages;
+function addChatScopeMetaData(messages) {
+    return messages.map(
+        (message, i) => {
+            //const isFirst = i === 0 || messages[i-1].sender != 
+            return message;
+        }
+    );
 }
 
 function MessageItems({ I }) {
@@ -17,9 +22,9 @@ function MessageItems({ I }) {
     var messageItems = [];
     var separatorCount = 0
 
-    const messagesWithPositions = addPositions(I.currentMessages)
+    const chatScopeReadyMessages = addChatScopeMetaData(I.currentMessages)
 
-    for (const [index, model] of messagesWithPositions.entries()) {
+    for (const [index, model] of chatScopeReadyMessages.entries()) {
         const present = new Date(model["sentTime"]);
         const mostRecent = index === I.currentMessages.length - 1;
         if (index == 0) {
@@ -55,7 +60,7 @@ function Chat({ I }) {
         I.setMode("chat")
     }
 
-    function resetSelectedMessages(){
+    function resetSelectedMessages() {
         I.resetSelectedMessages();
         I.setMode("chat")
     }
