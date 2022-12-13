@@ -9,7 +9,7 @@ function Content({ type, src, I, postI }) {
 }
 
 function Media({ type, src, I, postI }) {
-    return (<>
+    return (<div style={{display: "inline-block"}}>
         {postI.mode === "view" ?
             "" :
             <i style={{ position: "absolute", color: "#ffff77dd", marginTop: "8px", marginLeft: "5px" }} className={"fa fa-2x fa-rectangle-xmark font-weight-bold"}></i>}
@@ -18,7 +18,7 @@ function Media({ type, src, I, postI }) {
                 <Content type={type} src={src}></Content>
                 :
                 <Content type={type} src={src}></Content>}
-    </>
+    </div>
     );
 
 }
