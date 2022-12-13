@@ -5,8 +5,11 @@ import Media from "./Media";
 
 function PostMaker({ I, postI }) {
 
-    function addMedia() {
-        return
+    function addMedia(files) {
+        const links = files.map((f)=>{
+            return URL.createObjectURL(f)
+        });
+        postI.setDraftPost({...postI.draftPost,media:links})
     }
     const mediaItems = postI.post.media.map(
         (item, index) => <Media I={I} postI={postI} type={item.type} src={item.src} key={index}></Media>
@@ -69,19 +72,21 @@ function PostMaker({ I, postI }) {
                                 console.log(event.target.files);
                                 addMedia(event.target.files);
                             }}
+                            multiple={true}
                         />
                         Video <RawIcon>video-plus</RawIcon>
                     </label>
 
                     <label className="card-footer-item post">
-                    <input
+                        <input
                             type="file"
                             style={{ display: "none" }}
                             accept="image/*"
                             onChange={(event) => {
-                                console.log(event.target.files);
-                                addMedia(event.target.files);
+                                const files = Object.values(event.target.files);
+                                addMedia(files);
                             }}
+                            multiple={true}
                         />
                         Photo <RawIcon >photo</RawIcon>
                     </label>
