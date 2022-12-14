@@ -1,14 +1,10 @@
 import React from 'react';
-import { useSearchParams } from 'react-router-dom';
-import axios from 'axios'
 import mockContacts from '../mocks/MockContacts'
 import mockFeed from '../mocks/MockFeed';
 import mockWall from '../mocks/MockWall';
 import mockChat from '../mocks/MockChat';
 import mockIdentity from '../mocks/MockIdentity';
-import mockDraftPost from '../mocks/MockDraftPost';
 import mockBulletin from '../mocks/MockBulletin';
-import usePostInterface from './PostInterface';
 
 function useInterface() {
     const I = {};
@@ -33,6 +29,13 @@ function useInterface() {
 
     I.help = function () {
         console.log("the real web10 interface!")
+    }
+
+    I.login = function(){
+        I.setMode("contacts");
+    }
+    I.logout = function(){
+        I.setMode("login");  
     }
 
     I.runSearch = function (query) {

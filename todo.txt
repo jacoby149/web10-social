@@ -1,6 +1,8 @@
-web10 integrations.
-add default data for non existing users.
+swap mock and real i.e. real = true
 hook up the web10 login to the chat application.
+meet with slava
+meet with investor
+
 hook up the web10 services to :
     - contacts [ make the add contacts effect the data model ]
     - messages

@@ -13,7 +13,7 @@ function Login({ I }) {
                 <C va="center" ha="center" t tel>
                     <div style={{textAlign:"center"}}>
                         <b>Welcome To Web10 Social!</b><br></br><br></br>
-                        <button onClick={()=>I.setMode("contacts")} className='button is-primary'>Log In</button>
+                        <button onClick={I.login} className='button is-primary'>Log In</button>
                     </div>
                 </C>
         </R>

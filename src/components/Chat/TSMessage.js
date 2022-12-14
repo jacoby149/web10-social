@@ -11,10 +11,10 @@ function TSMessage({ model, I, mostRecent }) {
         setShowTime(!showTime);
     }
     function toggleSelected() {
+        selected ? I.deSelectMessage(model.id) : I.selectMessage(model.id)
         setSelected(!selected);
     }
     function onClick() {
-        selected ? I.deSelectMessage(model.id) : I.selectMessage(model.id)
         if (I.mode === "chat-edit") toggleSelected();
         else toggleShowTime();
     }

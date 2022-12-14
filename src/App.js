@@ -16,10 +16,10 @@ import StandAloneFeed from './components/Feed/StandAloneFeed';
 function App() {
 
   const queryParameters = new URLSearchParams(window.location.search)
-  const mock = queryParameters.get("mock")
+  const real = queryParameters.get("real")
   const mockI = useMockInterface();
   const realI = useInterface();
-  const I = mock?mockI:realI;
+  const I = real?realI:mockI;
   window.I = I;
   
   switch (I.mode) {

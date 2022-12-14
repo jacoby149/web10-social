@@ -14,7 +14,7 @@ function SideBar(props) {
             <C onClick={()=>I.setMode("feed")} t bb h s={"40px"} va="center">
                 Social Feed
             </C>
-            <C onClick={()=>I.setMode("login")} t bb h s={"40px"} va="center">
+            <C onClick={I.logout} t bb h s={"40px"} va="center">
                 <i style={{color:"orange"}}><u>Log Out</u></i>
             </C>
 
