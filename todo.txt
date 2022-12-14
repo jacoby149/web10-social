@@ -1,9 +1,3 @@
-12.13.22
-make the postmaker/editor effect the data model.
-    - uploading and ex ing media effects the draftpost.
-    - textbox input effects the draftpost
-    - confirmation and cancellation buttons trigger the changes.
-
 web10 integrations.
 add default data for non existing users.
 hook up the web10 login to the chat application.
