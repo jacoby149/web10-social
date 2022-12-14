@@ -1,8 +1,7 @@
-swap mock and real i.e. real = true
+the cookie dict thing is STUPID ... KILL IT.
+get web10 working npm style
+make sure crm isn't bricked.
 hook up the web10 login to the chat application.
-meet with slava
-meet with investor
-
 hook up the web10 services to :
     - contacts [ make the add contacts effect the data model ]
     - messages
@@ -23,3 +22,5 @@ step 3 : fix Sam's pixel art app
     - separate the viewing and editing properly
     - make multiple sculptures in the data
     - generate iframe in the web10 social-bulletin
+
+step 4 : make the second authenticator / web10 app store.
