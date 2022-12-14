@@ -11,13 +11,8 @@ function usePostInterface(I, post = null) {
     [postI.mode, postI.setMode] = React.useState(post === null ? "create" : "view");
 
     postI.toggleEditMode = function () {
-        switch (postI.mode) {
-
-            // chat like pages, that have private messages
-            case "edit": return postI.setMode("view");
-            case "view": return postI.setMode("edit");
-            default: return
-        }
+            if (postI.mode === "edit") postI.setMode("view");
+            else if (postI.mode === "view") postI.setMode("edit")
     }
     postI.deleteMedia = function (key) {
         const newMedia = postI.draftPost.media.filter((m, i) => i !== key)
@@ -25,6 +20,7 @@ function usePostInterface(I, post = null) {
     }
     postI.clearChanges = function () {
         postI.setDraftPost(postI.post);
+        postI.toggleEditMode();
     }
     postI.saveChanges = function () {
         I.savePostChanges(postI.draftPost)
