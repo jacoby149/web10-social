@@ -50,7 +50,7 @@ function PostMaker({ I, postI }) {
                         </div>
                         :
                         <div>
-                            <button style={{ margin: "15px", width: "130px" }} className={"button is-primary"}>Create Post</button>
+                            <button onClick={postI.createPost} style={{ margin: "15px", width: "130px" }} className={"button is-primary"}>Create Post</button>
                         </div>
 
                     }
@@ -96,7 +96,7 @@ function PostMaker({ I, postI }) {
                     </label>
                     {
                         postI.mode === "edit" ?
-                            <a href="#" className="card-footer-item post">Delete Post <RawIcon >trash</RawIcon></a> : ""}
+                            <a onClick={postI.deletePost} className="card-footer-item post">Delete Post <RawIcon >trash</RawIcon></a> : ""}
 
                     {/*<a href="#" className="card-footer-item post">Audio <RawIcon>microphone-stand</RawIcon></a>*/}
                 </footer>

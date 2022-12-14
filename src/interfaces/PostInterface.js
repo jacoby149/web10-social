@@ -15,6 +15,7 @@ function usePostInterface(I, post = null) {
             else if (postI.mode === "view") postI.setMode("edit")
     }
     postI.deleteMedia = function (key) {
+        console.log(key)
         const newMedia = postI.draftPost.media.filter((m, i) => i !== key)
         postI.setDraftPost({...postI.draftPost,media:newMedia})
     }
@@ -27,10 +28,16 @@ function usePostInterface(I, post = null) {
         postI.toggleEditMode();
     }
     postI.createPost = function () {
-        I.createPost(postI.draftPost);
+        I.createPost(
+            {...postI.draftPost,
+                time:new Date().toLocaleTimeString(),
+                web10:I.identity.web10
+            });
+        postI.clearChanges();
     }
     postI.deletePost = function () {
         I.deletePost(postI.post.id);
+        postI.toggleEditMode();
     }
 
     return postI;
