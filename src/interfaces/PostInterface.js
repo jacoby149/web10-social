@@ -1,6 +1,9 @@
 import React from 'react';
 
 function usePostInterface(I, post = null) {
+    function initMode(){
+        return post === null ? "create" : "view"
+    }
     // a convenient interface for post components to interact with the application
     const postI = {};
     const empty = { html: "", media: [] }
@@ -8,7 +11,12 @@ function usePostInterface(I, post = null) {
     [postI.draftPost, postI.setDraftPost] = React.useState(postI.post);
 
     // modes are view, edit and create
-    [postI.mode, postI.setMode] = React.useState(post === null ? "create" : "view");
+    [postI.mode, postI.setMode] = React.useState(initMode());
+
+    React.useEffect(()=>{
+        postI.setDraftPost(postI.post)
+        postI.setMode(initMode())
+    },[I.feedPosts,I.wallPosts]);
 
     postI.toggleEditMode = function () {
             if (postI.mode === "edit") postI.setMode("view");
@@ -37,7 +45,6 @@ function usePostInterface(I, post = null) {
     }
     postI.deletePost = function () {
         I.deletePost(postI.post.id);
-        postI.toggleEditMode();
     }
 
     return postI;
