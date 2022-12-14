@@ -111,10 +111,10 @@ function Chat({ I }) {
 
                                 </ConversationHeader.Actions>
                             </ConversationHeader>
-                            <MessageList className={I.theme} typingIndicator={<TypingIndicator content="Emily is typing" />}>
+                            <MessageList className={I.theme} typingIndicator={<TypingIndicator content={I.typingIndicator} />}>
                                 <MessageItems I={I} ></MessageItems>
                             </MessageList>
-                            <MessageInput className={I.theme} placeholder="Type message here" />
+                            <MessageInput attachButton={false} onSend={(v)=>I.sendMessage(v)} className={I.theme} placeholder="Type message here" />
                         </ChatContainer>
                     </div>
                 </R>

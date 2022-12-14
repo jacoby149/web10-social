@@ -26,6 +26,7 @@ function useInterface() {
 
     [I.currentMessages, I.setCurrentMessages] = React.useState(mockChat);
     [I.selectedMessages, I.setSelectedMessages] = React.useState([]);
+    [I.typingIndicator, I.setTypingIndicator] = React.useState("Emily is typing ...");
 
     I.help = function () {
         console.log("the real web10 interface!")
@@ -137,6 +138,17 @@ function useInterface() {
     I.resetSelectedMessages = function () {
         I.setSelectedMessages([]);
     }
+
+    I.sendMessage = function (string) {
+        const message = {
+            id: Math.random(1000000000000000),
+            message: string,
+            sentTime: String(new Date()),
+            web10: I.identity.web10,
+        }
+        I.setCurrentMessages([...I.currentMessages].concat([message]))
+    }
+
 
 
     I.setMode = function (mode) {

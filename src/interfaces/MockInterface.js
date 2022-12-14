@@ -26,16 +26,17 @@ function useMockInterface() {
 
     [I.currentMessages, I.setCurrentMessages] = React.useState(mockChat);
     [I.selectedMessages, I.setSelectedMessages] = React.useState([]);
+    [I.typingIndicator, I.setTypingIndicator] = React.useState("Emily is typing ...")
 
     I.help = function () {
         console.log("the mock web10 interface!")
     }
 
-    I.login = function(){
+    I.login = function () {
         I.setMode("contacts");
     }
-    I.logout = function(){
-        I.setMode("login");  
+    I.logout = function () {
+        I.setMode("login");
     }
 
     I.runSearch = function (query) {
@@ -136,6 +137,15 @@ function useMockInterface() {
     }
     I.resetSelectedMessages = function () {
         I.setSelectedMessages([]);
+    }
+    I.sendMessage = function (string) {
+        const message = {
+            id: Math.random(1000000000000000),
+            message: string,
+            sentTime: String(new Date()),
+            web10: I.identity.web10,
+        }
+        I.setCurrentMessages([...I.currentMessages].concat([message]))
     }
 
 
