@@ -58,7 +58,7 @@ function PostMaker({ I, postI }) {
                 <div className="card-content">
                     <div className="content">
                         <div className="control">
-                            <textarea onChange={(e)=>setHTML(e.target.value)} className="textarea" defaultValue={postI.draftPost.html} placeholder="What is on your mind??"></textarea>
+                            <textarea onChange={(e)=>setHTML(e.target.value)} className="textarea" value={postI.draftPost.html} placeholder="What is on your mind??"></textarea>
                         </div>
                         <div>
                             {mediaItems}
