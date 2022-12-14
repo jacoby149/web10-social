@@ -5,14 +5,18 @@ import Media from "./Media";
 
 function PostMaker({ I, postI }) {
 
-    function addMedia(files) {
-        const links = files.map((f)=>{
-            return URL.createObjectURL(f)
-        });
+    function setHTML(html){
+        postI.setDraftPost({...postI.draftPost,html:html})
+    }
+
+    function addMedia(files,type) {
+        const links = [...postI.draftPost.media].concat(files.map((f)=>{
+            return {src:URL.createObjectURL(f),type:type}
+        }))
         postI.setDraftPost({...postI.draftPost,media:links})
     }
-    const mediaItems = postI.post.media.map(
-        (item, index) => <Media I={I} postI={postI} type={item.type} src={item.src} key={index}></Media>
+    const mediaItems = postI.draftPost.media.map(
+        (item, index) => <Media I={I} postI={postI} type={item.type} src={item.src} key={index} idx={index}></Media>
     )
     return (
         <div>
@@ -25,8 +29,8 @@ function PostMaker({ I, postI }) {
                             <i onClick={postI.clearChanges} style={{ color: "orange", marginRight: "10px" }} className={"fa fa-2x fa-circle-xmark font-weight-bold"}></i> : ""
                         }
 
-                        {postI.mode === "create" && (postI.post.html || postI.media) ?
-                            <i onClick={I.clearDraft} style={{ color: "orange", marginRight: "10px" }} className={"fa fa-2x fa-circle-xmark font-weight-bold"}></i> : ""
+                        {postI.mode === "create" && (postI.draftPost.html || postI.draftPost.media.length>0) ?
+                            <i onClick={postI.clearChanges} style={{ color: "orange", marginRight: "10px" }} className={"fa fa-2x fa-circle-xmark font-weight-bold"}></i> : ""
                         }
 
 
@@ -54,7 +58,7 @@ function PostMaker({ I, postI }) {
                 <div className="card-content">
                     <div className="content">
                         <div className="control">
-                            <textarea className="textarea" defaultValue={postI.post.html} placeholder="What is on your mind??"></textarea>
+                            <textarea onChange={(e)=>setHTML(e.target.value)} className="textarea" defaultValue={postI.draftPost.html} placeholder="What is on your mind??"></textarea>
                         </div>
                         <div>
                             {mediaItems}
@@ -69,8 +73,8 @@ function PostMaker({ I, postI }) {
                             style={{ display: "none" }}
                             accept="video/*"
                             onChange={(event) => {
-                                console.log(event.target.files);
-                                addMedia(event.target.files);
+                                const files = Object.values(event.target.files);
+                                addMedia(files,"video");
                             }}
                             multiple={true}
                         />
@@ -84,7 +88,7 @@ function PostMaker({ I, postI }) {
                             accept="image/*"
                             onChange={(event) => {
                                 const files = Object.values(event.target.files);
-                                addMedia(files);
+                                addMedia(files,"image");
                             }}
                             multiple={true}
                         />

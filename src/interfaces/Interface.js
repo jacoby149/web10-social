@@ -8,6 +8,7 @@ import mockChat from '../mocks/MockChat';
 import mockIdentity from '../mocks/MockIdentity';
 import mockDraftPost from '../mocks/MockDraftPost';
 import mockBulletin from '../mocks/MockBulletin';
+import usePostInterface from './PostInterface';
 
 function useInterface() {
     const I = {};
@@ -19,7 +20,6 @@ function useInterface() {
     [I.contacts, I.setContacts] = React.useState(mockContacts);
     [I.currentContact, I.setCurrentContact] = React.useState(I.contacts[0]);
 
-    [I.draftPost, I.setDraftPost] = React.useState(mockDraftPost);
     [I.feedPosts, I.setFeedPosts] = React.useState(mockFeed);
     [I.wallPosts, I.setWallPosts] = React.useState(mockWall);
 

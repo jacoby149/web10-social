@@ -1,8 +1,9 @@
 import { Posts } from './Posts'
 import PostMaker from './PostMaker';
-
+import usePostInterface from '../../interfaces/PostInterface';
 
 function Feed({ I }) {
+    const postCreatorI = usePostInterface(I)
     const posts = I.mode === "feed" ? I.feedPosts :
         I.mode === "bio" ? I.getPosts(I.currentContact.web10)
             : I.wallPosts;
@@ -12,7 +13,7 @@ function Feed({ I }) {
                 <div style={{ height: "20px" }}></div>
                 {
                     I.mode === "bio" ? "" :
-                        <PostMaker I={I} postI={{ post:I.draftPost, mode: "create" }} ></PostMaker>
+                        <PostMaker I={I} postI={postCreatorI} ></PostMaker>
                 }
                 <Posts I={I} posts={posts}></Posts>
                 <div style={{ height: "20px" }}></div>

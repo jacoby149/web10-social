@@ -8,11 +8,11 @@ function Content({ type, src, I, postI }) {
     return content;
 }
 
-function Media({ type, src, I, postI }) {
+function Media({ type, src, I, postI,idx }) {
     return (<div style={{display: "inline-block"}}>
         {postI.mode === "view" ?
             "" :
-            <i style={{ position: "absolute", color: "#ffff77dd", marginTop: "8px", marginLeft: "5px" }} className={"fa fa-2x fa-rectangle-xmark font-weight-bold"}></i>}
+            <i onClick={()=>postI.deleteMedia(idx)} style={{ position: "absolute", color: "#ffff77dd", marginTop: "8px", marginLeft: "5px" }} className={"fa fa-2x fa-rectangle-xmark font-weight-bold"}></i>}
         {
             postI.mode === "create" ?
                 <Content type={type} src={src}></Content>

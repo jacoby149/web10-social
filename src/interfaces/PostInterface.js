@@ -1,23 +1,30 @@
 import React from 'react';
 
-function usePostInterface(I,post) {
+function usePostInterface(I, post = null) {
     // a convenient interface for post components to interact with the application
     const postI = {};
-    postI.post = post;
+    const empty = { html: "", media: [] }
+    postI.post = post === null ? empty : post;
     [postI.draftPost, postI.setDraftPost] = React.useState(postI.post);
 
     // modes are view, edit and create
-    [postI.mode, postI.setMode] = React.useState("view");
+    [postI.mode, postI.setMode] = React.useState(post === null ? "create" : "view");
 
     postI.toggleEditMode = function () {
-        postI.mode === "edit" ?
-            postI.setMode("view") :
-            postI.setMode("edit");
-    }
+        switch (postI.mode) {
 
+            // chat like pages, that have private messages
+            case "edit": return postI.setMode("view");
+            case "view": return postI.setMode("edit");
+            default: return
+        }
+    }
+    postI.deleteMedia = function (key) {
+        const newMedia = postI.draftPost.media.filter((m, i) => i !== key)
+        postI.setDraftPost({...postI.draftPost,media:newMedia})
+    }
     postI.clearChanges = function () {
         postI.setDraftPost(postI.post);
-        postI.toggleEditMode();
     }
     postI.saveChanges = function () {
         I.savePostChanges(postI.draftPost)
