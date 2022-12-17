@@ -1,4 +1,3 @@
-hook up sending messages, + isTyping state management.
 the cookie dict thing is STUPID ... KILL IT.
 get web10 working npm style
 make sure crm isn't bricked.
