@@ -5,9 +5,14 @@ import mockWall from '../mocks/MockWall';
 import mockChat from '../mocks/MockChat';
 import mockIdentity from '../mocks/MockIdentity';
 import mockBulletin from '../mocks/MockBulletin';
+import { wapiInit, wapiAuthInit } from 'web10-npm';
 
 function useInterface() {
     const I = {};
+    //initialize web10
+    I.wapi = wapiInit("https://auth.web10.app", "rtc.web10.app");
+
+    //initialize frontend states
     [I.theme, I.setTheme] = React.useState("dark");
     [I.menuCollapsed, I.setMenuCollapsed] = React.useState(true);
     [I.mode, I._setMode] = React.useState("login");
@@ -28,15 +33,21 @@ function useInterface() {
     [I.selectedMessages, I.setSelectedMessages] = React.useState([]);
     [I.typingIndicator, I.setTypingIndicator] = React.useState("Emily is typing ...");
 
+    //frontend functionality
     I.help = function () {
         console.log("the real web10 interface!")
     }
 
-    I.login = function(){
+    I.initApp = function () {
         I.setMode("contacts");
     }
-    I.logout = function(){
-        I.setMode("login");  
+
+    I.login = function () {
+        I.wapi.openAuthPortal();
+    }
+    I.logout = function () {
+        I.wapi.signOut();
+        I.setMode("login");
     }
 
     I.runSearch = function (query) {
@@ -164,6 +175,13 @@ function useInterface() {
     I.toggleTheme = function () {
         I.theme == "dark" ? I.setTheme("light") : I.setTheme("dark")
     }
+
+    React.useEffect(() => {
+        // inits the web10 portion of the app
+        if (I.wapi.isSignedIn()) I.initApp()
+        else I.wapi.authListen(I.initApp)
+    }, []
+    )
 
     return I;
 }
