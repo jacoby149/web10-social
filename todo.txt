@@ -1,26 +1,29 @@
-the cookie dict thing is STUPID ... KILL IT.
-get web10 working npm style
-make sure crm isn't bricked.
-hook up the web10 login to the chat application.
+web10 social 1.0.0
+initialize social-identity
+allow CRUD of social-identity
+allow CRUD of posts
+test contact searching
+allow addition of contacts
+allow deletion of contacts
+allow CRUD of messages
+disable the bulletin.
+PWA ify web10 social.
+
+web10 social 1.0.1
+go and fix the second authenticator ->
+hook up web10 social to the second authenticator
+
 hook up the web10 services to :
+    - social-bulletin
+    - social-posts
     - contacts [ make the add contacts effect the data model ]
     - messages
     - social-identity
-    - social-bulletin
-    - social-posts
 add logo / PWA functions
 
 step 2 : hook up simple snake game
     - read bio where type = snake score
     - empty? insert
     - update bio where type = snake_score set hi score.
-
-step 3 : fix Sam's pixel art app
-    - impose brick size limit
-    - use easy to render brick colors
-    - make a texture pallete
-    - separate the viewing and editing properly
-    - make multiple sculptures in the data
-    - generate iframe in the web10 social-bulletin
 
 step 4 : make the second authenticator / web10 app store.

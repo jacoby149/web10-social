@@ -1,5 +1,4 @@
 import logo from './logo.svg';
-import './App.css';
 import Contacts from './components/Contacts/Contacts'
 import Chat from './components/Chat/Chat'
 import Feed from './components/Feed/Feed'
