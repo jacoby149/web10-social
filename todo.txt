@@ -9,6 +9,8 @@ allow CRUD of messages
 disable the bulletin.
 PWA ify web10 social.
 
+web10 should have some kind of groups...
+
 web10 social 1.0.1
 go and fix the second authenticator ->
 hook up web10 social to the second authenticator
