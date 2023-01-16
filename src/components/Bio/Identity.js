@@ -6,32 +6,30 @@ import emilyIco from "../../assets/images/avatar1.svg"
 
 function Identity({ I }) {
     const identity = I.mode === "bio" ? I.currentContact : I.draftIdentity;
-
     function setName(name) {
         I.setDraftIdentity({
             name: name,
-            web10: I.identity.web10,
-            pic: I.identity.pic,
-            bio: I.identity.bio
+            web10: I.draftIdentity.web10,
+            pic: I.draftIdentity.pic,
+            bio: I.draftIdentity.bio
         })
     }
     function setPic(pic) {
         I.setDraftIdentity({
-            name: I.identity.name,
-            web10: I.identity.web10,
+            name: I.draftIdentity.name,
+            web10: I.draftIdentity.web10,
             pic: pic,
-            bio: I.identity.bio
+            bio: I.draftIdentity.bio
         })
     }
     function setBio(bio) {
         I.setDraftIdentity({
-            name: I.identity.name,
-            web10: I.identity.web10,
-            pic: I.identity.pic,
+            name: I.draftIdentity.name,
+            web10: I.draftIdentity.web10,
+            pic: I.draftIdentity.pic,
             bio: bio
         })
     }
-
     return (
         <R t theme={I.theme}>
             <C t ha="center" va="center">

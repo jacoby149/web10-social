@@ -1,8 +1,13 @@
+import { wapiInit } from 'web10-npm';
 
-function InstallWeb10SocialAdapter(I) {
-    I.socialAdapter = {}
+function web10SocialAdapterInit() {
 
-    // get the SMR ready
+    // ports in the convenient web10 functionality into the social adapter.
+    const local = true
+    const web10SocialAdapter = local ?
+        { ...wapiInit("http://auth.localhost", "rtc.localhost") } :
+        { ...wapiInit("https://auth.web10.app", "rtc.web10.app") }
+
     const sirs = [
         {
             service: "identity",
@@ -49,85 +54,93 @@ function InstallWeb10SocialAdapter(I) {
             ]
         },
     ];
-    I.wapi.SMROnReady(sirs, []);
+    web10SocialAdapter.SMROnReady(sirs, []);
 
-    I.socialAdapter.loadContacts = function () {
-        return wapi.read("contacts")
+    web10SocialAdapter.loadContacts = function () {
+        return web10SocialAdapter.read("contacts")
     }
-    I.socialAdapter.AddContact = function (username, provider) {
-        return wapi
+    web10SocialAdapter.AddContact = function (username, provider) {
+        return web10SocialAdapter
             .create("contacts", {
                 username: username,
                 provider: provider,
                 date_added: new Date(),
             })
-            .then(loadNotes);
     }
-    I.socialAdapter.deleteContacts = function (contactID) {
-        return wapi.delete("contacts", { id: contactID })
-    }
-
-    I.socialAdapter.loadIdentity = function () {
-        return wapi.read("identity")
-    }
-    I.socialAdapter.editIdentity = function (pic, name, bio) {
-        return wapi.update("identity", {}, { pic: pic, name: name, bio: bio }).catch((error) => {
-            //TODO if an update_one fails BECAUSE there are NO records, create a record...
-            if (error.detail === "TODO DO THIS!!!") {
-                wapi.create("identity", { bio: "add a bio!" })
-            }
-        })
+    web10SocialAdapter.deleteContacts = function (contactID) {
+        return web10SocialAdapter.delete("contacts", { id: contactID })
     }
 
-    I.socialAdapter.CreateMessage = function (message) {
-        return wapi.create("messages", {
-            message: messages,
+    web10SocialAdapter.loadIdentity = function () {
+        return web10SocialAdapter.read("identity")
+    }
+    web10SocialAdapter.editIdentity = function ({ web10, pic, name, bio }) {
+        const newId = { web10: web10, pic: pic, name: name, bio: bio }
+        return web10SocialAdapter.update("identity", {}, { $set: newId })
+            .then((response) =>{
+                if (response.data.matchedCount===0){
+                  web10SocialAdapter.create("identity", newId)
+                }
+            })
+        // .catch((error) => {
+        //     console.log(error)
+        //     //TODO if an update_one fails BECAUSE there are NO records, create a record...
+        //     if (error.detail === "TODO DO THIS!!!") {
+        //         web10SocialAdapter.create("identity", { bio: "add a bio!" })
+        //     }
+        // })
+    }
+
+    web10SocialAdapter.CreateMessage = function (message) {
+        return web10SocialAdapter.create("messages", {
+            message: message,
             sentTime: new Date(),
-            provider: wapi.readToken().provider,
-            web10: wapi.readToken().username,
+            provider: web10SocialAdapter.readToken().provider,
+            web10: web10SocialAdapter.readToken().username,
         })
     }
-    I.socialAdapter.loadMessages = function () {
-        return wapi.read("messages");
+    web10SocialAdapter.loadMessages = function () {
+        return web10SocialAdapter.read("messages");
     }
-    I.socialAdapter.deleteMessages = function (ids) {
+    web10SocialAdapter.deleteMessages = function (ids) {
         const responses = ids.map((id) => {
-            return wapi.delete("messages", { id: id })
-            //TODO add a .catch...
+            return web10SocialAdapter.delete("messages", { id: id })
         })
         return responses
     }
 
     //TODO implement post functions
-    I.socialAdapter.createPost = function (html, media) {
-        return wapi.create("posts", {
+    web10SocialAdapter.createPost = function (html, media) {
+        return web10SocialAdapter.create("posts", {
             html: html,
             media: media,
             time: new Date(),
-            provider: wapi.readToken().provider,
-            username: wapi.readToken().username,
+            provider: web10SocialAdapter.readToken().provider,
+            username: web10SocialAdapter.readToken().username,
         })
     }
-    I.socialAdapter.loadPosts = function () {
-        return wapi.read("posts");
+    web10SocialAdapter.loadPosts = function () {
+        return web10SocialAdapter.read("posts");
     }
-    I.socialAdapter.editPost = function (html, media) {
-        wapi.update("posts", {
+    web10SocialAdapter.editPost = function (html, media) {
+        web10SocialAdapter.update("posts", {
             html: html,
             media: media,
         })
     }
-    I.socialAdapter.deletePost = function (id) {
-        return wapi.delete("posts", { id: id })
+    web10SocialAdapter.deletePost = function (id) {
+        return web10SocialAdapter.delete("posts", { id: id })
     }
 
     //TODO implement bulletin functions
-    I.socialAdapter.loadBulletins = function () {
-        return wapi.read("bulletin");
+    web10SocialAdapter.loadBulletins = function () {
+        return web10SocialAdapter.read("bulletin");
     }
-    I.socialAdapter.deleteBulletin = function (id) {
-        return wapi.delete("bulletin", { id: id })
+    web10SocialAdapter.deleteBulletin = function (id) {
+        return web10SocialAdapter.delete("bulletin", { id: id })
     }
+
+    return web10SocialAdapter;
 }
 
-export default InstallWeb10SocialAdapter;
+export default web10SocialAdapterInit;

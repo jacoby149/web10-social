@@ -5,28 +5,28 @@ import mockWall from '../mocks/MockWall';
 import mockChat from '../mocks/MockChat';
 import mockIdentity from '../mocks/MockIdentity';
 import mockBulletin from '../mocks/MockBulletin';
-import { wapiInit, wapiAuthInit } from 'web10-npm';
+import web10SocialAdapterInit from './Web10SocialAdapter';
+import defaultIdentity from '../mocks/defaultIdentity';
 
 function useInterface() {
     const I = {};
     //initialize web10
-    I.wapi = wapiInit("https://auth.web10.app", "rtc.web10.app");
-
+    I.socialAdapter = web10SocialAdapterInit();
     //initialize frontend states
     [I.theme, I.setTheme] = React.useState("dark");
     [I.menuCollapsed, I.setMenuCollapsed] = React.useState(true);
     [I.mode, I._setMode] = React.useState("login");
     [I.search, I.setSearch] = React.useState("");
 
-    [I.contacts, I.setContacts] = React.useState(mockContacts);
+    [I.contacts, I.setContacts] = React.useState([]);
     [I.currentContact, I.setCurrentContact] = React.useState(I.contacts[0]);
 
     [I.feedPosts, I.setFeedPosts] = React.useState(mockFeed);
-    [I.wallPosts, I.setWallPosts] = React.useState(mockWall);
+    [I.wallPosts, I.setWallPosts] = React.useState([]);
 
     [I.bulletin, I.setBulletin] = React.useState(mockBulletin);
 
-    [I.identity, I.setIdentity] = React.useState(mockIdentity);
+    [I.identity, I.setIdentity] = React.useState();
     [I.draftIdentity, I.setDraftIdentity] = React.useState(I.identity);
 
     [I.currentMessages, I.setCurrentMessages] = React.useState(mockChat);
@@ -40,13 +40,25 @@ function useInterface() {
 
     I.initApp = function () {
         I.setMode("contacts");
+        I.socialAdapter.loadContacts()
+            .then((response) => I.setContacts(response.data))
+        I.socialAdapter.loadIdentity()
+            .then((response) => {
+                const provider = I.socialAdapter.readToken()["provider"]
+                const username = I.socialAdapter.readToken()["username"]
+                const web10 = `${provider}/${username}`
+                const id = response.data.length > 0 ? 
+                    response.data[0] : defaultIdentity(web10)
+                I.setIdentity(id);
+                I.setDraftIdentity(id);
+            })
     }
 
     I.login = function () {
-        I.wapi.openAuthPortal();
+        I.socialAdapter.openAuthPortal();
     }
     I.logout = function () {
-        I.wapi.signOut();
+        I.socialAdapter.signOut();
         I.setMode("login");
     }
 
@@ -77,7 +89,7 @@ function useInterface() {
                 // feed like pages, that consist of posts with images,vids,audio, and html
                 case "feed": return I.setFeedPosts(mockFeed.filter(postFilter));
 
-                case "contacts": return I.setContacts(mockContacts.filter(contactFilter));
+                //case "contacts": return I.setContacts(mockContacts.filter(contactFilter));
             }
         }
         filter();
@@ -94,6 +106,7 @@ function useInterface() {
     }
 
     I.isMe = function (web10) {
+        console.log(web10,I.identity.web10)
         return web10 === I.identity.web10
     }
 
@@ -122,7 +135,11 @@ function useInterface() {
         I.setDraftIdentity(I.identity);
     }
     I.saveIdentityChanges = function () {
-        I.setIdentity(I.draftIdentity);
+        I.socialAdapter.editIdentity(I.draftIdentity).then(response=>{
+            console.log(response)
+        }).catch((error)=>{
+            console.log(error)
+        });
     }
 
     I.deleteBulletin = function (id) {
@@ -178,8 +195,8 @@ function useInterface() {
 
     React.useEffect(() => {
         // inits the web10 portion of the app
-        if (I.wapi.isSignedIn()) I.initApp()
-        else I.wapi.authListen(I.initApp)
+        if (I.socialAdapter.isSignedIn()) I.initApp()
+        else I.socialAdapter.authListen(I.initApp)
     }, []
     )
 
