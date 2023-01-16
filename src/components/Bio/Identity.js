@@ -15,12 +15,16 @@ function Identity({ I }) {
         })
     }
     function setPic(pic) {
-        I.setDraftIdentity({
-            name: I.draftIdentity.name,
-            web10: I.draftIdentity.web10,
-            pic: pic,
-            bio: I.draftIdentity.bio
-        })
+        let reader = new FileReader();
+        reader.readAsDataURL(pic);
+        reader.onload = function () {
+            I.setDraftIdentity({
+                name: I.draftIdentity.name,
+                web10: I.draftIdentity.web10,
+                pic: reader.result,
+                bio: I.draftIdentity.bio
+            })
+        };
     }
     function setBio(bio) {
         I.setDraftIdentity({
@@ -43,8 +47,7 @@ function Identity({ I }) {
                                 accept="image/*"
                                 onChange={(event) => {
                                     const selectedImage = event.target.files[0]
-                                    const imgURL = URL.createObjectURL(selectedImage)
-                                    setPic(imgURL);
+                                    setPic(selectedImage);
                                 }}
                             />
                             <a className="button is-warning is-small">upload photo</a>
@@ -71,7 +74,7 @@ function Identity({ I }) {
                     </div>
                 </div>
             </R>
-            <R t ns bb s={"30px"} h>
+            <R t bb ns s={"30px"} h>
                 <div className="columns is-centered">
                     <div className="column has-text-centered is-4">
                         {
