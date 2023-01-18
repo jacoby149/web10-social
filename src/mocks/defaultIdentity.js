@@ -5,7 +5,7 @@ const defaultIdentity = function (web10) {
                 name: "add a name ...",
                 web10: web10,
                 pic: head,
-                bio: "add a bio ..."
+                bio: "add a bio ...",
         }
 }
 

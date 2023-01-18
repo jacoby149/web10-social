@@ -18,8 +18,10 @@ function useInterface() {
     [I.mode, I._setMode] = React.useState("login");
     [I.search, I.setSearch] = React.useState("");
 
+    [I.contactAddresses, I.setContactAddresses] = React.useState([]);
     [I.contacts, I.setContacts] = React.useState([]);
-    [I.currentContact, I.setCurrentContact] = React.useState(I.contacts[0]);
+    [I.currentContact, I.setCurrentContact] = React.useState(null);
+    [I.searchContact, I.setSearchContact] = React.useState(null);
 
     [I.feedPosts, I.setFeedPosts] = React.useState(mockFeed);
     [I.wallPosts, I.setWallPosts] = React.useState([]);
@@ -29,7 +31,7 @@ function useInterface() {
     [I.identity, I.setIdentity] = React.useState();
     [I.draftIdentity, I.setDraftIdentity] = React.useState(I.identity);
 
-    [I.currentMessages, I.setCurrentMessages] = React.useState(mockChat);
+    [I.currentMessages, I.setCurrentMessages] = React.useState([]);
     [I.selectedMessages, I.setSelectedMessages] = React.useState([]);
     [I.typingIndicator, I.setTypingIndicator] = React.useState("Emily is typing ...");
 
@@ -38,20 +40,23 @@ function useInterface() {
         console.log("the real web10 interface!")
     }
 
-    I.initApp = function () {
+    I.initApp = async function () {
         I.setMode("contacts");
         I.socialAdapter.loadContacts()
-            .then((response) => I.setContacts(response.data))
+        .then((response) => {
+            Promise.all(response).then((contacts)=>I.setContacts(contacts))
+        })
+
         I.socialAdapter.loadIdentity()
-            .then((response) => {
-                const provider = I.socialAdapter.readToken()["provider"]
-                const username = I.socialAdapter.readToken()["username"]
-                const web10 = `${provider}/${username}`
-                const id = response.data.length > 0 ? 
-                    response.data[0] : defaultIdentity(web10)
-                I.setIdentity(id);
-                I.setDraftIdentity(id);
-            })
+                .then((response) => {
+                    const provider = I.socialAdapter.readToken()["provider"]
+                    const username = I.socialAdapter.readToken()["username"]
+                    const web10 = `${provider}/${username}`
+                    const id = response.data.length > 0 ?
+                        response.data[0] : defaultIdentity(web10)
+                    I.setIdentity(id);
+                    I.setDraftIdentity(id);
+                })
     }
 
     I.login = function () {
@@ -93,6 +98,15 @@ function useInterface() {
             }
         }
         filter();
+        if (I.mode === "contacts") {
+            const web10 = query.includes("/") ? query : `api.web10.app/${query}`;
+            const [provider, user] = web10.split("/")
+            I.socialAdapter.read("identity", {}, user, provider)
+                .then((r) => {
+                    if (r.data.length > 0) I.setSearchContact(r.data[0])
+                })
+                .catch((e) => I.setSearchContact(null))
+        }
         I.setSearch(query);
     }
 
@@ -106,7 +120,7 @@ function useInterface() {
     }
 
     I.isMe = function (web10) {
-        console.log(web10,I.identity.web10)
+        console.log(web10, I.identity.web10)
         return web10 === I.identity.web10
     }
 
@@ -126,6 +140,14 @@ function useInterface() {
         I.setFeedPosts([randIDDraftPost].concat(I.feedPosts));
     }
 
+    I.addContact = function () {
+
+        I.socialAdapter.addContact(I.searchContact.web10).then((response)=>{
+            I.setContacts([...I.contacts,I.searchContact]);
+            I.runSearch("");
+        })
+    }
+
     I.deleteCurrentContact = function () {
         I.setContacts(I.contacts.filter((c) => c.id !== I.currentContact.id));
         I.setMode("contacts");
@@ -135,9 +157,9 @@ function useInterface() {
         I.setDraftIdentity(I.identity);
     }
     I.saveIdentityChanges = function () {
-        I.socialAdapter.editIdentity(I.draftIdentity).then(response=>{
+        I.socialAdapter.editIdentity(I.draftIdentity).then(response => {
             console.log(response)
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log(error)
         });
     }

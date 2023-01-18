@@ -1,4 +1,5 @@
 import { wapiInit } from 'web10-npm';
+import contactIco from "../assets/images/Contact.png"
 
 function web10SocialAdapterInit() {
 
@@ -28,7 +29,7 @@ function web10SocialAdapterInit() {
             read: true
         },
         {
-            service: "contacts",
+            service: "contact-addresses",
             cross_origins: ["localhost", "web10social.netlify.app", "social.web10.app"],
         },
         {
@@ -56,14 +57,39 @@ function web10SocialAdapterInit() {
     ];
     web10SocialAdapter.SMROnReady(sirs, []);
 
-    web10SocialAdapter.loadContacts = function () {
-        return web10SocialAdapter.read("contacts")
+    web10SocialAdapter.loadContact = function (web10) {
+        const [provider, user] = web10.split("/");
+        return web10SocialAdapter.read("identity", {}, user, provider).then((response) => {
+            //TODO add validation of data...
+            if (response.data.length > 0) {
+                const webContact = response.data[0]
+                return webContact
+            }
+            else {
+                return {
+                    //TODO find a cool anonymous PNG
+                    web10: web10,
+                    name: "anonymous",
+                    pic: contactIco,
+                    bio: "anonymous"
+                }
+            }
+        })
     }
-    web10SocialAdapter.AddContact = function (username, provider) {
+    web10SocialAdapter.loadContactAddresses = function () {
+        return web10SocialAdapter.read("contact-addresses");
+    }
+
+    web10SocialAdapter.loadContacts = function () {
+        return web10SocialAdapter.loadContactAddresses().then((response) => {
+            return response.data.map((c) => web10SocialAdapter.loadContact(c.web10))
+        });
+    }
+
+    web10SocialAdapter.addContact = function (web10) {
         return web10SocialAdapter
-            .create("contacts", {
-                username: username,
-                provider: provider,
+            .create("contact-addresses", {
+                web10: web10,
                 date_added: new Date(),
             })
     }
@@ -77,9 +103,9 @@ function web10SocialAdapterInit() {
     web10SocialAdapter.editIdentity = function ({ web10, pic, name, bio }) {
         const newId = { web10: web10, pic: pic, name: name, bio: bio }
         return web10SocialAdapter.update("identity", {}, { $set: newId })
-            .then((response) =>{
-                if (response.data.matchedCount===0){
-                  web10SocialAdapter.create("identity", newId)
+            .then((response) => {
+                if (response.data.matchedCount === 0) {
+                    web10SocialAdapter.create("identity", newId)
                 }
             })
         // .catch((error) => {
