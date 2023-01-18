@@ -23,7 +23,7 @@ function useInterface() {
     [I.currentContact, I.setCurrentContact] = React.useState(null);
     [I.searchContact, I.setSearchContact] = React.useState(null);
 
-    [I.feedPosts, I.setFeedPosts] = React.useState(mockFeed);
+    [I.feedPosts, I.setFeedPosts] = React.useState([]);
     [I.wallPosts, I.setWallPosts] = React.useState([]);
 
     [I.bulletin, I.setBulletin] = React.useState(mockBulletin);
