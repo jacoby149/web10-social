@@ -5,15 +5,29 @@ import Media from "./Media";
 
 function PostMaker({ I, postI }) {
 
-    function setHTML(html){
-        postI.setDraftPost({...postI.draftPost,html:html})
+    function readAsDataURL(file) {
+        return new Promise((resolve, reject) => {
+            const fr = new FileReader();
+            fr.onerror = reject;
+            fr.onload = () => {
+                resolve(fr.result);
+            }
+            fr.readAsDataURL(file);
+        });
     }
 
-    function addMedia(files,type) {
-        const links = [...postI.draftPost.media].concat(files.map((f)=>{
-            return {src:URL.createObjectURL(f),type:type}
-        }))
-        postI.setDraftPost({...postI.draftPost,media:links})
+    function setHTML(html) {
+        postI.setDraftPost({ ...postI.draftPost, html: html })
+    }
+
+    function addMedia(files, type) {
+        Promise.all(files.map(readAsDataURL))
+            .then((blobs) => {
+                const links = [...postI.draftPost.media].concat(blobs.map((blob) => {
+                    return { src: blob, type: type }
+                }))
+                postI.setDraftPost({ ...postI.draftPost, media: links })
+            })
     }
     const mediaItems = postI.draftPost.media.map(
         (item, index) => <Media I={I} postI={postI} type={item.type} src={item.src} key={index} idx={index}></Media>
@@ -29,7 +43,7 @@ function PostMaker({ I, postI }) {
                             <i onClick={postI.clearChanges} style={{ color: "orange", marginRight: "10px" }} className={"fa fa-2x fa-circle-xmark font-weight-bold"}></i> : ""
                         }
 
-                        {postI.mode === "create" && (postI.draftPost.html || postI.draftPost.media.length>0) ?
+                        {postI.mode === "create" && (postI.draftPost.html || postI.draftPost.media.length > 0) ?
                             <i onClick={postI.clearChanges} style={{ color: "orange", marginRight: "10px" }} className={"fa fa-2x fa-circle-xmark font-weight-bold"}></i> : ""
                         }
 
@@ -58,7 +72,7 @@ function PostMaker({ I, postI }) {
                 <div className="card-content">
                     <div className="content">
                         <div className="control">
-                            <textarea onChange={(e)=>setHTML(e.target.value)} className="textarea" value={postI.draftPost.html} placeholder="What is on your mind??"></textarea>
+                            <textarea onChange={(e) => setHTML(e.target.value)} className="textarea" value={postI.draftPost.html} placeholder="What is on your mind??"></textarea>
                         </div>
                         <div>
                             {mediaItems}
@@ -74,7 +88,7 @@ function PostMaker({ I, postI }) {
                             accept="video/*"
                             onChange={(event) => {
                                 const files = Object.values(event.target.files);
-                                addMedia(files,"video");
+                                addMedia(files, "video");
                             }}
                             multiple={true}
                         />
@@ -88,7 +102,7 @@ function PostMaker({ I, postI }) {
                             accept="image/*"
                             onChange={(event) => {
                                 const files = Object.values(event.target.files);
-                                addMedia(files,"image");
+                                addMedia(files, "image");
                             }}
                             multiple={true}
                         />

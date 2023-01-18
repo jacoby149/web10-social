@@ -136,16 +136,15 @@ function web10SocialAdapterInit() {
     }
 
     //TODO implement post functions
-    web10SocialAdapter.createPost = function (html, media) {
+    web10SocialAdapter.createPost = function ({html, media}) {
         return web10SocialAdapter.create("posts", {
             html: html,
             media: media,
             time: new Date(),
-            provider: web10SocialAdapter.readToken().provider,
-            username: web10SocialAdapter.readToken().username,
+            web10: `${web10SocialAdapter.readToken().provider}/${web10SocialAdapter.readToken().username}`
         })
     }
-    web10SocialAdapter.loadPosts = function () {
+    web10SocialAdapter.loadMyPosts = function () {
         return web10SocialAdapter.read("posts");
     }
     web10SocialAdapter.editPost = function (html, media) {

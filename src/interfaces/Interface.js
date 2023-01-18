@@ -42,21 +42,26 @@ function useInterface() {
 
     I.initApp = async function () {
         I.setMode("contacts");
+        // load contacts
         I.socialAdapter.loadContacts()
-        .then((response) => {
-            Promise.all(response).then((contacts)=>I.setContacts(contacts))
-        })
-
+            .then((response) => {
+                Promise.all(response).then((contacts) => I.setContacts(contacts))
+            })
+        //load identity
         I.socialAdapter.loadIdentity()
-                .then((response) => {
-                    const provider = I.socialAdapter.readToken()["provider"]
-                    const username = I.socialAdapter.readToken()["username"]
-                    const web10 = `${provider}/${username}`
-                    const id = response.data.length > 0 ?
-                        response.data[0] : defaultIdentity(web10)
-                    I.setIdentity(id);
-                    I.setDraftIdentity(id);
-                })
+            .then((response) => {
+                const provider = I.socialAdapter.readToken()["provider"]
+                const username = I.socialAdapter.readToken()["username"]
+                const web10 = `${provider}/${username}`
+                const id = response.data.length > 0 ?
+                    response.data[0] : defaultIdentity(web10)
+                I.setIdentity(id);
+                I.setDraftIdentity(id);
+            })
+        //load wall posts
+        I.socialAdapter.loadMyPosts().then((response) => {
+            I.setWallPosts(response.data);
+        })
     }
 
     I.login = function () {
@@ -130,20 +135,24 @@ function useInterface() {
         I.setFeedPosts(I.feedPosts.map(p => draftPost.id === p.id ? draftPost : p))
     }
     I.deletePost = function (id) {
-        I.setWallPosts(I.wallPosts.filter(p => id !== p.id))
-        I.setFeedPosts(I.feedPosts.filter(p => id !== p.id))
+        I.socialAdapter.deletePost(id).then(() => {
+            I.setWallPosts(I.wallPosts.filter(p => id !== p.id))
+            I.setFeedPosts(I.feedPosts.filter(p => id !== p.id))
+        })
     }
     I.createPost = function (draftPost) {
         // for now, randomly generate an id...
-        const randIDDraftPost = { ...draftPost, id: Math.random(1000000000000000) }
-        I.setWallPosts([randIDDraftPost].concat(I.wallPosts));
-        I.setFeedPosts([randIDDraftPost].concat(I.feedPosts));
+        I.socialAdapter.createPost(draftPost).then((response) => {
+            const IDedDraftPost = { ...draftPost, id: response.data._id }
+            I.setWallPosts([IDedDraftPost].concat(I.wallPosts));
+            I.setFeedPosts([IDedDraftPost].concat(I.feedPosts));
+        })
     }
 
     I.addContact = function () {
 
-        I.socialAdapter.addContact(I.searchContact.web10).then((response)=>{
-            I.setContacts([...I.contacts,I.searchContact]);
+        I.socialAdapter.addContact(I.searchContact.web10).then((response) => {
+            I.setContacts([...I.contacts, I.searchContact]);
             I.runSearch("");
         })
     }
