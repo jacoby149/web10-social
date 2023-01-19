@@ -26,7 +26,7 @@ function useInterface() {
     [I.feedPosts, I.setFeedPosts] = React.useState([]);
     [I.wallPosts, I.setWallPosts] = React.useState([]);
 
-    [I.bulletin, I.setBulletin] = React.useState(mockBulletin);
+    [I.bulletin, I.setBulletin] = React.useState([]);
 
     [I.identity, I.setIdentity] = React.useState();
     [I.draftIdentity, I.setDraftIdentity] = React.useState(I.identity);
@@ -57,6 +57,19 @@ function useInterface() {
                     response.data[0] : defaultIdentity(web10)
                 I.setIdentity(id);
                 I.setDraftIdentity(id);
+                return id
+            }).then((myID) => {
+
+                //load feed posts
+                I.socialAdapter.loadContactAddresses().then((response) => {
+                    const feedContacts = [...response.data, myID]
+                    Promise.all(feedContacts.map((c) => I.socialAdapter.loadPosts(c.web10)))
+                        .then((contactPostsList) => {
+                            const feedPosts = [...contactPostsList, I.wallPosts].flat();
+                            I.setFeedPosts(feedPosts.sort((p) => p.time).reverse())
+                        })
+                })
+
             })
         //load wall posts
         I.socialAdapter.loadMyPosts().then((response) => {

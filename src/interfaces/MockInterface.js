@@ -15,6 +15,7 @@ function useMockInterface() {
 
     [I.contacts, I.setContacts] = React.useState(mockContacts);
     [I.currentContact, I.setCurrentContact] = React.useState(I.contacts[0]);
+    [I.searchContact, I.setSearchContact] = React.useState(null);
 
     [I.feedPosts, I.setFeedPosts] = React.useState(mockFeed);
     [I.wallPosts, I.setWallPosts] = React.useState(mockWall);

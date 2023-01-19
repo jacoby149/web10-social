@@ -147,6 +147,13 @@ function web10SocialAdapterInit() {
     web10SocialAdapter.loadMyPosts = function () {
         return web10SocialAdapter.read("posts");
     }
+    web10SocialAdapter.loadPosts = function (web10) {
+        const [provider, user] = web10.split("/");
+        return web10SocialAdapter.read("posts", {}, user, provider)
+            .then((response)=>{
+                return response.data
+        })
+    }
     web10SocialAdapter.editPost = function (html, media) {
         web10SocialAdapter.update("posts", {
             html: html,
