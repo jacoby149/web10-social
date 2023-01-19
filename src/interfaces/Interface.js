@@ -68,8 +68,10 @@ function useInterface() {
                         .then((contactPostsList) => {
                             const feedPosts = [...contactPostsList, I.wallPosts].flat();
                             const sortedPosts = feedPosts
-                                .sort((a, b) => new Date(a.time).getTime() < new Date(b.time).getTime())
-                            console.log(sortedPosts)
+                                .sort((a, b) => { 
+                                    const [timeA,timeB] = [new Date(a.time),new Date(b.time)]
+                                    return timeB>timeA?1:-1
+                                })
                             I.setFeedPosts(sortedPosts)
                         })
                 })
