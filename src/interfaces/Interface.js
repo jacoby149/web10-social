@@ -7,6 +7,7 @@ import mockIdentity from '../mocks/MockIdentity';
 import mockBulletin from '../mocks/MockBulletin';
 import web10SocialAdapterInit from './Web10SocialAdapter';
 import defaultIdentity from '../mocks/defaultIdentity';
+import onlySettled from './onlySettled';
 
 function useInterface() {
     const I = {};
@@ -45,7 +46,7 @@ function useInterface() {
         // load contacts
         I.socialAdapter.loadContacts()
             .then((response) => {
-                Promise.all(response).then((contacts) => I.setContacts(contacts))
+                onlySettled(response).then((contacts) => I.setContacts(contacts))
             })
         //load identity
         I.socialAdapter.loadIdentity()
@@ -63,7 +64,7 @@ function useInterface() {
                 //load feed posts
                 I.socialAdapter.loadContactAddresses().then((response) => {
                     const feedContacts = [...response.data, myID]
-                    Promise.all(feedContacts.map((c) => I.socialAdapter.loadPosts(c.web10)))
+                    onlySettled(feedContacts.map((c) => I.socialAdapter.loadPosts(c.web10)))
                         .then((contactPostsList) => {
                             const feedPosts = [...contactPostsList, I.wallPosts].flat();
                             I.setFeedPosts(feedPosts.sort((p) => p.time).reverse())
@@ -138,7 +139,6 @@ function useInterface() {
     }
 
     I.isMe = function (web10) {
-        console.log(web10, I.identity.web10)
         return web10 === I.identity.web10
     }
 
