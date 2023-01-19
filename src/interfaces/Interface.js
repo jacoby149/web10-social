@@ -67,19 +67,22 @@ function useInterface() {
                     onlySettled(feedContacts.map((c) => I.socialAdapter.loadPosts(c.web10)))
                         .then((contactPostsList) => {
                             const feedPosts = [...contactPostsList, I.wallPosts].flat();
-                            I.setFeedPosts(feedPosts.sort((p) => p.time).reverse())
+                            const sortedPosts = feedPosts
+                                .sort((a, b) => new Date(a.time).getTime() < new Date(b.time).getTime())
+                            console.log(sortedPosts)
+                            I.setFeedPosts(sortedPosts)
                         })
                 })
 
             })
         //load wall posts
         I.socialAdapter.loadMyPosts().then((response) => {
-            I.setWallPosts(response.data);
+            I.setWallPosts(response.data.reverse());
         })
     }
 
     I.login = function () {
-        I.socialAdapter.openAuthPortal();
+        I.socialAdapter.login();
     }
     I.logout = function () {
         I.socialAdapter.signOut();

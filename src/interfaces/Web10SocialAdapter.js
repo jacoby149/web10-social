@@ -9,6 +9,10 @@ function web10SocialAdapterInit() {
         { ...wapiInit("http://auth.localhost", "rtc.localhost") } :
         { ...wapiInit("https://auth.web10.app", "rtc.web10.app") }
 
+    web10SocialAdapter.login = function(){
+        web10SocialAdapter.openAuthPortal();
+    }
+
     const sirs = [
         {
             service: "identity",
