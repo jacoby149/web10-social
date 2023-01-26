@@ -9,7 +9,7 @@ function web10SocialAdapterInit() {
         { ...wapiInit("http://auth.localhost", "rtc.localhost") } :
         { ...wapiInit("https://auth.web10.app", "rtc.web10.app") }
 
-    web10SocialAdapter.login = function(){
+    web10SocialAdapter.login = function () {
         web10SocialAdapter.openAuthPortal();
     }
 
@@ -37,7 +37,7 @@ function web10SocialAdapterInit() {
             cross_origins: ["localhost", "web10social.netlify.app", "social.web10.app"],
         },
         {
-            service: "messages",
+            service: "message-inbox",
             cross_origins: ["localhost", "web10social.netlify.app", "social.web10.app"],
             whitelist: [
                 {
@@ -46,6 +46,10 @@ function web10SocialAdapterInit() {
                     create: true
                 }
             ]
+        },
+        {
+            service: "message-outbox",
+            cross_origins: ["localhost", "web10social.netlify.app", "social.web10.app"],
         },
         {
             service: "posts",
@@ -121,26 +125,63 @@ function web10SocialAdapterInit() {
         // })
     }
 
-    web10SocialAdapter.CreateMessage = function (message) {
-        return web10SocialAdapter.create("messages", {
-            message: message,
-            sentTime: new Date(),
-            provider: web10SocialAdapter.readToken().provider,
-            web10: web10SocialAdapter.readToken().username,
-        })
+    web10SocialAdapter.CreateMessage = function (message, recipient) {
+        const [recipientProvider, recipientUsername] = recipient.split("/");
+        return web10SocialAdapter.create(
+            "message-inbox",
+            {
+                message: message,
+                sentTime: new Date(),
+                web10: `${web10SocialAdapter.readToken().provider}/${web10SocialAdapter.readToken().username}`
+            },
+            recipientUsername,
+            recipientProvider)
+            .then(() =>
+                web10SocialAdapter.create("message-outbox", {
+                    message: message,
+                    sentTime: new Date(),
+                    web10: `${recipientProvider}/${recipientUsername}`
+                }))
     }
-    web10SocialAdapter.loadMessages = function () {
-        return web10SocialAdapter.read("messages");
+    web10SocialAdapter.loadRecievedMessages = function (web10) {
+        return web10SocialAdapter.read("message-inbox", { web10: web10 })
+            .then((r) => {
+                r.data.map(e => {
+                    return {
+                        ...e,
+                        direction: "in"
+                    }
+                })
+            });
     }
-    web10SocialAdapter.deleteMessages = function (ids) {
-        const responses = ids.map((id) => {
-            return web10SocialAdapter.delete("messages", { id: id })
+    web10SocialAdapter.loadSentMessages = function (web10) {
+        return web10SocialAdapter.read("message-outbox", { web10: web10 })
+            .then((r) => {
+                r.data.map(e => {
+                    return {
+                        ...e,
+                        direction: "out"
+                    }
+                })
+            });
+    }
+    web10SocialAdapter.deleteMessages = function (messages) {
+        const mOut = messages.filter((m) => m.direction === "out")
+        const mIn = messages.filter((m) => m.direction === "in")
+        const responsesIn = mIn.map((m) => {
+            return web10SocialAdapter.delete("messages-inbox", { id: m.id })
         })
-        return responses
+        const responsesOut = mOut.map((m) => {
+            return web10SocialAdapter.delete("messages-outbox", { id: m.id })
+        })
+        return {
+            "in": responsesIn,
+            "out": responsesOut
+        }
     }
 
     //TODO implement post functions
-    web10SocialAdapter.createPost = function ({html, media}) {
+    web10SocialAdapter.createPost = function ({ html, media }) {
         return web10SocialAdapter.create("posts", {
             html: html,
             media: media,
@@ -154,9 +195,9 @@ function web10SocialAdapterInit() {
     web10SocialAdapter.loadPosts = function (web10) {
         const [provider, user] = web10.split("/");
         return web10SocialAdapter.read("posts", {}, user, provider)
-            .then((response)=>{
+            .then((response) => {
                 return response.data
-        })
+            })
     }
     web10SocialAdapter.editPost = function (html, media) {
         web10SocialAdapter.update("posts", {
