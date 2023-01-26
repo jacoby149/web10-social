@@ -160,7 +160,8 @@ function web10SocialAdapterInit() {
                 r.data.map(e => {
                     return {
                         ...e,
-                        direction: "out"
+                        direction: "out",
+                        web10: `${web10SocialAdapter.readToken().provider}/${web10SocialAdapter.readToken().username}`
                     }
                 })
             });

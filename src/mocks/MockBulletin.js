@@ -6,7 +6,7 @@ const mockBulletin = [
             <div class="columns is-centered">
                 <div class="column has-text-centered is-4">
                     <i>
-                        <a href="https://jacobhoffman.tk/lessons/lesson6/index.html">Snake Game</a> Hi Score : 37
+                        <a href="https://jacobhoffman.tk/fps">Ball Shooter</a> Friends Bounced : 37
                     </i>
                 </div>
             </div>
@@ -28,7 +28,7 @@ const mockBulletin = [
         height: "100px",
         html: `
         <div style="height:100px;overflow:hidden;position:relative">
-            <iframe width="100%" height="300px" style="position:absolute;top:-200px;" src="https://mamafleet.github.io/3dpainter/?user=praemium-cranium&painting=main"></iframe>
+            <iframe width="100%" height="300px" style="position:absolute;top:-200px;" src="https://mamafleet.github.io/3dpainter/?user=jacoby149&painting=main"></iframe>
         </div>
         `
     },

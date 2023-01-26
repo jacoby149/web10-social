@@ -27,7 +27,7 @@ function useInterface() {
     [I.feedPosts, I.setFeedPosts] = React.useState([]);
     [I.wallPosts, I.setWallPosts] = React.useState([]);
 
-    [I.bulletin, I.setBulletin] = React.useState([]);
+    [I.bulletin, I.setBulletin] = React.useState(mockBulletin);
 
     [I.identity, I.setIdentity] = React.useState();
     [I.draftIdentity, I.setDraftIdentity] = React.useState(I.identity);
@@ -89,6 +89,7 @@ function useInterface() {
     I.logout = function () {
         I.socialAdapter.signOut();
         I.setMode("login");
+        window.location.reload();
     }
 
     I.runSearch = function (query) {
@@ -197,8 +198,8 @@ function useInterface() {
 
     I.chat = function (web10) {
         I.setCurrentContact(I.getContact(web10))
-        //I.setCurrentMessages
         I.setMode("chat");
+        I.getMessages();
     }
 
     I.selectMessage = function (id) {
