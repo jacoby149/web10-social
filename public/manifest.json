@@ -13,10 +13,11 @@
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "alternative.png",
       "type": "image/png",
       "sizes": "512x512"
     }
+
   ],
   "start_url": ".",
   "display": "standalone",

@@ -41,7 +41,7 @@ function useInterface() {
         console.log("the real web10 interface!")
     }
 
-    I.initApp = async function () {
+    I.initApp = function () {
         I.setMode("contacts");
         // load contacts
         I.socialAdapter.loadContacts()
