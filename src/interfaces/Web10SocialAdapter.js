@@ -4,7 +4,7 @@ import contactIco from "../assets/images/Contact.png"
 function web10SocialAdapterInit() {
 
     // ports in the convenient web10 functionality into the social adapter.
-    const local = true
+    const local = window.location.protocol === "http:";
     const web10SocialAdapter = local ?
         { ...wapiInit("http://auth.localhost", "rtc.localhost") } :
         { ...wapiInit("https://auth.web10.app", "rtc.web10.app") }
