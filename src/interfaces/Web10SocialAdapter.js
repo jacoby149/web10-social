@@ -119,13 +119,6 @@ function web10SocialAdapterInit() {
                     web10SocialAdapter.create("identity", newId)
                 }
             })
-        // .catch((error) => {
-        //     console.log(error)
-        //     //TODO if an update_one fails BECAUSE there are NO records, create a record...
-        //     if (error.detail === "TODO DO THIS!!!") {
-        //         web10SocialAdapter.create("identity", { bio: "add a bio!" })
-        //     }
-        // })
     }
 
     //messaging related functions

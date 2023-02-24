@@ -1,31 +1,6 @@
 web10 social 1.0.0
-initialize social-identity
-allow CRUD of social-identity
-allow CRUD of posts
-test contact searching
-allow addition of contacts
-allow deletion of contacts
-allow CRUD of messages
-disable the bulletin.
-PWA ify web10 social.
-
+get messaging WITH webrtc working.
+make a web10 tutorial with a posts integration.
+make a web10 tutorial with a messages integration.
+get searching working.
 web10 should have some kind of groups...
-
-web10 social 1.0.1
-go and fix the second authenticator ->
-hook up web10 social to the second authenticator
-
-hook up the web10 services to :
-    - social-bulletin
-    - social-posts
-    - contacts [ make the add contacts effect the data model ]
-    - messages
-    - social-identity
-add logo / PWA functions
-
-step 2 : hook up simple snake game
-    - read bio where type = snake score
-    - empty? insert
-    - update bio where type = snake_score set hi score.
-
-step 4 : make the second authenticator / web10 app store.
