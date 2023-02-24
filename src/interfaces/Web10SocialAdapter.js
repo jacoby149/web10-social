@@ -4,7 +4,9 @@ import contactIco from "../assets/images/Contact.png"
 function web10SocialAdapterInit() {
 
     // ports in the convenient web10 functionality into the social adapter.
-    const local = window.location.protocol === "http:";
+    const queryParameters = new URLSearchParams(window.location.search)
+    const local = queryParameters.get("local")
+
     const web10SocialAdapter = local ?
         { ...wapiInit("http://auth.localhost", "rtc.localhost") } :
         { ...wapiInit("https://auth.web10.app", "rtc.web10.app") }
@@ -65,6 +67,7 @@ function web10SocialAdapterInit() {
     ];
     web10SocialAdapter.SMROnReady(sirs, []);
 
+    //contact related functions
     web10SocialAdapter.loadContact = function (web10) {
         const [provider, user] = web10.split("/");
         return web10SocialAdapter.read("identity", {}, user, provider).then((response) => {
@@ -125,23 +128,28 @@ function web10SocialAdapterInit() {
         // })
     }
 
-    web10SocialAdapter.CreateMessage = function (message, recipient) {
+    //messaging related functions
+    web10SocialAdapter.createMessage = function (message, recipient) {
         const [recipientProvider, recipientUsername] = recipient.split("/");
-        return web10SocialAdapter.create(
-            "message-inbox",
-            {
-                message: message,
-                sentTime: new Date(),
-                web10: `${web10SocialAdapter.readToken().provider}/${web10SocialAdapter.readToken().username}`
-            },
-            recipientUsername,
-            recipientProvider)
-            .then(() =>
-                web10SocialAdapter.create("message-outbox", {
-                    message: message,
-                    sentTime: new Date(),
-                    web10: `${recipientProvider}/${recipientUsername}`
-                }))
+        const messageOut = {
+            message: message,
+            sentTime: new Date(),
+            web10: `${recipientProvider}/${recipientUsername}`
+        }
+        const messageIn = {
+            message: message,
+            sentTime: new Date(),
+            web10: `${web10SocialAdapter.readToken().provider}/${web10SocialAdapter.readToken().username}`
+        }
+
+        // create the message to the inbox of recipient + your outbox
+        return web10SocialAdapter.create("message-inbox", messageIn, recipientUsername, recipientProvider)
+            .then(() => {
+                return web10SocialAdapter.create("message-outbox", messageOut)
+            }).then(() => {
+                // return the message for the UI
+                return { ...messageOut, direction: "out" }
+            })
     }
     web10SocialAdapter.loadRecievedMessages = function (web10) {
         return web10SocialAdapter.read("message-inbox", { web10: web10 })
@@ -166,6 +174,7 @@ function web10SocialAdapterInit() {
                 })
             });
     }
+
     web10SocialAdapter.deleteMessages = function (messages) {
         const mOut = messages.filter((m) => m.direction === "out")
         const mIn = messages.filter((m) => m.direction === "in")
@@ -181,7 +190,7 @@ function web10SocialAdapterInit() {
         }
     }
 
-    //TODO implement post functions
+    //post related functions
     web10SocialAdapter.createPost = function ({ html, media }) {
         return web10SocialAdapter.create("posts", {
             html: html,
@@ -210,7 +219,6 @@ function web10SocialAdapterInit() {
         return web10SocialAdapter.delete("posts", { id: id })
     }
 
-    //TODO implement bulletin functions
     web10SocialAdapter.loadBulletins = function () {
         return web10SocialAdapter.read("bulletin");
     }

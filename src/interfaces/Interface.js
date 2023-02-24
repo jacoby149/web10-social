@@ -7,7 +7,7 @@ import mockIdentity from '../mocks/MockIdentity';
 import mockBulletin from '../mocks/MockBulletin';
 import web10SocialAdapterInit from './Web10SocialAdapter';
 import defaultIdentity from '../mocks/defaultIdentity';
-import onlySettled from './onlySettled';
+import { onlySettled, timeSortSettled } from './settledHelpers';
 
 function useInterface() {
     const I = {};
@@ -67,11 +67,7 @@ function useInterface() {
                     onlySettled(feedContacts.map((c) => I.socialAdapter.loadPosts(c.web10)))
                         .then((contactPostsList) => {
                             const feedPosts = [...contactPostsList, I.wallPosts].flat();
-                            const sortedPosts = feedPosts
-                                .sort((a, b) => { 
-                                    const [timeA,timeB] = [new Date(a.time),new Date(b.time)]
-                                    return timeB>timeA?1:-1
-                                })
+                            const sortedPosts = timeSortSettled(feedPosts)
                             I.setFeedPosts(sortedPosts)
                         })
                 })
@@ -122,7 +118,6 @@ function useInterface() {
                 //case "contacts": return I.setContacts(mockContacts.filter(contactFilter));
             }
         }
-        filter();
         if (I.mode === "contacts") {
             const web10 = query.includes("/") ? query : `api.web10.app/${query}`;
             const [provider, user] = web10.split("/")
@@ -196,10 +191,21 @@ function useInterface() {
         I.setBulletin(I.bulletin.filter((b) => b.id !== id));
     }
 
+    I.getMessages = function (web10) {
+        messageRequests = [
+            I.socialAdapter.loadSentMessages(web10),
+            I.socialAdapter.loadRecievedMessages(web10)
+        ]
+        I.allSettled(messageRequests).then((messages) => {
+            const sortedMessages = timeSortSettled(messages);
+            I.setCurrentMessages(sortedMessages);
+        })
+    }
+
     I.chat = function (web10) {
         I.setCurrentContact(I.getContact(web10))
         I.setMode("chat");
-        I.getMessages();
+        I.getMessages(web10);
     }
 
     I.selectMessage = function (id) {
@@ -208,23 +214,25 @@ function useInterface() {
     I.deSelectMessage = function (id) {
         I.setSelectedMessages(I.selectedMessages.filter((m) => m.id !== id))
     }
+
     I.deleteSelectedMessages = function () {
-        const current = I.currentMessages.filter((m) => !I.selectedMessages.includes(m))
-        I.setCurrentMessages(current);
-        I.setSelectedMessages([]);
+        I.socialAdapter.deleteMessages(I.selectedMessages).then(() => {
+            const current = I.currentMessages.filter((m) => !I.selectedMessages.includes(m))
+            I.setCurrentMessages(current);
+            I.setSelectedMessages([]);
+        })
     }
+
     I.resetSelectedMessages = function () {
         I.setSelectedMessages([]);
     }
 
-    I.sendMessage = function (string) {
-        const message = {
-            id: Math.random(1000000000000000),
-            message: string,
-            sentTime: String(new Date()),
-            web10: I.identity.web10,
-        }
-        I.setCurrentMessages([...I.currentMessages].concat([message]))
+    I.sendMessage = function (messageString) {
+        I.socialAdapter.createMessage(messageString, I.currentContact).then(
+            (m) => {
+                I.setCurrentMessages([...I.currentMessages].concat([m]))
+            }
+        )
     }
 
 
