@@ -42,7 +42,7 @@ function useInterface() {
     }
 
     I.initApp = function () {
-        I.socialAdapter.initP2P(I.reloadMessages,"web10-social-device");
+        I.socialAdapter.initP2P(I.reloadMessages, "web10-social-device");
         I.setMode("contacts");
         // load contacts
         I.socialAdapter.loadContacts()
@@ -146,8 +146,10 @@ function useInterface() {
 
 
     I.savePostChanges = function (draftPost) {
-        I.setWallPosts(I.wallPosts.map(p => draftPost._id === p._id ? draftPost : p))
-        I.setFeedPosts(I.feedPosts.map(p => draftPost._id === p._id ? draftPost : p))
+        I.socialAdapter.editPost(draftPost._id,draftPost.html,draftPost.media).then(() => {
+            I.setWallPosts(I.wallPosts.map(p => draftPost._id === p._id ? draftPost : p))
+            I.setFeedPosts(I.feedPosts.map(p => draftPost._id === p._id ? draftPost : p))
+        })
     }
     I.deletePost = function (id) {
         I.socialAdapter.deletePost(id).then(() => {
@@ -198,13 +200,13 @@ function useInterface() {
             I.socialAdapter.loadRecievedMessages(web10)
         ]
         onlySettled(messageRequests).then((messages) => {
-            const sortedMessages = sortSettled(messages,"sentTime",-1);
+            const sortedMessages = sortSettled(messages, "sentTime", -1);
             I.setCurrentMessages(sortedMessages);
         })
     }
 
     //want to see what happens...
-    I.reloadMessages = function(data){
+    I.reloadMessages = function (data) {
         console.log(data)
     }
 

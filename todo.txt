@@ -1,5 +1,5 @@
 web10 social 1.0.0
-get messaging WITH webrtc working.
+get webRTC working
 make a web10 tutorial with a posts integration.
 make a web10 tutorial with a messages integration.
 get searching working.

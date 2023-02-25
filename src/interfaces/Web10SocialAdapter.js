@@ -183,10 +183,10 @@ function web10SocialAdapterInit() {
         const mOut = messages.filter((m) => m.direction === "out")
         const mIn = messages.filter((m) => m.direction === "in")
         const responsesIn = mIn.map((m) => {
-            return web10SocialAdapter.delete("messages-inbox", { _id: m._id })
+            return web10SocialAdapter.delete("message-inbox", { _id: m._id })
         })
         const responsesOut = mOut.map((m) => {
-            return web10SocialAdapter.delete("messages-outbox", { _id: m._id })
+            return web10SocialAdapter.delete("message-outbox", { _id: m._id })
         })
         return Promise.allSettled([responsesIn,responsesOut])
     }
@@ -210,11 +210,11 @@ function web10SocialAdapterInit() {
                 return response.data
             })
     }
-    web10SocialAdapter.editPost = function (html, media) {
-        web10SocialAdapter.update("posts", {
+    web10SocialAdapter.editPost = function (id, html, media) {
+        return web10SocialAdapter.update("posts", {_id:id}, {$set:{
             html: html,
             media: media,
-        })
+        }})
     }
     web10SocialAdapter.deletePost = function (id) {
         return web10SocialAdapter.delete("posts", { _id: id })
