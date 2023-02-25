@@ -4,14 +4,23 @@ const onlySettled = promises => Promise.allSettled(promises)
             .map(p => p.value)
     })
 
-const timeSortSettled = function (responseDatas) {
+const sortSettled = function (responseDatas,key="time",direction=1) {
     const flatResponseDatas = responseDatas.flat();
     const timeSortedData = flatResponseDatas
         .sort((a, b) => {
-            const [timeA, timeB] = [new Date(a.time), new Date(b.time)]
-            return timeB > timeA ? 1 : -1
+            const [timeA, timeB] = [new Date(a[key]), new Date(b[key])]
+            return timeB > timeA ? 1*direction : -1*direction
         })
     return timeSortedData;
 }
 
-export {onlySettled,timeSortSettled};
+// IDEA, the web10 data manager. to handle Decentralized pagination.
+//TODO add a pagination helper, with a react state for the
+// PROBLEM - pages of data from different sources. want to pull it in a sorted order.
+// SOLUTION - 
+// pull n*x entries from n sources. 
+// sort into 1 big source.
+// when the xth datapoint of a source is reached, request another page.
+// do so with a built in web10 function.
+
+export {onlySettled,sortSettled};

@@ -104,8 +104,8 @@ function web10SocialAdapterInit() {
                 date_added: new Date(),
             })
     }
-    web10SocialAdapter.deleteContacts = function (contactID) {
-        return web10SocialAdapter.delete("contacts", { id: contactID })
+    web10SocialAdapter.deleteContact = function (contactID) {
+        return web10SocialAdapter.delete("contacts", { _id: contactID })
     }
 
     web10SocialAdapter.loadIdentity = function () {
@@ -124,30 +124,41 @@ function web10SocialAdapterInit() {
     //messaging related functions
     web10SocialAdapter.createMessage = function (message, recipient) {
         const [recipientProvider, recipientUsername] = recipient.split("/");
-        const messageOut = {
+        const toMyOutbox = {
             message: message,
             sentTime: new Date(),
             web10: `${recipientProvider}/${recipientUsername}`
         }
-        const messageIn = {
+        const toRecipientInbox = {
             message: message,
             sentTime: new Date(),
             web10: `${web10SocialAdapter.readToken().provider}/${web10SocialAdapter.readToken().username}`
         }
 
         // create the message to the inbox of recipient + your outbox
-        return web10SocialAdapter.create("message-inbox", messageIn, recipientUsername, recipientProvider)
+        return web10SocialAdapter.create("message-inbox", toRecipientInbox, recipientUsername, recipientProvider)
             .then(() => {
-                return web10SocialAdapter.create("message-outbox", messageOut)
+                // web10SocialAdapter.send(
+                //     recipientProvider,
+                //     recipientUsername,
+                //     window.location.hostname,
+                //     "web10-social-device",
+                //     toRecipientInbox
+                // )
+                return web10SocialAdapter.create("message-outbox", toMyOutbox)
             }).then(() => {
                 // return the message for the UI
-                return { ...messageOut, direction: "out" }
+                return {
+                    ...toMyOutbox,
+                    web10: `${web10SocialAdapter.readToken().provider}/${web10SocialAdapter.readToken().username}`,
+                    direction: "out"
+                }
             })
     }
     web10SocialAdapter.loadRecievedMessages = function (web10) {
         return web10SocialAdapter.read("message-inbox", { web10: web10 })
             .then((r) => {
-                r.data.map(e => {
+                return r.data.map(e => {
                     return {
                         ...e,
                         direction: "in"
@@ -158,7 +169,7 @@ function web10SocialAdapterInit() {
     web10SocialAdapter.loadSentMessages = function (web10) {
         return web10SocialAdapter.read("message-outbox", { web10: web10 })
             .then((r) => {
-                r.data.map(e => {
+                return r.data.map(e => {
                     return {
                         ...e,
                         direction: "out",
@@ -172,15 +183,12 @@ function web10SocialAdapterInit() {
         const mOut = messages.filter((m) => m.direction === "out")
         const mIn = messages.filter((m) => m.direction === "in")
         const responsesIn = mIn.map((m) => {
-            return web10SocialAdapter.delete("messages-inbox", { id: m.id })
+            return web10SocialAdapter.delete("messages-inbox", { _id: m._id })
         })
         const responsesOut = mOut.map((m) => {
-            return web10SocialAdapter.delete("messages-outbox", { id: m.id })
+            return web10SocialAdapter.delete("messages-outbox", { _id: m._id })
         })
-        return {
-            "in": responsesIn,
-            "out": responsesOut
-        }
+        return Promise.allSettled([responsesIn,responsesOut])
     }
 
     //post related functions
@@ -209,14 +217,14 @@ function web10SocialAdapterInit() {
         })
     }
     web10SocialAdapter.deletePost = function (id) {
-        return web10SocialAdapter.delete("posts", { id: id })
+        return web10SocialAdapter.delete("posts", { _id: id })
     }
 
     web10SocialAdapter.loadBulletins = function () {
         return web10SocialAdapter.read("bulletin");
     }
     web10SocialAdapter.deleteBulletin = function (id) {
-        return web10SocialAdapter.delete("bulletin", { id: id })
+        return web10SocialAdapter.delete("bulletin", { _id: id })
     }
 
     return web10SocialAdapter;

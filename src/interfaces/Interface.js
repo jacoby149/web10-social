@@ -7,7 +7,7 @@ import mockIdentity from '../mocks/MockIdentity';
 import mockBulletin from '../mocks/MockBulletin';
 import web10SocialAdapterInit from './Web10SocialAdapter';
 import defaultIdentity from '../mocks/defaultIdentity';
-import { onlySettled, timeSortSettled } from './settledHelpers';
+import { onlySettled, sortSettled } from './settledHelpers';
 
 function useInterface() {
     const I = {};
@@ -42,6 +42,7 @@ function useInterface() {
     }
 
     I.initApp = function () {
+        I.socialAdapter.initP2P(I.reloadMessages,"web10-social-device");
         I.setMode("contacts");
         // load contacts
         I.socialAdapter.loadContacts()
@@ -66,8 +67,8 @@ function useInterface() {
                     const feedContacts = [...response.data, myID]
                     onlySettled(feedContacts.map((c) => I.socialAdapter.loadPosts(c.web10)))
                         .then((contactPostsList) => {
-                            const feedPosts = [...contactPostsList, I.wallPosts].flat();
-                            const sortedPosts = timeSortSettled(feedPosts)
+                            const feedPosts = [...contactPostsList, I.wallPosts];
+                            const sortedPosts = sortSettled(feedPosts)
                             I.setFeedPosts(sortedPosts)
                         })
                 })
@@ -145,13 +146,13 @@ function useInterface() {
 
 
     I.savePostChanges = function (draftPost) {
-        I.setWallPosts(I.wallPosts.map(p => draftPost.id === p.id ? draftPost : p))
-        I.setFeedPosts(I.feedPosts.map(p => draftPost.id === p.id ? draftPost : p))
+        I.setWallPosts(I.wallPosts.map(p => draftPost._id === p._id ? draftPost : p))
+        I.setFeedPosts(I.feedPosts.map(p => draftPost._id === p._id ? draftPost : p))
     }
     I.deletePost = function (id) {
         I.socialAdapter.deletePost(id).then(() => {
-            I.setWallPosts(I.wallPosts.filter(p => id !== p.id))
-            I.setFeedPosts(I.feedPosts.filter(p => id !== p.id))
+            I.setWallPosts(I.wallPosts.filter(p => id !== p._id))
+            I.setFeedPosts(I.feedPosts.filter(p => id !== p._id))
         })
     }
     I.createPost = function (draftPost) {
@@ -172,7 +173,7 @@ function useInterface() {
     }
 
     I.deleteCurrentContact = function () {
-        I.setContacts(I.contacts.filter((c) => c.id !== I.currentContact.id));
+        I.setContacts(I.contacts.filter((c) => c._id !== I.currentContact._id));
         I.setMode("contacts");
     }
 
@@ -188,18 +189,23 @@ function useInterface() {
     }
 
     I.deleteBulletin = function (id) {
-        I.setBulletin(I.bulletin.filter((b) => b.id !== id));
+        I.setBulletin(I.bulletin.filter((b) => b._id !== id));
     }
 
     I.getMessages = function (web10) {
-        messageRequests = [
+        const messageRequests = [
             I.socialAdapter.loadSentMessages(web10),
             I.socialAdapter.loadRecievedMessages(web10)
         ]
-        I.allSettled(messageRequests).then((messages) => {
-            const sortedMessages = timeSortSettled(messages);
+        onlySettled(messageRequests).then((messages) => {
+            const sortedMessages = sortSettled(messages,"sentTime",-1);
             I.setCurrentMessages(sortedMessages);
         })
+    }
+
+    //want to see what happens...
+    I.reloadMessages = function(data){
+        console.log(data)
     }
 
     I.chat = function (web10) {
@@ -209,10 +215,10 @@ function useInterface() {
     }
 
     I.selectMessage = function (id) {
-        I.setSelectedMessages(I.currentMessages.filter((m) => m.id === id).concat(I.selectedMessages))
+        I.setSelectedMessages(I.currentMessages.filter((m) => m._id === id).concat(I.selectedMessages))
     }
     I.deSelectMessage = function (id) {
-        I.setSelectedMessages(I.selectedMessages.filter((m) => m.id !== id))
+        I.setSelectedMessages(I.selectedMessages.filter((m) => m._id !== id))
     }
 
     I.deleteSelectedMessages = function () {
@@ -228,7 +234,7 @@ function useInterface() {
     }
 
     I.sendMessage = function (messageString) {
-        I.socialAdapter.createMessage(messageString, I.currentContact).then(
+        I.socialAdapter.createMessage(messageString, I.currentContact.web10).then(
             (m) => {
                 I.setCurrentMessages([...I.currentMessages].concat([m]))
             }

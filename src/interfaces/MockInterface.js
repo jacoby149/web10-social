@@ -89,12 +89,12 @@ function useMockInterface() {
 
 
     I.savePostChanges = function (draftPost) {
-        I.setWallPosts(I.wallPosts.map(p => draftPost.id === p.id ? draftPost : p))
-        I.setFeedPosts(I.feedPosts.map(p => draftPost.id === p.id ? draftPost : p))
+        I.setWallPosts(I.wallPosts.map(p => draftPost._id === p._id ? draftPost : p))
+        I.setFeedPosts(I.feedPosts.map(p => draftPost._id === p._id ? draftPost : p))
     }
     I.deletePost = function (id) {
-        I.setWallPosts(I.wallPosts.filter(p => id !== p.id))
-        I.setFeedPosts(I.feedPosts.filter(p => id !== p.id))
+        I.setWallPosts(I.wallPosts.filter(p => id !== p._id))
+        I.setFeedPosts(I.feedPosts.filter(p => id !== p._id))
     }
     I.createPost = function (draftPost) {
         // for now, randomly generate an id...
@@ -104,7 +104,7 @@ function useMockInterface() {
     }
 
     I.deleteCurrentContact = function () {
-        I.setContacts(I.contacts.filter((c) => c.id !== I.currentContact.id));
+        I.setContacts(I.contacts.filter((c) => c._id !== I.currentContact._id));
         I.setMode("contacts");
     }
 
@@ -116,7 +116,7 @@ function useMockInterface() {
     }
 
     I.deleteBulletin = function (id) {
-        I.setBulletin(I.bulletin.filter((b) => b.id !== id));
+        I.setBulletin(I.bulletin.filter((b) => b._id !== id));
     }
 
     I.chat = function (web10) {
@@ -126,10 +126,10 @@ function useMockInterface() {
     }
 
     I.selectMessage = function (id) {
-        I.setSelectedMessages(I.currentMessages.filter((m) => m.id === id).concat(I.selectedMessages))
+        I.setSelectedMessages(I.currentMessages.filter((m) => m._id === id).concat(I.selectedMessages))
     }
     I.deSelectMessage = function (id) {
-        I.setSelectedMessages(I.selectedMessages.filter((m) => m.id !== id))
+        I.setSelectedMessages(I.selectedMessages.filter((m) => m._id !== id))
     }
     I.deleteSelectedMessages = function () {
         const current = I.currentMessages.filter((m) => !I.selectedMessages.includes(m))

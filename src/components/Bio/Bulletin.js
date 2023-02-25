@@ -21,7 +21,7 @@ function BulletinItem({ I, bulletin }) {
         <R l bb s={bulletin.height} theme={edit ? "brick" : I.theme} >
             {edit ?
                 <C
-                onClick={()=>deleteBulletin(bulletin.id)}
+                onClick={()=>deleteBulletin(bulletin._id)}
                     t br h ha="center" p={"0px"} s={"30px"}>
                     <i style={{ color: "pink" }} className={"fa fa-trash font-weight-bold"}></i>
                 </C> :

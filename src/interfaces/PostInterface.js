@@ -44,7 +44,7 @@ function usePostInterface(I, post = null) {
         postI.clearChanges();
     }
     postI.deletePost = function () {
-        I.deletePost(postI.post.id);
+        I.deletePost(postI.post._id);
     }
 
     return postI;
