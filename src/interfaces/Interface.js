@@ -7,12 +7,16 @@ import mockIdentity from '../mocks/MockIdentity';
 import mockBulletin from '../mocks/MockBulletin';
 import web10SocialAdapterInit from './Web10SocialAdapter';
 import defaultIdentity from '../mocks/defaultIdentity';
-import onlySettled from './onlySettled';
+import { onlySettled, sortSettled } from './settledHelpers';
+import useState from 'react-usestateref';
 
 function useInterface() {
     const I = {};
+
     //initialize web10
-    I.socialAdapter = web10SocialAdapterInit();
+    I._socialAdapter = React.useRef(web10SocialAdapterInit());
+    I.socialAdapter = I._socialAdapter.current;
+
     //initialize frontend states
     [I.theme, I.setTheme] = React.useState("dark");
     [I.menuCollapsed, I.setMenuCollapsed] = React.useState(true);
@@ -21,7 +25,7 @@ function useInterface() {
 
     [I.contactAddresses, I.setContactAddresses] = React.useState([]);
     [I.contacts, I.setContacts] = React.useState([]);
-    [I.currentContact, I.setCurrentContact] = React.useState(null);
+    [I.currentContact, I.setCurrentContact,I.currentContactRef] = useState(null);
     [I.searchContact, I.setSearchContact] = React.useState(null);
 
     [I.feedPosts, I.setFeedPosts] = React.useState([]);
@@ -32,7 +36,7 @@ function useInterface() {
     [I.identity, I.setIdentity] = React.useState();
     [I.draftIdentity, I.setDraftIdentity] = React.useState(I.identity);
 
-    [I.currentMessages, I.setCurrentMessages] = React.useState([]);
+    [I.currentMessages, I.setCurrentMessages,I.currentMessagesRef] = useState([]);
     [I.selectedMessages, I.setSelectedMessages] = React.useState([]);
     [I.typingIndicator, I.setTypingIndicator] = React.useState("Emily is typing ...");
 
@@ -42,6 +46,7 @@ function useInterface() {
     }
 
     I.initApp = function () {
+        I.socialAdapter.initP2P(I.reloadMessages, "web10-social-device");
         I.setMode("contacts");
         // load contacts
         I.socialAdapter.loadContacts()
@@ -66,12 +71,8 @@ function useInterface() {
                     const feedContacts = [...response.data, myID]
                     onlySettled(feedContacts.map((c) => I.socialAdapter.loadPosts(c.web10)))
                         .then((contactPostsList) => {
-                            const feedPosts = [...contactPostsList, I.wallPosts].flat();
-                            const sortedPosts = feedPosts
-                                .sort((a, b) => { 
-                                    const [timeA,timeB] = [new Date(a.time),new Date(b.time)]
-                                    return timeB>timeA?1:-1
-                                })
+                            const feedPosts = [...contactPostsList, I.wallPosts];
+                            const sortedPosts = sortSettled(feedPosts)
                             I.setFeedPosts(sortedPosts)
                         })
                 })
@@ -122,7 +123,6 @@ function useInterface() {
                 //case "contacts": return I.setContacts(mockContacts.filter(contactFilter));
             }
         }
-        filter();
         if (I.mode === "contacts") {
             const web10 = query.includes("/") ? query : `api.web10.app/${query}`;
             const [provider, user] = web10.split("/")
@@ -150,13 +150,15 @@ function useInterface() {
 
 
     I.savePostChanges = function (draftPost) {
-        I.setWallPosts(I.wallPosts.map(p => draftPost.id === p.id ? draftPost : p))
-        I.setFeedPosts(I.feedPosts.map(p => draftPost.id === p.id ? draftPost : p))
+        I.socialAdapter.editPost(draftPost._id, draftPost.html, draftPost.media).then(() => {
+            I.setWallPosts(I.wallPosts.map(p => draftPost._id === p._id ? draftPost : p))
+            I.setFeedPosts(I.feedPosts.map(p => draftPost._id === p._id ? draftPost : p))
+        })
     }
     I.deletePost = function (id) {
         I.socialAdapter.deletePost(id).then(() => {
-            I.setWallPosts(I.wallPosts.filter(p => id !== p.id))
-            I.setFeedPosts(I.feedPosts.filter(p => id !== p.id))
+            I.setWallPosts(I.wallPosts.filter(p => id !== p._id))
+            I.setFeedPosts(I.feedPosts.filter(p => id !== p._id))
         })
     }
     I.createPost = function (draftPost) {
@@ -177,7 +179,7 @@ function useInterface() {
     }
 
     I.deleteCurrentContact = function () {
-        I.setContacts(I.contacts.filter((c) => c.id !== I.currentContact.id));
+        I.setContacts(I.contacts.filter((c) => c._id !== I.currentContact._id));
         I.setMode("contacts");
     }
 
@@ -193,41 +195,57 @@ function useInterface() {
     }
 
     I.deleteBulletin = function (id) {
-        I.setBulletin(I.bulletin.filter((b) => b.id !== id));
+        I.setBulletin(I.bulletin.filter((b) => b._id !== id));
+    }
+
+    I.getMessages = function (web10) {
+        const messageRequests = [
+            I.socialAdapter.loadSentMessages(web10),
+            I.socialAdapter.loadRecievedMessages(web10)
+        ]
+        onlySettled(messageRequests).then((messages) => {
+            const sortedMessages = sortSettled(messages, "sentTime", -1);
+            I.setCurrentMessages(sortedMessages);
+        })
     }
 
     I.chat = function (web10) {
         I.setCurrentContact(I.getContact(web10))
         I.setMode("chat");
-        I.getMessages();
+        I.getMessages(web10);
     }
 
     I.selectMessage = function (id) {
-        I.setSelectedMessages(I.currentMessages.filter((m) => m.id === id).concat(I.selectedMessages))
+        I.setSelectedMessages(I.currentMessages.filter((m) => m._id === id).concat(I.selectedMessages))
     }
     I.deSelectMessage = function (id) {
-        I.setSelectedMessages(I.selectedMessages.filter((m) => m.id !== id))
+        I.setSelectedMessages(I.selectedMessages.filter((m) => m._id !== id))
     }
+
     I.deleteSelectedMessages = function () {
-        const current = I.currentMessages.filter((m) => !I.selectedMessages.includes(m))
-        I.setCurrentMessages(current);
-        I.setSelectedMessages([]);
+        I.socialAdapter.deleteMessages(I.selectedMessages).then(() => {
+            const current = I.currentMessages.filter((m) => !I.selectedMessages.includes(m))
+            I.setCurrentMessages(current);
+            I.setSelectedMessages([]);
+        })
     }
+
     I.resetSelectedMessages = function () {
         I.setSelectedMessages([]);
     }
 
-    I.sendMessage = function (string) {
-        const message = {
-            id: Math.random(1000000000000000),
-            message: string,
-            sentTime: String(new Date()),
-            web10: I.identity.web10,
-        }
-        I.setCurrentMessages([...I.currentMessages].concat([message]))
+    I.sendMessage = function (messageString) {
+        I.socialAdapter.createMessage(messageString, I.currentContact.web10).then(
+            (m) => {
+                I.setCurrentMessages([...I.currentMessages].concat([m]));
+            }
+        )
     }
 
-
+    I.reloadMessages = function (conn, data) {
+        const rtcMessage = {...data,direction:"in"};
+        if (I.currentContactRef.current.web10===data.web10) I.setCurrentMessages((s)=> [...s,data])
+    }
 
     I.setMode = function (mode) {
         I.setMenuCollapsed(true);

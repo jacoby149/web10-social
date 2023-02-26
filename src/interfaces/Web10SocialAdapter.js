@@ -4,10 +4,13 @@ import contactIco from "../assets/images/Contact.png"
 function web10SocialAdapterInit() {
 
     // ports in the convenient web10 functionality into the social adapter.
-    const local = window.location.protocol === "http:";
+    const queryParameters = new URLSearchParams(window.location.search)
+    const local = queryParameters.get("local")
+
     const web10SocialAdapter = local ?
-        { ...wapiInit("http://auth.localhost", "rtc.localhost") } :
-        { ...wapiInit("https://auth.web10.app", "rtc.web10.app") }
+        { ...wapiInit("http://auth.localhost", undefined, "rtc.localhost") } :
+        { ...wapiInit("https://auth.web10.app", undefined, "rtc.web10.app") }
+
 
     web10SocialAdapter.login = function () {
         return web10SocialAdapter.openAuthPortal();
@@ -65,6 +68,7 @@ function web10SocialAdapterInit() {
     ];
     web10SocialAdapter.SMROnReady(sirs, []);
 
+    //contact related functions
     web10SocialAdapter.loadContact = function (web10) {
         const [provider, user] = web10.split("/");
         return web10SocialAdapter.read("identity", {}, user, provider).then((response) => {
@@ -101,8 +105,8 @@ function web10SocialAdapterInit() {
                 date_added: new Date(),
             })
     }
-    web10SocialAdapter.deleteContacts = function (contactID) {
-        return web10SocialAdapter.delete("contacts", { id: contactID })
+    web10SocialAdapter.deleteContact = function (contactID) {
+        return web10SocialAdapter.delete("contacts", { _id: contactID })
     }
 
     web10SocialAdapter.loadIdentity = function () {
@@ -116,37 +120,46 @@ function web10SocialAdapterInit() {
                     web10SocialAdapter.create("identity", newId)
                 }
             })
-        // .catch((error) => {
-        //     console.log(error)
-        //     //TODO if an update_one fails BECAUSE there are NO records, create a record...
-        //     if (error.detail === "TODO DO THIS!!!") {
-        //         web10SocialAdapter.create("identity", { bio: "add a bio!" })
-        //     }
-        // })
     }
 
-    web10SocialAdapter.CreateMessage = function (message, recipient) {
+    //messaging related functions
+    web10SocialAdapter.createMessage = function (message, recipient) {
         const [recipientProvider, recipientUsername] = recipient.split("/");
-        return web10SocialAdapter.create(
-            "message-inbox",
-            {
-                message: message,
-                sentTime: new Date(),
-                web10: `${web10SocialAdapter.readToken().provider}/${web10SocialAdapter.readToken().username}`
-            },
-            recipientUsername,
-            recipientProvider)
-            .then(() =>
-                web10SocialAdapter.create("message-outbox", {
-                    message: message,
-                    sentTime: new Date(),
-                    web10: `${recipientProvider}/${recipientUsername}`
-                }))
+        const toMyOutbox = {
+            message: message,
+            sentTime: new Date(),
+            web10: `${recipientProvider}/${recipientUsername}`
+        }
+        const toRecipientInbox = {
+            message: message,
+            sentTime: new Date(),
+            web10: `${web10SocialAdapter.readToken().provider}/${web10SocialAdapter.readToken().username}`
+        }
+
+        // create the message to the inbox of recipient + your outbox
+        return web10SocialAdapter.create("message-inbox", toRecipientInbox, recipientUsername, recipientProvider)
+            .then((r) => {
+                web10SocialAdapter.send(
+                    recipientProvider,
+                    recipientUsername,
+                    window.location.hostname,
+                    "web10-social-device",
+                    r.data
+                );
+                return web10SocialAdapter.create("message-outbox", toMyOutbox);
+            }).then((r) => {
+                // return the message for the UI
+                return {
+                    ...r.data,
+                    web10: `${web10SocialAdapter.readToken().provider}/${web10SocialAdapter.readToken().username}`,
+                    direction: "out"
+                }
+            })
     }
     web10SocialAdapter.loadRecievedMessages = function (web10) {
         return web10SocialAdapter.read("message-inbox", { web10: web10 })
             .then((r) => {
-                r.data.map(e => {
+                return r.data.map(e => {
                     return {
                         ...e,
                         direction: "in"
@@ -157,7 +170,7 @@ function web10SocialAdapterInit() {
     web10SocialAdapter.loadSentMessages = function (web10) {
         return web10SocialAdapter.read("message-outbox", { web10: web10 })
             .then((r) => {
-                r.data.map(e => {
+                return r.data.map(e => {
                     return {
                         ...e,
                         direction: "out",
@@ -166,22 +179,20 @@ function web10SocialAdapterInit() {
                 })
             });
     }
+
     web10SocialAdapter.deleteMessages = function (messages) {
         const mOut = messages.filter((m) => m.direction === "out")
         const mIn = messages.filter((m) => m.direction === "in")
         const responsesIn = mIn.map((m) => {
-            return web10SocialAdapter.delete("messages-inbox", { id: m.id })
+            return web10SocialAdapter.delete("message-inbox", { _id: m._id })
         })
         const responsesOut = mOut.map((m) => {
-            return web10SocialAdapter.delete("messages-outbox", { id: m.id })
+            return web10SocialAdapter.delete("message-outbox", { _id: m._id })
         })
-        return {
-            "in": responsesIn,
-            "out": responsesOut
-        }
+        return Promise.allSettled([responsesIn, responsesOut])
     }
 
-    //TODO implement post functions
+    //post related functions
     web10SocialAdapter.createPost = function ({ html, media }) {
         return web10SocialAdapter.create("posts", {
             html: html,
@@ -200,22 +211,23 @@ function web10SocialAdapterInit() {
                 return response.data
             })
     }
-    web10SocialAdapter.editPost = function (html, media) {
-        web10SocialAdapter.update("posts", {
-            html: html,
-            media: media,
+    web10SocialAdapter.editPost = function (id, html, media) {
+        return web10SocialAdapter.update("posts", { _id: id }, {
+            $set: {
+                html: html,
+                media: media,
+            }
         })
     }
     web10SocialAdapter.deletePost = function (id) {
-        return web10SocialAdapter.delete("posts", { id: id })
+        return web10SocialAdapter.delete("posts", { _id: id })
     }
 
-    //TODO implement bulletin functions
     web10SocialAdapter.loadBulletins = function () {
         return web10SocialAdapter.read("bulletin");
     }
     web10SocialAdapter.deleteBulletin = function (id) {
-        return web10SocialAdapter.delete("bulletin", { id: id })
+        return web10SocialAdapter.delete("bulletin", { _id: id })
     }
 
     return web10SocialAdapter;

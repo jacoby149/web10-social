@@ -11,7 +11,7 @@ function TSMessage({ model, I, mostRecent }) {
         setShowTime(!showTime);
     }
     function toggleSelected() {
-        selected ? I.deSelectMessage(model.id) : I.selectMessage(model.id)
+        selected ? I.deSelectMessage(model._id) : I.selectMessage(model._id)
         setSelected(!selected);
     }
     function onClick() {
