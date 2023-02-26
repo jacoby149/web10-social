@@ -8,11 +8,15 @@ import mockBulletin from '../mocks/MockBulletin';
 import web10SocialAdapterInit from './Web10SocialAdapter';
 import defaultIdentity from '../mocks/defaultIdentity';
 import { onlySettled, sortSettled } from './settledHelpers';
+import useState from 'react-usestateref';
 
 function useInterface() {
     const I = {};
+
     //initialize web10
-    I.socialAdapter = web10SocialAdapterInit();
+    I._socialAdapter = React.useRef(web10SocialAdapterInit());
+    I.socialAdapter = I._socialAdapter.current;
+
     //initialize frontend states
     [I.theme, I.setTheme] = React.useState("dark");
     [I.menuCollapsed, I.setMenuCollapsed] = React.useState(true);
@@ -21,7 +25,7 @@ function useInterface() {
 
     [I.contactAddresses, I.setContactAddresses] = React.useState([]);
     [I.contacts, I.setContacts] = React.useState([]);
-    [I.currentContact, I.setCurrentContact] = React.useState(null);
+    [I.currentContact, I.setCurrentContact,I.currentContactRef] = useState(null);
     [I.searchContact, I.setSearchContact] = React.useState(null);
 
     [I.feedPosts, I.setFeedPosts] = React.useState([]);
@@ -32,7 +36,7 @@ function useInterface() {
     [I.identity, I.setIdentity] = React.useState();
     [I.draftIdentity, I.setDraftIdentity] = React.useState(I.identity);
 
-    [I.currentMessages, I.setCurrentMessages] = React.useState([]);
+    [I.currentMessages, I.setCurrentMessages,I.currentMessagesRef] = useState([]);
     [I.selectedMessages, I.setSelectedMessages] = React.useState([]);
     [I.typingIndicator, I.setTypingIndicator] = React.useState("Emily is typing ...");
 
@@ -146,7 +150,7 @@ function useInterface() {
 
 
     I.savePostChanges = function (draftPost) {
-        I.socialAdapter.editPost(draftPost._id,draftPost.html,draftPost.media).then(() => {
+        I.socialAdapter.editPost(draftPost._id, draftPost.html, draftPost.media).then(() => {
             I.setWallPosts(I.wallPosts.map(p => draftPost._id === p._id ? draftPost : p))
             I.setFeedPosts(I.feedPosts.map(p => draftPost._id === p._id ? draftPost : p))
         })
@@ -205,11 +209,6 @@ function useInterface() {
         })
     }
 
-    //want to see what happens...
-    I.reloadMessages = function (data) {
-        console.log(data)
-    }
-
     I.chat = function (web10) {
         I.setCurrentContact(I.getContact(web10))
         I.setMode("chat");
@@ -238,12 +237,15 @@ function useInterface() {
     I.sendMessage = function (messageString) {
         I.socialAdapter.createMessage(messageString, I.currentContact.web10).then(
             (m) => {
-                I.setCurrentMessages([...I.currentMessages].concat([m]))
+                I.setCurrentMessages([...I.currentMessages].concat([m]));
             }
         )
     }
 
-
+    I.reloadMessages = function (conn, data) {
+        const rtcMessage = {...data,direction:"in"};
+        if (I.currentContactRef.current.web10===data.web10) I.setCurrentMessages((s)=> [...s,data])
+    }
 
     I.setMode = function (mode) {
         I.setMenuCollapsed(true);

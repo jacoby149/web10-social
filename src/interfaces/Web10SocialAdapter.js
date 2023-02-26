@@ -8,8 +8,9 @@ function web10SocialAdapterInit() {
     const local = queryParameters.get("local")
 
     const web10SocialAdapter = local ?
-        { ...wapiInit("http://auth.localhost", "rtc.localhost") } :
-        { ...wapiInit("https://auth.web10.app", "rtc.web10.app") }
+        { ...wapiInit("http://auth.localhost", undefined, "rtc.localhost") } :
+        { ...wapiInit("https://auth.web10.app", undefined, "rtc.web10.app") }
+
 
     web10SocialAdapter.login = function () {
         return web10SocialAdapter.openAuthPortal();
@@ -137,19 +138,19 @@ function web10SocialAdapterInit() {
 
         // create the message to the inbox of recipient + your outbox
         return web10SocialAdapter.create("message-inbox", toRecipientInbox, recipientUsername, recipientProvider)
-            .then(() => {
-                // web10SocialAdapter.send(
-                //     recipientProvider,
-                //     recipientUsername,
-                //     window.location.hostname,
-                //     "web10-social-device",
-                //     toRecipientInbox
-                // )
-                return web10SocialAdapter.create("message-outbox", toMyOutbox)
-            }).then(() => {
+            .then((r) => {
+                web10SocialAdapter.send(
+                    recipientProvider,
+                    recipientUsername,
+                    window.location.hostname,
+                    "web10-social-device",
+                    r.data
+                );
+                return web10SocialAdapter.create("message-outbox", toMyOutbox);
+            }).then((r) => {
                 // return the message for the UI
                 return {
-                    ...toMyOutbox,
+                    ...r.data,
                     web10: `${web10SocialAdapter.readToken().provider}/${web10SocialAdapter.readToken().username}`,
                     direction: "out"
                 }
@@ -188,7 +189,7 @@ function web10SocialAdapterInit() {
         const responsesOut = mOut.map((m) => {
             return web10SocialAdapter.delete("message-outbox", { _id: m._id })
         })
-        return Promise.allSettled([responsesIn,responsesOut])
+        return Promise.allSettled([responsesIn, responsesOut])
     }
 
     //post related functions
@@ -211,10 +212,12 @@ function web10SocialAdapterInit() {
             })
     }
     web10SocialAdapter.editPost = function (id, html, media) {
-        return web10SocialAdapter.update("posts", {_id:id}, {$set:{
-            html: html,
-            media: media,
-        }})
+        return web10SocialAdapter.update("posts", { _id: id }, {
+            $set: {
+                html: html,
+                media: media,
+            }
+        })
     }
     web10SocialAdapter.deletePost = function (id) {
         return web10SocialAdapter.delete("posts", { _id: id })
