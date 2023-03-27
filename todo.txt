@@ -1,5 +1,0 @@
-fix the null deletion issue
-make a web10 tutorial with a posts integration.
-make a web10 tutorial with a messages integration.
-get searching working.
-web10 should have some kind of groups...
