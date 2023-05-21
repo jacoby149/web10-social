@@ -14,7 +14,7 @@ function useInterface() {
     const I = {};
 
     //initialize web10
-    I._socialAdapter = React.useRef(web10SocialAdapterInit());
+    I._socialAdapter = React.useRef(null);//initialize this in app initialization.
     I.socialAdapter = I._socialAdapter.current;
 
     //initialize frontend states
@@ -262,6 +262,9 @@ function useInterface() {
     }
 
     React.useEffect(() => {
+        const socialAdapter = web10SocialAdapterInit()
+        I._socialAdapter.current = socialAdapter
+        I.socialAdapter = socialAdapter;
         // inits the web10 portion of the app
         if (I.socialAdapter.isSignedIn()) I.initApp()
         else I.socialAdapter.authListen(I.initApp)

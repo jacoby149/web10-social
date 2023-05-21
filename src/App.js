@@ -10,10 +10,9 @@ import './assets/bulma/css/bulma.min.css';
 import './components/Components.css';
 import Login from './components/Login/Login';
 import StandAloneFeed from './components/Feed/StandAloneFeed';
-
+import web10SocialAdapterInit from './interfaces/Web10SocialAdapter';
 
 function App() {
-
   const queryParameters = new URLSearchParams(window.location.search)
   const mock = queryParameters.get("mock")
   const mockI = useMockInterface();

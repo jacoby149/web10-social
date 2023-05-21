@@ -2,7 +2,6 @@ import { wapiInit } from 'web10-npm';
 import contactIco from "../assets/images/Contact.png"
 
 function web10SocialAdapterInit() {
-
     // ports in the convenient web10 functionality into the social adapter.
     const queryParameters = new URLSearchParams(window.location.search)
     const local = queryParameters.get("local")
